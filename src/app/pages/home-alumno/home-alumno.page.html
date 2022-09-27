@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first" color="primary"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Bienvenido {{usuario.nombre}} {{usuario.apellido}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" mode="ios">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <ion-slide>
+          <!-- Este botón inicia el componente MODAL para escanear el código QR-->
+          <ion-button (click)="escanearQR()" size="large" mode="ios">
+            <ion-icon shape="round" name="add-circle"></ion-icon>
+            Escanear QR
+          </ion-button>
+        </ion-slide>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

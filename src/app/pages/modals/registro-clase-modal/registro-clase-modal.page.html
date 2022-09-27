@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Asistencia en línea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios">
+
+  <ion-card class="ion-text-center">
+    <ion-card-content>
+      <qrcode [qrdata]="qrCodeString" 
+              [width]="246" 
+              [errorCorrectionLevel]="'M'">
+      </qrcode>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="salirMenuPrincipal()" expand="block">
+      Salir al menú principal
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

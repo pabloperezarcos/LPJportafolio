@@ -1,0 +1,82 @@
+<ion-content class="ion-padding" mode="ios">
+
+  <form [formGroup]="formulariologin">
+
+    <ion-grid fixed="true">
+
+      <ion-row>
+        <ion-col>
+          <p style="text-align:center;">
+            <img src="/assets/logo_duoc.png" width="250" height="70">
+        </ion-col>
+      </ion-row>
+      <br>
+      <br>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked">Correo: </ion-label>
+              <ion-input formControlName="email" type="email" placeholder="Introduzca su correo"
+                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required></ion-input>
+              <!--
+               El "pattern" permite definir nuestras propias reglas para validar el valor del "input", si el valor no coincide con el patrón especificado, entonces arrojará un error 
+               -->
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked">Contraseña: </ion-label>
+              <ion-input formControlName="password" type="password" required placeholder="Introduzca su contraseña">
+              </ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="iniciarSesion()" type="submit" shape="round" expand="block">
+            INGRESAR
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <!-- Este botón inicia el componente MODAL para registrar un nuevo usuario-->
+        <ion-button (click)="registerUser()" shape="round" fill="outline" size="medium" mode="ios">
+          Registrarse
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <!-- Este botón inicia el componente MODAL recuperar o restablecer la contraseña-->
+        <ion-button (click)="recuperarPass()" shape="round" fill="outline" size="medium" mode="ios">
+          Recuperar contraseña
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar>
+    <ion-row>
+
+      <ion-col>
+        <ion-router-link href="#" class="underline">¿Necesitas ayuda?</ion-router-link>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

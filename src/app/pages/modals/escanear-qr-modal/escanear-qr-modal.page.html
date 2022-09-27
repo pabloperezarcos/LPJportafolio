@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Escanear código QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" mode="ios">
+
+  <ion-card>
+    <ion-button (click)="startScan()" expand="full" fill="outline" shape="round" size="large">
+      Escanear QR
+    </ion-button>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="salirMenuPrincipal()" expand="block">
+      Salir al menú principal
+    </ion-button>  
+  </ion-toolbar>
+</ion-footer>

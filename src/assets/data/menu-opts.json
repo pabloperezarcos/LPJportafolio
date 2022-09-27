@@ -1,0 +1,17 @@
+[
+    {
+      "icon": "megaphone-outline",
+      "name": "Opcion 1",
+      "redirectTo": "/"
+    },
+    {
+      "icon": "link-outline",
+      "name": "Opcion 2",
+      "redirectTo": "/"
+    },
+    {
+      "icon": "bulb-outline",
+      "name": "Opcion 3",
+      "redirectTo": "/"
+    }
+  ]
