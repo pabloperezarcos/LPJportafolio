@@ -10,8 +10,8 @@
       "redirectTo": "/"
     },
     {
-      "icon": "bulb-outline",
-      "name": "Opcion 3",
-      "redirectTo": "/"
+      "icon": "log-out-outline",
+      "name": "Cerrar sesión",
+      "redirectTo": "/welcome"
     }
   ]

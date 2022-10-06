@@ -1,32 +1,24 @@
 <ion-app>
-     
-  <ion-split-pane contentId="main" when="md">
+  <ion-menu menuId="first" contentId="main">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="/assets/user.png" alt="">
+        <ion-label>
+          <h2> Opciones </h2>
+          <!-- <p> Alumno </p> -->
+        </ion-label>
+      </div>
 
-      <ion-menu side="start" menuId="first" contentId="main">
-  
-        <ion-header>
-          <ion-toolbar color="primary">
-            <ion-title>Opciones</ion-title>
-          </ion-toolbar>
-        </ion-header>
-  
-        <ion-content>
-          <ion-list>
-            <!--El ion-menu-toggle es para que el menu se cierre
-                luego de escoger una opcion-->
-            <ion-menu-toggle *ngFor="let c of components | async" autoHide="false" [routerLink]="c.redirectTo" detail>
-              <ion-item>
-                <ion-icon [name]="c.icon" slot="start" color="primary"></ion-icon>
-                {{ c.name }}
-              </ion-item>
-            </ion-menu-toggle>
-          </ion-list>
-        </ion-content>
-  
-      </ion-menu>
-  
-      <ion-router-outlet id="main"></ion-router-outlet>
-  
-    </ion-split-pane>
-  
+      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" autoHide="false" [routerLink]="c.redirectTo" detail>
+       
+        <ion-item>
+          <ion-icon [name]="c.icon"></ion-icon>
+          {{ c.name }}
+        </ion-item>
+      
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
