@@ -12,12 +12,14 @@
     <br>
     <form [formGroup]="formulariologin">
       <ion-item class="ion-margin">
+        <ion-icon slot="start" name="mail-outline"></ion-icon>
         <ion-input formControlName="email" type="email" clearInput="true" placeholder="Introduzca su correo"
           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required>
         </ion-input>
       </ion-item>
 
       <ion-item class="ion-margin">
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
         <ion-input formControlName="password" type="password" clearInput="true" required
           placeholder="Introduzca su contraseña">
         </ion-input>

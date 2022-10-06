@@ -15,6 +15,7 @@
           <ion-list>
             <ion-item>
               <ion-label>Nombre:</ion-label>
+              <ion-icon slot="end" name="person-circle-outline"></ion-icon>
               <ion-input formControlName="nombre" placeholder="Introduzca su primer nombre" type="text" required>
               </ion-input>
             </ion-item>
@@ -26,6 +27,7 @@
           <ion-list>
             <ion-item>
               <ion-label>Apellido:</ion-label>
+              <ion-icon slot="end" name="person-circle-outline"></ion-icon>
               <ion-input formControlName="apellido" placeholder="Introduzca su primer apellido" type="text" required>
               </ion-input>
             </ion-item>
@@ -38,6 +40,7 @@
           <ion-list>
             <ion-item>
               <ion-label>Correo: </ion-label>
+              <ion-icon slot="end" name="mail-outline"></ion-icon>
               <ion-input formControlName="email" placeholder="Introduzca su correo" type="email"
                 pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required></ion-input>
               <!--              
@@ -53,6 +56,7 @@
           <ion-list>
             <ion-item>
               <ion-label>Contraseña: </ion-label>
+              <ion-icon slot="end" name="lock-closed-outline"></ion-icon>
               <ion-input formControlName="password" type="password" required placeholder="Introduzca su contraseña">
               </ion-input>
             </ion-item>
@@ -64,6 +68,7 @@
           <ion-list>
             <ion-item>
               <ion-label>Contraseña: </ion-label>
+              <ion-icon slot="end" name="lock-closed-outline"></ion-icon>
               <ion-input formControlName="password2" type="password" required
                 placeholder="Vuelva a introducir su contraseña"></ion-input>
             </ion-item>
@@ -74,6 +79,7 @@
       <ion-row>
         <ion-col>
           <ion-button (click)="guardarRegistro()" [disabled]="formularioRegistro.invalid" color="secondary" type="submit" expand="block">
+            <ion-icon slot="end" name="person-add-outline"></ion-icon>
             Registrarse
           </ion-button>
         </ion-col>
