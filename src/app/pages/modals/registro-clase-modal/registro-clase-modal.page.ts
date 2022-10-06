@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 
 @Component({
@@ -9,13 +9,25 @@ import { ModalController } from '@ionic/angular';
 })
 export class RegistroClaseModalPage implements OnInit {
 
-  qrCodeString = 'asistencia a IONIC Angular';
+  qrCodeString = "";
+  asignatura: string;
+  fechaClase: string;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController,
+    private navParams: NavParams
+  ) {
+    console.log(navParams.get('inputOption'));
+    console.log(navParams.get('nuevaFecha'));
+  }
 
   ngOnInit() {
-
+    
+    this.qrCodeString = this.navParams.get('inputOption')+' '+this.navParams.get('nuevaFecha') ;
+    this.asignatura = this.navParams.get('inputOption');
+    this.fechaClase = this.navParams.get('nuevaFecha');
   }
+
+
 
   salirMenuPrincipal() {
     this.modalCtrl.dismiss();

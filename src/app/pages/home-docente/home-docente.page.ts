@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../modals/registro-clase-modal/registro-clase-modal.page';
+import { parseISO } from 'date-fns';
+import format from 'date-fns/format';
 
 @Component({
   selector: 'app-home-docente',
@@ -10,13 +12,30 @@ import { RegistroClaseModalPage } from '../modals/registro-clase-modal/registro-
 export class HomeDocentePage implements OnInit {
 
   usuario = JSON.parse(localStorage.getItem("usuario"));
+  myDate: string;
+  nuevaFecha: string;
+  inputOption: string;
 
   constructor(private modalCtr: ModalController,
     private animationCtrl: AnimationController
-  ) { }
+  ) {   }
+
 
   ngOnInit() {
+  }
 
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+    return utcDay !== 0 && utcDay !== 6;
+  };
+
+  change() {
+    const formattedString = format(parseISO(this.myDate), 'dd-MM-yyyy; HH:mm');
+    this.myDate = formattedString;
+    this.nuevaFecha = this.myDate;
+    console.log(formattedString);
+    console.log(this.inputOption);
   }
 
   async iniciarRegistro() {
@@ -47,12 +66,18 @@ export class HomeDocentePage implements OnInit {
 
     const modal = await this.modalCtr.create({
       component: RegistroClaseModalPage,
+      componentProps: {
+        'nuevaFecha':this.nuevaFecha,
+        'inputOption':this.inputOption
+      },
       enterAnimation,
       leaveAnimation
     });
 
     await modal.present();
   }
+
+
 
 
 }

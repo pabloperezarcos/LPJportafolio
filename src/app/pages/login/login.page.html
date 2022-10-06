@@ -1,82 +1,45 @@
-<ion-content class="ion-padding" mode="ios">
+<ion-content class="ion-padding" mode="ios" [fullscreen]="true">
+  <div id="bg">
+    <ion-fab vertical="bottom" edge horizontal="center" slot="fixed">
+      <ion-fab-button color="white"  routerLink="/welcome">
+        <ion-icon name="close-outline" color="medium"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
 
-  <form [formGroup]="formulariologin">
+  <ion-list lines="none" class="ion-text-end">
+    <ion-list-header>RegisterApp</ion-list-header>
+    <br>
+    <form [formGroup]="formulariologin">
+      <ion-item class="ion-margin">
+        <ion-input formControlName="email" type="email" clearInput="true" placeholder="Introduzca su correo"
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required>
+        </ion-input>
+      </ion-item>
 
-    <ion-grid fixed="true">
+      <ion-item class="ion-margin">
+        <ion-input formControlName="password" type="password" clearInput="true" required
+          placeholder="Introduzca su contraseña">
+        </ion-input>
+      </ion-item>
 
-      <ion-row>
-        <ion-col>
-          <p style="text-align:center;">
-            <img src="/assets/logo_duoc.png" width="250" height="70">
-        </ion-col>
-      </ion-row>
-      <br>
-      <br>
-      <ion-row>
-        <ion-col>
-          <ion-list>
-            <ion-item>
-              <ion-label position="stacked">Correo: </ion-label>
-              <ion-input formControlName="email" type="email" placeholder="Introduzca su correo"
-                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required></ion-input>
-              <!--
-               El "pattern" permite definir nuestras propias reglas para validar el valor del "input", si el valor no coincide con el patrón especificado, entonces arrojará un error 
-               -->
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <br>
-      <ion-row>
-        <ion-col>
-          <ion-list>
-            <ion-item>
-              <ion-label position="stacked">Contraseña: </ion-label>
-              <ion-input formControlName="password" type="password" required placeholder="Introduzca su contraseña">
-              </ion-input>
-            </ion-item>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      <br>
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="iniciarSesion()" type="submit" shape="round" expand="block">
-            Iniciar Sesión
-          </ion-button>
-        </ion-col>
-      </ion-row>
+      <ion-text>
+        <p>
+          <ion-router-link (click)="recuperarPass()" class="underline">¿Olvidaste la contraseña?</ion-router-link>
+        </p>
+      </ion-text>
 
-    </ion-grid>
-  </form>
-
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col>
-        <!-- Este botón inicia el componente MODAL para registrar un nuevo usuario-->
-        <ion-button (click)="registerUser()" shape="round" fill="outline" size="medium" mode="ios">
-          Registrarse
+      <div class="ion-text-center">
+        <ion-button (click)="iniciarSesion()" shape="round" strong="true">
+          Iniciar Sesión
+          <ion-icon name="log-in" slot="end"></ion-icon>
         </ion-button>
-      </ion-col>
-      <ion-col>
-        <!-- Este botón inicia el componente MODAL recuperar o restablecer la contraseña-->
-        <ion-button (click)="recuperarPass()" shape="round" fill="outline" size="medium" mode="ios">
-          Recuperar contraseña
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      </div>
+    </form>
 
+  </ion-list>
 </ion-content>
 
-<ion-footer no-border>
-  <ion-toolbar>
-    <ion-row>
-
-      <ion-col>
-        <ion-router-link href="#" class="underline">¿Necesitas ayuda?</ion-router-link>
-      </ion-col>
-
-    </ion-row>
-  </ion-toolbar>
+<ion-footer>
+  <p class="ion-text-center"><img src="/assets/duocLogo.png" width="150" height="40"></p>
 </ion-footer>

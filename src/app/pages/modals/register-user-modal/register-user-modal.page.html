@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-title>Registro de usuario</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -73,22 +73,18 @@
       <br>
       <ion-row>
         <ion-col>
-          <ion-button (click)="guardarRegistro()" type="submit" shape="round" expand="block">
+          <ion-button (click)="guardarRegistro()" [disabled]="formularioRegistro.invalid" color="secondary" type="submit" expand="block">
             Registrarse
           </ion-button>
         </ion-col>
       </ion-row>
-
     </ion-grid>
   </form>
-
-
-</ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-button (click)="salirMenuPrincipal()" expand="block">
+  <br>
+  <div class="ion-text-center">
+    <ion-button (click)="salirMenuPrincipal()" class="ion-text-center" color="danger" size="medium">
       Cancelar
     </ion-button>
-  </ion-toolbar>
-</ion-footer>
+  </div>
+
+</ion-content>
