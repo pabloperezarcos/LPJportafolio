@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnimationController } from '@ionic/angular';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-//import { EscanearQrModalPage } from '../modals/escanear-qr-modal/escanear-qr-modal.page';
 
 @Component({
   selector: 'app-home-alumno',

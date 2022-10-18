@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Asistencia en línea</ion-title>
+    <ion-title class="ion-text-center">Asistencia en línea</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,13 +14,16 @@
       </qrcode>
     </ion-card-content>
   </ion-card>
-  <br>
-  <br>
-  <ion-label>Asignatura:</ion-label>
-  <h3> {{asignatura}} </h3>
-  <br>
-  <ion-label>Fecha:</ion-label>
-  <h3> {{fechaClase}} </h3>
+  
+  <ion-item class="ion-padding">
+    <ion-label>Fecha:</ion-label>
+    <h3> {{fechaClase}} </h3>
+  </ion-item>
+
+  <ion-item class="ion-padding">
+    <ion-label>Asignatura:</ion-label>
+    <h3> {{asignatura}} </h3>
+  </ion-item>
 
 </ion-content>
 
