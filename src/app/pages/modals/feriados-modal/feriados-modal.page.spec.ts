@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { EscanearQrModalPage } from './escanear-qr-modal.page';
+import { FeriadosModalPage } from './feriados-modal.page';
 
-describe('EscanearQrModalPage', () => {
-  let component: EscanearQrModalPage;
-  let fixture: ComponentFixture<EscanearQrModalPage>;
+describe('FeriadosModalPage', () => {
+  let component: FeriadosModalPage;
+  let fixture: ComponentFixture<FeriadosModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EscanearQrModalPage ],
+      declarations: [ FeriadosModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EscanearQrModalPage);
+    fixture = TestBed.createComponent(FeriadosModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

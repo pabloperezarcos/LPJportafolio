@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'escanear-qr-modal',
-    loadChildren: () => import('./pages/modals/escanear-qr-modal/escanear-qr-modal.module').then( m => m.EscanearQrModalPageModule)
-  },
-  {
     path: 'recuperar-pass-modal',
     loadChildren: () => import('./pages/modals/recuperar-pass-modal/recuperar-pass-modal.module').then( m => m.RecuperarPassModalPageModule)
   },
@@ -42,6 +38,10 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
+  {
+    path: 'feriados-modal',
+    loadChildren: () => import('./pages/modals/feriados-modal/feriados-modal.module').then( m => m.FeriadosModalPageModule)
   }
 ];
 

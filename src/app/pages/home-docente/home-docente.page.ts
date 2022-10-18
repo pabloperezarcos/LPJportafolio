@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../modals/registro-clase-modal/registro-clase-modal.page';
+import { FeriadosModalPage } from '../modals/feriados-modal/feriados-modal.page';
 import { parseISO } from 'date-fns';
 import format from 'date-fns/format';
 
@@ -18,8 +19,7 @@ export class HomeDocentePage implements OnInit {
 
   constructor(private modalCtr: ModalController,
     private animationCtrl: AnimationController
-  ) {   }
-
+  ) { }
 
   ngOnInit() {
   }
@@ -67,9 +67,45 @@ export class HomeDocentePage implements OnInit {
     const modal = await this.modalCtr.create({
       component: RegistroClaseModalPage,
       componentProps: {
-        'nuevaFecha':this.nuevaFecha,
-        'inputOption':this.inputOption
+        'nuevaFecha': this.nuevaFecha,
+        'inputOption': this.inputOption
       },
+      enterAnimation,
+      leaveAnimation
+    });
+
+    await modal.present();
+  }
+
+  async consultarFeriados() {
+    const enterAnimation = (baseEl: any) => {
+      const root = baseEl.shadowRoot;
+
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const leaveAnimation = (baseEl: any) => {
+      return enterAnimation(baseEl).direction('reverse');
+    }
+
+    const modal = await this.modalCtr.create({
+      component: FeriadosModalPage,
+      componentProps: {},
       enterAnimation,
       leaveAnimation
     });

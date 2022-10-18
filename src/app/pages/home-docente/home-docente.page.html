@@ -1,7 +1,5 @@
 <ion-header>
-
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-menu-button menu="first" color="primary"></ion-menu-button>
     </ion-buttons>
@@ -13,7 +11,6 @@
         <ion-icon slot="icon-only" name="person-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
@@ -21,9 +18,27 @@
 
 <ion-content class="ion-padding" mode="ios">
   <ion-card>
+    <br>
+    <div class="ion-text-center">
+      <ion-button (click)="consultarFeriados()" size="medium" mode="ios">
+        <ion-icon shape="round" name="calendar" size="large" slot="end"></ion-icon>
+        Consultar feriados
+      </ion-button>
+    </div>
+    <br>
+    <br>
     <ion-list>
       <ion-item>
-        <ion-select [(ngModel)]="inputOption" placeholder="Seleccione una asignatura">
+        <ion-label class="ion-text-center">
+          <h1>
+            REGISTRO DE ASISTENCIA
+          </h1> 
+          <br>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Seleccione una asignatura:</ion-label>
+        <ion-select [(ngModel)]="inputOption" placeholder="Seleccione una opción">
           <ion-select-option value="Progr. de Aplicaciones móviles">Progr. de Aplicaciones móviles</ion-select-option>
           <ion-select-option value="Arquitectura">Arquitectura</ion-select-option>
           <ion-select-option value="Progr. de Aplicaciones WEB">Progr. de Aplicaciones WEB</ion-select-option>
@@ -43,7 +58,7 @@
     <br>
     <br>
     <ion-text>
-      <h2>Has seleccionado lo siguiente:</h2>
+      <h3>Ud. ha seleccionado lo siguiente:</h3>
       <h4>{{ inputOption }} - {{ nuevaFecha }} </h4>
     </ion-text>
     <br>
@@ -55,5 +70,6 @@
         Iniciar Registro
       </ion-button>
     </div>
+    <br>
   </ion-card>
 </ion-content>

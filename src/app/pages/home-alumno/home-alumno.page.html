@@ -22,9 +22,8 @@
     <ion-row>
       <ion-col>
         <ion-slide>
-          <!-- Este botón inicia el componente MODAL para escanear el código QR-->
-          <ion-button (click)="escanearQR()" size="large" mode="ios">
-            <ion-icon shape="round" name="add-circle"></ion-icon>
+          <ion-button (click)="startScan()" size="large" mode="ios">
+            <ion-icon shape="round" name="qr-code" slot="end" size="large"></ion-icon>
             Escanear QR
           </ion-button>
         </ion-slide>

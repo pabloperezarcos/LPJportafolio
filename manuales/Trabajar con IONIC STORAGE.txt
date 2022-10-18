@@ -1,0 +1,26 @@
+Primero instalamos IonicStorage:
+	
+	npm install @ionic/storage
+	npm install @ionic/storage-angular
+
+Luego en nuestro app.module.ts agregamos:
+
+	import { IonicStorageModule } 	from '@ionic/storage-angular';
+
+	@NgModule({
+	  imports: [
+	    IonicStorageModule.forRoot()
+	  ]
+	})
+	export class AppModule { }
+
+-----------------------
+SQLITE
+
+	npm install @capacitor-community/sqlite 
+
+------------------------
+
+https://www.youtube.com/watch?v=j7hpGoODD_k
+
+Video para usar Sqlite

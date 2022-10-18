@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AnimationController } from '@ionic/angular';
-import { EscanearQrModalPage } from '../modals/escanear-qr-modal/escanear-qr-modal.page';
+import { AnimationController } from '@ionic/angular';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+//import { EscanearQrModalPage } from '../modals/escanear-qr-modal/escanear-qr-modal.page';
 
 @Component({
   selector: 'app-home-alumno',
@@ -10,8 +11,9 @@ import { EscanearQrModalPage } from '../modals/escanear-qr-modal/escanear-qr-mod
 export class HomeAlumnoPage implements OnInit {
 
   usuario = JSON.parse(localStorage.getItem("usuario"));
+  scanResult: any;
 
-  constructor(private modalCtr: ModalController,
+  constructor(
     private animationCtrl: AnimationController
   ) { }
 
@@ -19,39 +21,46 @@ export class HomeAlumnoPage implements OnInit {
 
   }
 
-  async escanearQR() {
-    const enterAnimation = (baseEl: any) => {
-      const root = baseEl.shadowRoot;
-
-      const backdropAnimation = this.animationCtrl.create()
-        .addElement(root.querySelector('ion-backdrop')!)
-        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
-
-      const wrapperAnimation = this.animationCtrl.create()
-        .addElement(root.querySelector('.modal-wrapper')!)
-        .keyframes([
-          { offset: 0, opacity: '0', transform: 'scale(0)' },
-          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
-        ]);
-
-      return this.animationCtrl.create()
-        .addElement(baseEl)
-        .easing('ease-out')
-        .duration(500)
-        .addAnimation([backdropAnimation, wrapperAnimation]);
+  async checkPermission() {
+    try {
+      //Revisar o solicitar permisos
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (status.granted) {
+        //El usuario otorga permiso
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    const leaveAnimation = (baseEl: any) => {
-      return enterAnimation(baseEl).direction('reverse');
+  async startScan() {
+    try {
+      const permission = await this.checkPermission();
+      if (!permission) {
+        return;
+      }
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body').classList.add('scanner-active');
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      if (result?.hasContent) {
+        this.scanResult = result.content;
+        BarcodeScanner.showBackground();
+        document.querySelector('body').classList.remove('scanner-active');
+        console.log(this.scanResult);
+      }
+    } catch (error) {
+      console.log(error);
+      this.stopScan();
     }
+  }
 
-    const modal = await this.modalCtr.create({
-      component: EscanearQrModalPage,
-      enterAnimation,
-      leaveAnimation
-    });
-
-    await modal.present();
+  stopScan() {
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body').classList.remove('scanner-active');
   }
 
 }

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Días feriados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="ion-padding">
+    <ion-list *ngFor="let feriados of apiFeriados">
+      <ion-item>
+        <ion-label>
+          <h2>{{ feriados.title }}</h2>
+          <h3>{{ feriados.extra }}</h3>
+          <h3>{{ feriados.date }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="salirMenuPrincipal()" expand="block">
+      Volver atrás
+    </ion-button>  
+  </ion-toolbar>
+</ion-footer>

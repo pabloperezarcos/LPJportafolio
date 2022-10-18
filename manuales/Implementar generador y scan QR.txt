@@ -1,0 +1,80 @@
+Primero instalamos QRCODE
+
+	npm install angularx-qrcode
+
+Luego en la pagina a implementar, hay que modificar lo siguiente:
+
+*page.module.ts
+	import { QRCodeModule } from 'angularx-qrcode';
+	
+	agregar al import
+	@NgModule ({ QRCodeModule })
+
+*page.page.html
+	<qrcode [qrdata]="qrCodeString" [width]="300"
+        [errorCorrectionLevel]="'M'"></qrcode>
+
+*page.page.ts
+	qrCodeString = 'texto a generar en el QR';
+
+-----------------------------
+
+Luego para escanear hay que instalar lo siguiente:
+
+	npm install @capacitor-community/barcode-scanner
+	npm run build
+	npx cap sync
+
+--------------------------------
+
+Luego para usar en ANDROID y IOS aplicar:
+
+	ionic capacitor add android
+	ionic capacitor add ios
+
+-------------------------------
+
+Luego agregar las siguientes líneas en:
+
+EN IOS:
+	ios/app/app/info.plist
+
+
+<dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Mensaje para solicitar
+		acceso a la camara</string
+</dict>
+
+EN ANDROID:
+	android/app/src/main/androidmanifest.xml
+
+<manifest
+  xmlns:tools="http://schemas.android.com/tools"
+</manifest>
+
+<application
+   android:hardwareAccelerated="true"
+</application>
+
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
+------------------------------
+
+En el global.scss agregamos lo siguiente
+
+body.scanner-active {
+    --background: transparent;
+    --ion-background-colpor: transparent;
+}
+
+------------------------------
+
+
+
+
+
+
+
+

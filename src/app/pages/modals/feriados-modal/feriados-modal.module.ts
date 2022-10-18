@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EscanearQrModalPageRoutingModule } from './escanear-qr-modal-routing.module';
-import { EscanearQrModalPage } from './escanear-qr-modal.page';
+import { FeriadosModalPageRoutingModule } from './feriados-modal-routing.module';
+
+import { FeriadosModalPage } from './feriados-modal.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EscanearQrModalPageRoutingModule
+    FeriadosModalPageRoutingModule
   ],
-  declarations: [EscanearQrModalPage]
+  declarations: [FeriadosModalPage]
 })
-export class EscanearQrModalPageModule {}
+export class FeriadosModalPageModule {}
