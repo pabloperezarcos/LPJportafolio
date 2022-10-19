@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { FeriadosService } from 'src/app/services/feriados.service';
 
 @Component({
-  selector: 'app-feriados-modal',
-  templateUrl: './feriados-modal.page.html',
-  styleUrls: ['./feriados-modal.page.scss'],
+  selector: 'app-feriados',
+  templateUrl: './feriados.page.html',
+  styleUrls: ['./feriados.page.scss'],
 })
-export class FeriadosModalPage implements OnInit {
+export class FeriadosPage implements OnInit {
 
   apiFeriados: any;
 
-  constructor(private modalCtrl: ModalController,
+  constructor(
     private feriadosService: FeriadosService
   ) {
     this.listarFeriados();
@@ -29,10 +28,6 @@ export class FeriadosModalPage implements OnInit {
         (error) => {
           console.error(error)
         });
-  }
-
-  salirMenuPrincipal() {
-    this.modalCtrl.dismiss();
   }
 
 }

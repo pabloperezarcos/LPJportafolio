@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FeriadosModalPageRoutingModule } from './feriados-modal-routing.module';
+import { AsignaturasPageRoutingModule } from './asignaturas-routing.module';
 
-import { FeriadosModalPage } from './feriados-modal.page';
+import { AsignaturasPage } from './asignaturas.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FeriadosModalPageRoutingModule
+    AsignaturasPageRoutingModule
   ],
-  declarations: [FeriadosModalPage]
+  declarations: [AsignaturasPage]
 })
-export class FeriadosModalPageModule {}
+export class AsignaturasPageModule {}

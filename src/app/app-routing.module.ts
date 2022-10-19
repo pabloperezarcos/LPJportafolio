@@ -40,8 +40,20 @@ const routes: Routes = [
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
   },
   {
-    path: 'feriados-modal',
-    loadChildren: () => import('./pages/modals/feriados-modal/feriados-modal.module').then( m => m.FeriadosModalPageModule)
+    path: 'asistencia',
+    loadChildren: () => import('./pages/tabs/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+  },
+  {
+    path: 'alumnos',
+    loadChildren: () => import('./pages/tabs/alumnos/alumnos.module').then( m => m.AlumnosPageModule)
+  },
+  {
+    path: 'asignaturas',
+    loadChildren: () => import('./pages/tabs/asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
+  },
+  {
+    path: 'feriados',
+    loadChildren: () => import('./pages/tabs/feriados/feriados.module').then( m => m.FeriadosPageModule)
   }
 ];
 
