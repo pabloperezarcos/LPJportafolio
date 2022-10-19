@@ -14,6 +14,107 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding" mode="ios">
+
+  <ion-grid fixed="true">
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Nombre:</ion-label>
+            <ion-input [(ngModel)]="nombre" placeholder="Introduzca su nombre" type="text" required>
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Apellido:</ion-label>
+            <ion-input [(ngModel)]="apellido" placeholder="Introduzca su primer apellido" type="text" required>
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Correo: </ion-label>
+            <ion-input [(ngModel)]="correo" placeholder="Introduzca su correo" type="email" required
+              pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"></ion-input>
+            <!--              
+              El "pattern" permite definir nuestras propias reglas para validar el valor del "input", si el valor no coincide con el patrón especificado, entonces arrojará un error 
+              
+             -->
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Contraseña: </ion-label>
+            <ion-input [(ngModel)]="password" type="password" required placeholder="Introduzca su contraseña">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Contraseña: </ion-label>
+            <ion-input [(ngModel)]="password2" type="password" required placeholder="Vuelva a introducir su contraseña">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="registrarUsuario()" type="submit" shape="round" expand="block">
+          Registrarse
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- </form> -->
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let category of categories">
+      <ion-item-options side="start">
+        <ion-item-option (click)="editTest(category)">Edit</ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-label>
+          <h2>Nombre: {{ category.nombre }} {{ category.apellido }} </h2>
+          <p>Correo: {{ category.correo }} </p>
+          <p>ID en la baseDato: {{ category.id }} </p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteTest(category.id)">Delete</ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-button (click)="goToLogin()" expand="block" fill="clear" shape="round">
+    ir al Login
+  </ion-button>
+
+
 
 </ion-content>
