@@ -33,7 +33,7 @@ export class AgregarAlumnoPage implements OnInit {
       'apellidoMaterno': new FormControl("", Validators.required)
     });
     this.alumnosService.crearBaseDatos().then(() => {
-      this.getTest();
+      this.getAlumno();
     });
   }
 
@@ -70,25 +70,18 @@ export class AgregarAlumnoPage implements OnInit {
       this.apellidoPaterno = "";
       this.apellidoMaterno = "";
       alert(data);
-      this.getTest();
+      this.getAlumno();
     });
   }
 
-  getTest() {
-    this.alumnosService.getTest().then((data) => {
+  getAlumno() {
+    this.alumnosService.getAlumno().then((data) => {
       this.alumnosbd = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
           this.alumnosbd.push(data.rows.item(i));
         }
       }
-    });
-  }
-
-  deleteTest(id: number) {
-    this.alumnosService.deleteTest(id).then((data) => {
-      alert(data);
-      this.getTest();
     });
   }
 
@@ -101,7 +94,7 @@ export class AgregarAlumnoPage implements OnInit {
   }
 
   cancelar() {
-    this.navCtrl.navigateForward(['alumnos/']);
+    this.navCtrl.navigateForward(['home-docente/alumnos']);
   }
 
 }

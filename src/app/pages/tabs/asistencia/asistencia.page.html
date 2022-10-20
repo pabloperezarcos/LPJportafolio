@@ -41,14 +41,14 @@
     <ion-item>
       <ion-label>Fecha:</ion-label>
       <ion-datetime [isDateEnabled]="isWeekday" [firstDayOfWeek]="1" presentation="date-time" [preferWheel]="true"
-        (ngModelChange)="change()" displayFormat="yyyy-MM-dd; HH:mm" [(ngModel)]="myDate">
+        (ngModelChange)="change()" displayFormat="yyyy-MM-dd; H:mm" [(ngModel)]="myDate">
       </ion-datetime>
     </ion-item>
     <br>
     <br>
     <ion-text>
-      <h3>Ud. ha seleccionado lo siguiente:</h3>
-      <h4>{{ inputOption }} - {{ nuevaFecha }} </h4>
+      <h4>Ud. ha seleccionado lo siguiente:</h4>
+      <h5>{{ inputOption }} - {{ nuevaFecha }} </h5>
     </ion-text>
     <br>
     <br>

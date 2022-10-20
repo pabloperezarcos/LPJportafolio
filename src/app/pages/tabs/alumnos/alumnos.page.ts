@@ -20,21 +20,28 @@ export class AlumnosPage implements OnInit {
     public platform: Platform
   ) {
     this.alumnosService.crearBaseDatos().then(() => {
-      this.getTest();
+      this.getAlumno();
     });
   }
 
   ngOnInit() {
   }
 
-  getTest() {
-    this.alumnosService.getTest().then((data) => {
+  getAlumno() {
+    this.alumnosService.getAlumno().then((data) => {
       this.alumnosbd = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
           this.alumnosbd.push(data.rows.item(i));
         }
       }
+    });
+  }
+
+  borrarAlumno(id: number) {
+    this.alumnosService.borrarAlumno(id).then((data) => {
+      alert(data);
+      this.getAlumno();
     });
   }
 

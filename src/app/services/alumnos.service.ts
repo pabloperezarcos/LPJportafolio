@@ -79,7 +79,7 @@ export class AlumnosService {
   // Obtener usuario de la base de datos
   //----------------------------------------------------------------
 
-  async getTest() {
+  async getAlumno() {
     return this.databaseObj
       .executeSql(
         `SELECT * FROM alumnosbd ORDER BY nombre ASC`,
@@ -97,7 +97,7 @@ export class AlumnosService {
   // Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-  async deleteTest(id: number) {
+  async borrarAlumno(id: number) {
     return this.databaseObj
       .executeSql(
         `DELETE FROM alumnosbd WHERE id = ${id}`, [])
