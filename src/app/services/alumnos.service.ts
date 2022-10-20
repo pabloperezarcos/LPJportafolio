@@ -9,7 +9,7 @@ export class AlumnosService {
   databaseObj: SQLiteObject;
   //Definimos las tablas
   tables = {
-    usuarios: "categories"
+    usuarios: "alumnosbd"
   };
 
 
@@ -42,12 +42,11 @@ export class AlumnosService {
 
   async crearTablaTest() {
     await this.databaseObj.executeSql(
-      `CREATE TABLE IF NOT EXISTS categories ( 
+      `CREATE TABLE IF NOT EXISTS alumnosbd ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre VARCHAR(50),
-        apellido VARCHAR(50),
-        correo VARCHAR(50),
-        password VARCHAR(50)
+        apellidoPaterno VARCHAR(50),
+        apellidoMaterno VARCHAR(50)
         )`,
       []
     );
@@ -57,22 +56,22 @@ export class AlumnosService {
   // Agregar usuarios a la base de datos
   //----------------------------------------------------------------
 
-  async addTest(nombre: string, apellido: string, correo: string, password: string) {
+  async addTest(nombre: string, apellidoPaterno: string, apellidoMaterno: string) {
     return this.databaseObj
       .executeSql(
-        `INSERT INTO categories (nombre, apellido, correo, password) VALUES 
-        ('${nombre}', '${apellido}', '${correo}', '${password}')`,
+        `INSERT INTO alumnosbd (nombre, apellidoPaterno, apellidoMaterno) VALUES 
+        ('${nombre}', '${apellidoPaterno}', '${apellidoMaterno}')`,
         []
       )
       .then(() => {
-        return "addTest: Usuario creado con éxito";
+        return "Alumno creado con éxito";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "addTest: Usuario ya existe";
+          return "Alumno ya existe";
         }
 
-        return "Error creando el usuario " + JSON.stringify(e);
+        return "Error creando el alumno " + JSON.stringify(e);
       });
   }
 
@@ -83,14 +82,14 @@ export class AlumnosService {
   async getTest() {
     return this.databaseObj
       .executeSql(
-        `SELECT * FROM categories ORDER BY nombre ASC`,
+        `SELECT * FROM alumnosbd ORDER BY nombre ASC`,
         []
       )
       .then((res) => {
         return res;
       })
       .catch((e) => {
-        return "Error al obtener el usuario " + JSON.stringify(e);
+        return "Error al obtener el alumno " + JSON.stringify(e);
       });
   }
 
@@ -101,12 +100,12 @@ export class AlumnosService {
   async deleteTest(id: number) {
     return this.databaseObj
       .executeSql(
-        `DELETE FROM categories WHERE id = ${id}`, [])
+        `DELETE FROM alumnosbd WHERE id = ${id}`, [])
       .then(() => {
-        return "usuario eliminado";
+        return "alumno eliminado";
       })
       .catch((e) => {
-        return "error borrando el usuario " + JSON.stringify(e);
+        return "error borrando el alumno " + JSON.stringify(e);
       })
   }
 
@@ -115,21 +114,21 @@ export class AlumnosService {
   // Editar usuario de la base de datos
   //----------------------------------------------------------------
 
-  async editTest(nombre: string, id: number, apellido: string, correo: string, password: string) {
+  async editTest(nombre: string, id: number, apellidoPaterno: string, apellidoMaterno: string) {
     return this.databaseObj
       .executeSql(
-        `UPDATE categories SET nombre = '${nombre}', apellido = '${apellido}', correo = '${correo}', password = '${password}' WHERE id = ${id}`,
+        `UPDATE alumnosbd SET nombre = '${nombre}', apellidoPaterno = '${apellidoPaterno}', apellidoMaterno = '${apellidoMaterno}' WHERE id = ${id}`,
         []
       )
       .then(() => {
-        return "editTest: usuario actualizado";
+        return "Alumno actualizado";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "editTest: usuario ya existe";
+          return "Alumno ya existe";
         }
 
-        return "Error al actualizar el usuario " + JSON.stringify(e);
+        return "Error al actualizar el alumno " + JSON.stringify(e);
       });
   }
 

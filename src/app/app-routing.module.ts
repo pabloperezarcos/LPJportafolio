@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'feriados',
     loadChildren: () => import('./pages/tabs/feriados/feriados.module').then( m => m.FeriadosPageModule)
+  },
+  {
+    path: 'agregar-alumno',
+    loadChildren: () => import('./pages/agregar-alumno/agregar-alumno.module').then( m => m.AgregarAlumnoPageModule)
   }
 ];
 
