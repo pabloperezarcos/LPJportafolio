@@ -49,7 +49,12 @@ export class LoginPage implements OnInit {
     if (usuario.email == f.email && usuario.password == f.password) {
       
       localStorage.setItem('ingresado', 'true');
-      this.navCtrl.navigateForward(['inicio/'])
+      
+      if (usuario.inputOption == "profesor") {
+        this.navCtrl.navigateForward(['home-docente/'])  
+      } else if (usuario.inputOption == "alumno"){
+        this.navCtrl.navigateForward(['home-alumno/'])
+      }
     } else {
       this.presentAlert();
     }

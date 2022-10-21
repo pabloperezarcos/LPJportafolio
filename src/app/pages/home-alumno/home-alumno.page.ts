@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BarcodeScanner, BarcodeScannerPlugin } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+//import { BarcodeScannerPlugin } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-home-alumno',
@@ -9,11 +10,10 @@ import { BarcodeScanner, BarcodeScannerPlugin } from '@capacitor-community/barco
 export class HomeAlumnoPage implements OnInit {
 
   usuario = JSON.parse(localStorage.getItem("usuario"));
-  scanResult: any;
+  
+  scanActive: boolean = false;
 
-  constructor(
-    brc: BarcodeScannerPlugin
-  ) { }
+  constructor(  ) { }
 
   ngOnInit() {
 
@@ -34,7 +34,7 @@ export class HomeAlumnoPage implements OnInit {
   }
 
   async startScan() {
-    try {
+ /*    try {
       const permission = await this.checkPermission();
       if (!permission) {
         return;
@@ -52,6 +52,25 @@ export class HomeAlumnoPage implements OnInit {
     } catch (error) {
       console.log(error);
       this.stopScan();
+    } */
+    const allowed = await this.checkPermission();
+
+    if (allowed) {
+      this.scanActive = true;
+      BarcodeScanner.hideBackground();
+
+      const result = await BarcodeScanner.startScan();
+
+      if (result.hasContent) {
+        this.scanActive = false;
+        alert(result.content); //The QR content will come out here
+        //Handle the data as your heart desires here
+        console.log(result);
+      } else {
+        alert('No se encontró información');
+      }
+    } else {
+      alert('No permitido!');
     }
   }
 

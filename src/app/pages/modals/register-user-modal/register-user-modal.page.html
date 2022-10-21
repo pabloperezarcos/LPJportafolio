@@ -39,13 +39,25 @@
         <ion-col>
           <ion-list>
             <ion-item>
+              <ion-label>Tipo de cuenta: </ion-label>
+              <ion-icon name="people-outline" slot="end"></ion-icon>
+              <ion-select formControlName="inputOption" placeholder="Seleccione una:">
+                <ion-select-option value="profesor">Profesor</ion-select-option>
+                <ion-select-option value="alumno">Alumno</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
               <ion-label>Correo: </ion-label>
               <ion-icon slot="end" name="mail-outline"></ion-icon>
               <ion-input formControlName="email" placeholder="Introduzca su correo" type="email"
                 pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required></ion-input>
-              <!--              
-                El "pattern" permite definir nuestras propias reglas para validar el valor del "input", si el valor no coincide con el patrón especificado, entonces arrojará un error 
-               -->
             </ion-item>
           </ion-list>
         </ion-col>

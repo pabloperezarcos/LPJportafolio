@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class RegisterUserModalPage implements OnInit {
 
   formularioRegistro: FormGroup;
+  inputOption: string;
 
   constructor(private modalCtrl: ModalController,
     private alertCtrl: AlertController,
@@ -18,6 +19,7 @@ export class RegisterUserModalPage implements OnInit {
     this.formularioRegistro = this.fb.group({
       'nombre': new FormControl("", Validators.required),
       'apellido': new FormControl("", Validators.required),
+      'inputOption': new FormControl("", Validators.required),
       'email': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required),
       'password2': new FormControl("", Validators.required)
@@ -62,7 +64,8 @@ export class RegisterUserModalPage implements OnInit {
         email: f.email,
         password: f.password,
         nombre: f.nombre,
-        apellido: f.apellido
+        apellido: f.apellido,
+        inputOption: f.inputOption
       }
       localStorage.setItem('usuario', JSON.stringify(usuario));
       this.successAlert();
