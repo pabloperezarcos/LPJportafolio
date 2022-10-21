@@ -16,11 +16,15 @@
 
 <ion-content class="ion-padding" mode="ios">
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-button (click)="crearAlumno()" expand="block" fill="clear" shape="round">
     Crear un nuevo alumno
   </ion-button>
 
-  <!--   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="success" (click)="mostrarAlertaAgregar()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
@@ -28,9 +32,9 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let category of alumnosbd">
-      <ion-item-options side="start">
+      <!-- <ion-item-options side="start">
         <ion-item-option (click)="editTest(category)">Edit</ion-item-option>
-      </ion-item-options>
+      </ion-item-options> -->
 
       <ion-item>
         <ion-label>
@@ -41,13 +45,20 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="borrarAlumno(category.id)">
-          Eliminar
+          <ion-item-option color="danger" (click)="alertaEliminar(category.id)">
+          <ion-icon slot="end" name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
 
     </ion-item-sliding>
   </ion-list>
 
-
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-text-center">
+    <ion-icon size="large" name="arrow-down-circle-outline"></ion-icon>
+    <br>
+    <ion-label>Deslice hacia abajo para actualizar</ion-label>
+  </ion-toolbar>
+</ion-footer>

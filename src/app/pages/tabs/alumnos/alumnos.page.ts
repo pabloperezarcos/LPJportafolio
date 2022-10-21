@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, Platform } from '@ionic/angular';
+import { AlertController, NavController, Platform } from '@ionic/angular';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class AlumnosPage implements OnInit {
   constructor(
     public navCtrl: NavController,
     public alumnosService: AlumnosService,
-    public platform: Platform
+    public platform: Platform,
+    public alertController: AlertController
   ) {
     this.alumnosService.crearBaseDatos().then(() => {
       this.getAlumno();
@@ -25,6 +26,13 @@ export class AlumnosPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  doRefresh(event) {
+    setTimeout(() => {
+      this.getAlumno();
+      event.target.complete();
+    }, 1500);
   }
 
   getAlumno() {
@@ -43,6 +51,28 @@ export class AlumnosPage implements OnInit {
       alert(data);
       this.getAlumno();
     });
+  }
+
+  async alertaEliminar(id: number) {
+    const alert = await this.alertController.create({
+      header: '¿Está seguro que desea borrar este alumno?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Eliminar',
+          handler: (data) => {
+            this.borrarAlumno(id);
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   crearAlumno() {

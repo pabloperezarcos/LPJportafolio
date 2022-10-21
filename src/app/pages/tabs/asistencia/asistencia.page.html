@@ -19,43 +19,43 @@
     <ion-list>
       <ion-item>
         <ion-label class="ion-text-center">
-          <h1>
+          <h2>
             REGISTRO DE ASISTENCIA
-          </h1>
+          </h2>
           <br>
         </ion-label>
       </ion-item>
-      <ion-item>
-        <ion-label>Seleccione una asignatura:</ion-label>
-        <ion-select [(ngModel)]="inputOption" placeholder="Seleccione una opción">
-          <ion-select-option value="Progr. de Aplicaciones móviles">Progr. de Aplicaciones móviles</ion-select-option>
-          <ion-select-option value="Arquitectura">Arquitectura</ion-select-option>
-          <ion-select-option value="Progr. de Aplicaciones WEB">Progr. de Aplicaciones WEB</ion-select-option>
-          <ion-select-option value="Ingeniería de software">Ingeniería de software</ion-select-option>
-          <ion-select-option value="Portafolio de título">Portafolio de título</ion-select-option>
-        </ion-select>
-      </ion-item>
     </ion-list>
-    <br>
+    <ion-item>
+      <ion-select [(ngModel)]="inputOption" placeholder="1.- Seleccione una asignatura:">
+        <ion-select-option value="Progr. de Aplicaciones móviles">Progr. de Aplicaciones móviles</ion-select-option>
+        <ion-select-option value="Arquitectura">Arquitectura</ion-select-option>
+        <ion-select-option value="Progr. de Aplicaciones WEB">Progr. de Aplicaciones WEB</ion-select-option>
+        <ion-select-option value="Ingeniería de software">Ingeniería de software</ion-select-option>
+        <ion-select-option value="Portafolio de título">Portafolio de título</ion-select-option>
+      </ion-select>
+    </ion-item>
     <br>
     <ion-item>
-      <ion-label>Fecha:</ion-label>
+      <ion-label>2.- Fecha y hora:</ion-label>
+    </ion-item>
+    <ion-item>
       <ion-datetime [isDateEnabled]="isWeekday" [firstDayOfWeek]="1" presentation="date-time" [preferWheel]="true"
         (ngModelChange)="change()" displayFormat="yyyy-MM-dd; H:mm" [(ngModel)]="myDate">
       </ion-datetime>
     </ion-item>
-    <br>
-    <br>
-    <ion-text>
-      <h4>Ud. ha seleccionado lo siguiente:</h4>
-      <h5>{{ inputOption }} - {{ nuevaFecha }} </h5>
-    </ion-text>
+    <ion-item>
+      <ion-text>
+        <h4>Ud. ha seleccionado lo siguiente:</h4>
+        <h5> {{ inputOption }} </h5>
+        <h5> {{ nuevaFecha }} </h5>
+      </ion-text>
+    </ion-item>
     <br>
     <br>
     <div class="ion-text-center">
-      <!--Este botón inicia el componente MODAL para mostrar el código QR-->
       <ion-button (click)="iniciarRegistro()" size="medium" mode="ios">
-        <ion-icon shape="round" name="add-circle"></ion-icon>
+        <ion-icon shape="round" size="large" slot="end" name="add-circle"></ion-icon>
         Iniciar Registro
       </ion-button>
     </div>

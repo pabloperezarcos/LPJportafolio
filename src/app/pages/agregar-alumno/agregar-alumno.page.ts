@@ -17,8 +17,8 @@ export class AgregarAlumnoPage implements OnInit {
   apellidoMaterno: string = "";
 
   alumnosbd: any = [];
-  editMode: boolean = false;
-  editId: number = 0;
+/*   editMode: boolean = false;
+  editId: number = 0; */
 
   constructor(
     private alertCtrl: AlertController,
@@ -85,13 +85,13 @@ export class AgregarAlumnoPage implements OnInit {
     });
   }
 
-  editTest(category: any) {
+/*   editTest(category: any) {
     this.editMode = true;
     this.nombre = category.nombre;
     this.apellidoPaterno = category.apellidoPaterno;
     this.apellidoMaterno = category.apellidoMaterno;
     this.editId = category.id;
-  }
+  } */
 
   cancelar() {
     this.navCtrl.navigateForward(['home-docente/alumnos']);

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnimationController } from '@ionic/angular';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner, BarcodeScannerPlugin } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-home-alumno',
@@ -13,7 +12,7 @@ export class HomeAlumnoPage implements OnInit {
   scanResult: any;
 
   constructor(
-    private animationCtrl: AnimationController
+    brc: BarcodeScannerPlugin
   ) { }
 
   ngOnInit() {
