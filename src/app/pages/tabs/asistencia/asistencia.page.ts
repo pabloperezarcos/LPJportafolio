@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../../modals/registro-clase-modal/registro-clase-modal.page';
 import { format, parseISO } from 'date-fns';
+import { AsignaturasService } from 'src/app/services/asignaturas.service';
 
 @Component({
   selector: 'app-asistencia',
@@ -14,18 +15,44 @@ export class AsistenciaPage implements OnInit {
   myDate: string;
   nuevaFecha: string;
   inputOption: string;
+  bd_asignatura: any = [];
 
   constructor(private modalCtr: ModalController,
-    private animationCtrl: AnimationController
-  ) { }
+    private animationCtrl: AnimationController,
+    public asignaturaService: AsignaturasService
+  ) {
+    this.asignaturaService.crearBaseDatos().then(() => {
+      this.getAsignatura();
+    });
+  }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.asignaturaService.crearBaseDatos().then(() => {
+      this.getAsignatura();
+    });
+  }
+
+  ionViewDidEnter(){
+    
+  }
+
+  getAsignatura() {
+    this.asignaturaService.getAsignatura().then((data) => {
+      this.bd_asignatura = [];
+      if (data.rows.length > 0) {
+        for (var i = 0; i < data.rows.length; i++) {
+          this.bd_asignatura.push(data.rows.item(i));
+        }
+      }
+    });
   }
 
   isWeekday = (dateString: string) => {
     const date = new Date(dateString);
     const utcDay = date.getUTCDay();
-    //return utcDay !== 0 && utcDay !== 6;
     return utcDay !== 0;
   };
 
@@ -33,11 +60,6 @@ export class AsistenciaPage implements OnInit {
     const dateFromIonDatetime = this.myDate;
     const formattedString = format(parseISO(dateFromIonDatetime), 'dd-MM-yyyy - HH:mm');
     this.nuevaFecha = formattedString;
-    
-    /* 
-      console.log(formattedString);
-      console.log(this.inputOption); 
-    */
   }
 
   async iniciarRegistro() {

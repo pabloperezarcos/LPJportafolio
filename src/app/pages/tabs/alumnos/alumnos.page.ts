@@ -9,10 +9,13 @@ import { AlumnosService } from 'src/app/services/alumnos.service';
 })
 export class AlumnosPage implements OnInit {
 
-  category_id: number = 0;
   alumnosbd: any = [];
-  textoBuscar: string='';
-  //selected_category_id: number = 0;
+  textoBuscar: string = '';
+
+  nombre: string = "";
+  apellidoPaterno: string = "";
+  apellidoMaterno: string = "";
+  id: number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -28,7 +31,7 @@ export class AlumnosPage implements OnInit {
   ngOnInit() {
   }
 
-  busquedaChange(event){
+  busquedaChange(event) {
     this.textoBuscar = event.detail.value;
   }
 
@@ -49,6 +52,75 @@ export class AlumnosPage implements OnInit {
       }
     });
   }
+
+  editarAlumno(data) {
+    this.nombre = data.nombre;
+    this.apellidoPaterno = data.apellidoPaterno;
+    this.apellidoMaterno = data.apellidoMaterno;
+    this.id = data.id;
+
+    this.alumnosService.editarAlumno(this.nombre, this.id, this.apellidoPaterno, this.apellidoMaterno)
+      .then((data) => {
+        this.nombre = "";
+        this.apellidoPaterno = "";
+        this.apellidoMaterno = "";
+        alert(data);
+        this.alumnosService.getAlumno();
+      });
+  }
+
+  async mostrarAlertaEditar(alumno) {
+    const alert = await this.alertController.create({
+      header: 'Editar Usuario',
+      inputs: [
+        {
+          name: 'nombre',
+          type: 'text',
+          value: alumno.nombre,
+          placeholder: 'Nombre'
+        },
+        {
+          name: 'apellidoPaterno',
+          type: 'text',
+          value: alumno.apellidoPaterno,
+          placeholder: 'Apellido paterno'
+        },
+        {
+          name: 'apellidoMaterno',
+          type: 'text',
+          value: alumno.apellidoMaterno,
+          placeholder: 'Apellido materno'
+        },
+        {
+          name: 'id',
+          type: 'text',
+          value: alumno.id,
+          label: 'ID: ',
+          attributes: {
+            disabled: true
+          }
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Editar',
+          handler: (data) => {
+            console.log('Confirm Ok');
+            this.editarAlumno(data);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
   borrarAlumno(id: number) {
     this.alumnosService.borrarAlumno(id).then((data) => {

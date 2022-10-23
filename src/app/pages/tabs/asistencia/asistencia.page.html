@@ -28,11 +28,9 @@
     </ion-list>
     <ion-item>
       <ion-select mode="ios" [(ngModel)]="inputOption" placeholder="1.- Seleccione una asignatura:">
-        <ion-select-option value="Progr. de Aplicaciones móviles">Progr. de Aplicaciones móviles</ion-select-option>
-        <ion-select-option value="Arquitectura">Arquitectura</ion-select-option>
-        <ion-select-option value="Progr. de Aplicaciones WEB">Progr. de Aplicaciones WEB</ion-select-option>
-        <ion-select-option value="Ingeniería de software">Ingeniería de software</ion-select-option>
-        <ion-select-option value="Portafolio de título">Portafolio de título</ion-select-option>
+        <ion-select-option *ngFor="let asignatura of bd_asignatura">
+          {{ asignatura.nombre }}
+        </ion-select-option>
       </ion-select>
     </ion-item>
     <br>
@@ -44,14 +42,9 @@
 
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime [(ngModel)]="myDate" 
-                        (ngModelChange)="change()" 
-                        displayFormat="dd-MM-yyyy; HH:mm"
-                        pickerFormat="dd-MM-yyyy; HH:mm"  
-                        [isDateEnabled]="isWeekday" 
-                        [firstDayOfWeek]="1"
-                        minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
-                        id="datetime"></ion-datetime>
+          <ion-datetime [(ngModel)]="myDate" (ngModelChange)="change()" displayFormat="dd-MM-yyyy; HH:mm"
+            pickerFormat="dd-MM-yyyy; HH:mm" [isDateEnabled]="isWeekday" [firstDayOfWeek]="1"
+            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" id="datetime"></ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-item>

@@ -5,11 +5,11 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 @Injectable({
   providedIn: 'root'
 })
-export class AlumnosService {
+export class AsignaturasService {
   databaseObj: SQLiteObject;
   //Definimos las tablas
   tables = {
-    usuarios: "alumnosbd"
+    usuarios: "asignaturas"
   };
 
 
@@ -22,7 +22,7 @@ export class AlumnosService {
   async crearBaseDatos() {
     await this.sqlite
       .create({
-        name: "usuarios_registrApp.db",
+        name: "asignatura_registrApp.db",
         location: "default",
       })
       .then((db: SQLiteObject) => {
@@ -42,93 +42,91 @@ export class AlumnosService {
 
   async crearTablaTest() {
     await this.databaseObj.executeSql(
-      `CREATE TABLE IF NOT EXISTS alumnosbd ( 
+      `CREATE TABLE IF NOT EXISTS bd_asignatura ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre VARCHAR(50),
-        apellidoPaterno VARCHAR(50),
-        apellidoMaterno VARCHAR(50)
+        nombre VARCHAR(50)
         )`,
       []
     );
   }
 
   //----------------------------------------------------------------
-  // Agregar usuarios a la base de datos
+  // Agregar asignaturas a la base de datos
   //----------------------------------------------------------------
 
-  async addTest(nombre: string, apellidoPaterno: string, apellidoMaterno: string) {
+  async addAsignatura(nombre: string) {
     return this.databaseObj
       .executeSql(
-        `INSERT INTO alumnosbd (nombre, apellidoPaterno, apellidoMaterno) VALUES 
-        ('${nombre}', '${apellidoPaterno}', '${apellidoMaterno}')`,
+        `INSERT INTO bd_asignatura (nombre) VALUES 
+        ('${nombre}')`,
         []
       )
       .then(() => {
-        return "Alumno creado con éxito";
+        return "Asignatura creada con éxito";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "Alumno ya existe";
+          return "Asignatura ya existe";
         }
 
-        return "Error creando el alumno " + JSON.stringify(e);
+        return "Error creando la asignatura " + JSON.stringify(e);
       });
   }
 
   //----------------------------------------------------------------
-  // Obtener usuario de la base de datos
+  // Obtener asignatura de la base de datos
   //----------------------------------------------------------------
 
-  async getAlumno() {
+  async getAsignatura() {
     return this.databaseObj
       .executeSql(
-        `SELECT * FROM alumnosbd ORDER BY nombre ASC`,
+        `SELECT * FROM bd_asignatura ORDER BY nombre ASC`,
         []
       )
       .then((res) => {
         return res;
       })
       .catch((e) => {
-        return "Error al obtener el alumno " + JSON.stringify(e);
+        return "Error al obtener la asignatura " + JSON.stringify(e);
       });
   }
 
   //----------------------------------------------------------------
-  // Borrar usuario de la base de datos
+  // Borrar asignatura de la base de datos
   //----------------------------------------------------------------
 
-  async borrarAlumno(id: number) {
+  async borrarAsignatura(id: number) {
     return this.databaseObj
       .executeSql(
-        `DELETE FROM alumnosbd WHERE id = ${id}`, [])
+        `DELETE FROM bd_asignatura WHERE id = ${id}`, [])
       .then(() => {
-        return "alumno eliminado";
+        return "Asignatura borrada";
       })
       .catch((e) => {
-        return "error borrando el alumno " + JSON.stringify(e);
+        return "error borrando la asignatura " + JSON.stringify(e);
       })
   }
 
 
   //----------------------------------------------------------------
-  // Editar usuario de la base de datos
+  // Editar asignatura de la base de datos
   //----------------------------------------------------------------
 
-  async editarAlumno(nombre: string, id: number, apellidoPaterno: string, apellidoMaterno: string) {
+  async editarAsignatura(nombre: string, id: number) {
     return this.databaseObj
       .executeSql(
-        `UPDATE alumnosbd SET nombre = '${nombre}', apellidoPaterno = '${apellidoPaterno}', apellidoMaterno = '${apellidoMaterno}' WHERE id = ${id}`,
+        `UPDATE bd_asignatura SET nombre = '${nombre}' WHERE id = ${id}`,
         []
       )
       .then(() => {
-        return "Alumno actualizado";
+        return "Asignatura actualizada";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "Alumno ya existe";
+          return "Asignatura ya existe";
         }
 
-        return "Error al actualizar el alumno " + JSON.stringify(e);
+        return "Error al actualizar la asignatura" + JSON.stringify(e);
       });
   }
 
