@@ -11,8 +11,8 @@ export class AlumnosPage implements OnInit {
 
   category_id: number = 0;
   alumnosbd: any = [];
-
-  selected_category_id: number = 0;
+  textoBuscar: string='';
+  //selected_category_id: number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +26,10 @@ export class AlumnosPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  busquedaChange(event){
+    this.textoBuscar = event.detail.value;
   }
 
   doRefresh(event) {

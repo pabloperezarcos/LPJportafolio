@@ -20,23 +20,25 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-button (click)="crearAlumno()" expand="block" fill="clear" shape="round">
-    Crear un nuevo alumno
-  </ion-button>
+  <div class="ion-text-center">
+    <ion-button (click)="crearAlumno()" color="success" shape="round">
+      <ion-icon slot="end" name="add"></ion-icon> 
+      Crear alumno
+    </ion-button>
+  </div>
 
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" (click)="mostrarAlertaAgregar()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
+  <ion-searchbar placeholder="Buscar alumno" (ionChange)="busquedaChange( $event )" animated>
+
+  </ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let category of alumnosbd">
+    <ion-item-sliding *ngFor="let category of alumnosbd | filtro:textoBuscar">
       <!-- <ion-item-options side="start">
         <ion-item-option (click)="editTest(category)">Edit</ion-item-option>
       </ion-item-options> -->
 
       <ion-item>
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
         <ion-label>
           <h2>
             {{ category.nombre }} {{ category.apellidoPaterno }} {{ category.apellidoMaterno }}
@@ -45,7 +47,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-          <ion-item-option color="danger" (click)="alertaEliminar(category.id)">
+        <ion-item-option color="danger" (click)="alertaEliminar(category.id)">
           <ion-icon slot="end" name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
