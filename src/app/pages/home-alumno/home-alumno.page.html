@@ -43,23 +43,24 @@
     </ion-item>
 
     <ion-list>
+      <ion-item *ngFor="let reg of bd_registro">
+        <ion-icon slot="start" name="book-outline"></ion-icon>
+        <ion-label>
+          <h2>
+            {{ reg.registro }}
+          </h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
 
+    <!-- <ion-list>
       <ion-item *ngIf="scanResult">
         <ion-label>dato de prueba scanResult</ion-label>
         <ion-label>{{ scanResult }}</ion-label>
       </ion-item>
-      <!--       <ion-item>
-        <ion-label>dato de prueba 2</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>dato de prueba 3</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>dato de prueba 4</ion-label>
-      </ion-item> -->
-    </ion-list>
+    </ion-list> -->
 
-    <ion-img src="/assets/sitioConstruccion.png"></ion-img>
+    <!-- <ion-img src="/assets/sitioConstruccion.png"></ion-img> -->
 
   </ion-card>
 
