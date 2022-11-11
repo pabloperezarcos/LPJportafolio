@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [style.visibility]="content_visibility">
   <ion-toolbar>
 
     <ion-buttons slot="start">
@@ -16,7 +16,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" mode="ios">
+<ion-content class="ion-padding" mode="ios" [style.visibility]="content_visibility">
 
   <ion-grid fixed>
     <ion-row>
@@ -36,17 +36,19 @@
     <ion-item>
       <ion-label class="ion-text-center">
         <h1>
-          HISTORIAL DE ASISTENCIAS
-        </h1> 
+          HISTORIAL DE ASISTENCIA
+        </h1>
         <br>
       </ion-label>
     </ion-item>
 
     <ion-list>
-      <ion-item>
-        <ion-label>dato de prueba 1</ion-label>
+
+      <ion-item *ngIf="scanResult">
+        <ion-label>dato de prueba scanResult</ion-label>
+        <ion-label>{{ scanResult }}</ion-label>
       </ion-item>
-      <ion-item>
+      <!--       <ion-item>
         <ion-label>dato de prueba 2</ion-label>
       </ion-item>
       <ion-item>
@@ -54,7 +56,7 @@
       </ion-item>
       <ion-item>
         <ion-label>dato de prueba 4</ion-label>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
 
     <ion-img src="/assets/sitioConstruccion.png"></ion-img>

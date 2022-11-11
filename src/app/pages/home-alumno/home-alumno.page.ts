@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 //import { BarcodeScannerPlugin } from '@capacitor-community/barcode-scanner';
 
@@ -7,70 +7,55 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
   templateUrl: './home-alumno.page.html',
   styleUrls: ['./home-alumno.page.scss'],
 })
-export class HomeAlumnoPage implements OnInit {
+export class HomeAlumnoPage implements OnDestroy {
 
   usuario = JSON.parse(localStorage.getItem("usuario"));
-  
+
   scanActive: boolean = false;
+  scanResult: any;
+  content_visibility = '';
 
-  constructor(  ) { }
+  constructor() {
+    //this.content_visibility = 'show';
+  }
 
-  ngOnInit() {
-
+  ngOnDestroy(): void {
+    this.stopScan();
   }
 
   async checkPermission() {
     try {
-      //Revisar o solicitar permisos
       const status = await BarcodeScanner.checkPermission({ force: true });
       if (status.granted) {
-        //El usuario otorga permiso
         return true;
       }
       return false;
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
     }
   }
 
   async startScan() {
- /*    try {
+    try {
       const permission = await this.checkPermission();
       if (!permission) {
         return;
       }
       await BarcodeScanner.hideBackground();
       document.querySelector('body').classList.add('scanner-active');
+      this.content_visibility = 'hidden';
       const result = await BarcodeScanner.startScan();
       console.log(result);
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
+      this.content_visibility = '';
       if (result?.hasContent) {
         this.scanResult = result.content;
-        BarcodeScanner.showBackground();
-        document.querySelector('body').classList.remove('scanner-active');
         console.log(this.scanResult);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
       this.stopScan();
-    } */
-    const allowed = await this.checkPermission();
-
-    if (allowed) {
-      this.scanActive = true;
-      BarcodeScanner.hideBackground();
-
-      const result = await BarcodeScanner.startScan();
-
-      if (result.hasContent) {
-        this.scanActive = false;
-        alert(result.content); //The QR content will come out here
-        //Handle the data as your heart desires here
-        console.log(result);
-      } else {
-        alert('No se encontró información');
-      }
-    } else {
-      alert('No permitido!');
     }
   }
 
@@ -78,6 +63,9 @@ export class HomeAlumnoPage implements OnInit {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
     document.querySelector('body').classList.remove('scanner-active');
+    this.content_visibility = '';
   }
+
+
 
 }
