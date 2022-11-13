@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { RegistroasistenciaService } from 'src/app/services/registroasistencia.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home-alumno',
@@ -20,7 +21,8 @@ export class HomeAlumnoPage implements OnDestroy {
   id: number = 0;
 
   constructor(
-    public registroAsistencia: RegistroasistenciaService
+    public registroAsistencia: RegistroasistenciaService,
+    public alertCtrl: AlertController
   ) {
     this.registroAsistencia.crearBaseDatos().then(() => {
       this.getAsistencia();
@@ -81,7 +83,7 @@ export class HomeAlumnoPage implements OnDestroy {
   }
 
   agregarAsistencia(scanResult) {
-    this.registro = scanResult.nombre;
+    this.registro = scanResult.registro;
 
     this.registroAsistencia.addAsistencia(this.registro)
       .then((registro) => {
@@ -98,6 +100,15 @@ export class HomeAlumnoPage implements OnDestroy {
     this.content_visibility = '';
   }
 
+  async mostrarInfo() {
+    const alert = await this.alertCtrl.create({
+      header: 'Información',
+      message: 'Para quedar presente en la clase, presionar el botón "Registrar asistencia" para luego escanear el código QR presentado por el profesor.',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 
 
 }

@@ -44,7 +44,7 @@
 
     <ion-list>
       <ion-item *ngFor="let reg of bd_registro">
-        <ion-icon slot="start" name="book-outline"></ion-icon>
+        <ion-icon slot="start" name="time-outline"></ion-icon>
         <ion-label>
           <h2>
             {{ reg.registro }}
@@ -53,15 +53,12 @@
       </ion-item>
     </ion-list>
 
-    <!-- <ion-list>
-      <ion-item *ngIf="scanResult">
-        <ion-label>dato de prueba scanResult</ion-label>
-        <ion-label>{{ scanResult }}</ion-label>
-      </ion-item>
-    </ion-list> -->
-
-    <!-- <ion-img src="/assets/sitioConstruccion.png"></ion-img> -->
-
   </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="mostrarInfo()">
+      <ion-icon name="information-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
