@@ -31,6 +31,12 @@ export class AlumnosPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.alumnosService.crearBaseDatos().then(() => {
+      this.getAlumno();
+    });
+  }
+
   busquedaChange(event) {
     this.textoBuscar = event.detail.value;
   }

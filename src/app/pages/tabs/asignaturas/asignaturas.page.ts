@@ -29,6 +29,12 @@ export class AsignaturasPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.asignaturaService.crearBaseDatos().then(() => {
+      this.getAsignatura();
+    });
+  }
+
   busquedaChange(event) {
     this.textoBuscar = event.detail.value;
   }

@@ -35,10 +35,6 @@ export class AsistenciaPage implements OnInit {
     });
   }
 
-  ionViewDidEnter(){
-    
-  }
-
   getAsignatura() {
     this.asignaturaService.getAsignatura().then((data) => {
       this.bd_asignatura = [];

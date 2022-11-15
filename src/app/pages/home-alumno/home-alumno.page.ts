@@ -18,7 +18,7 @@ export class HomeAlumnoPage implements OnDestroy {
 
   bd_asistencia: any = [];
   registro: string = "";
-  id: number = 0;
+  //id: number = 0;
 
   constructor(
     public registroAsistencia: RegistroasistenciaService,
@@ -40,7 +40,7 @@ export class HomeAlumnoPage implements OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.stopScan();
   }
 
@@ -61,7 +61,7 @@ export class HomeAlumnoPage implements OnDestroy {
   async startScan() {
     try {
       const permission = await this.checkPermission();
-      if(!permission) {
+      if (!permission) {
         return;
       }
       await BarcodeScanner.hideBackground();
@@ -72,26 +72,33 @@ export class HomeAlumnoPage implements OnDestroy {
       BarcodeScanner.showBackground();
       document.querySelector('body').classList.remove('scanner-active');
       this.content_visibility = '';
-      if(result?.hasContent) {
+      if (result?.hasContent) {
         this.scanResult = result.content;
+        this.registro = this.scanResult;
         console.log(this.scanResult);
+        this.agregarAsistencia();
       }
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       this.stopScan();
     }
   }
 
-  /*   agregarAsistencia(scanResult) {
-      this.registro = scanResult.registro;
-  
-      this.registroAsistencia.addAsistencia(this.registro)
-        .then((registro) => {
-          this.registro = "";
-          alert(registro);
-          this.getAsistencia();
-        });
-    } */
+  agregarAsistencia() {
+    this.registroAsistencia.addAsistencia(this.registro).then((registro) => {
+        this.registro = "";
+        alert(registro);
+        this.getAsistencia();
+      });
+  }
+
+ /*  agregarAsistencia() {
+    this.registroAsistencia.addAsistencia(this.registro).then((data) => {
+      this.registro = "";
+      alert(data);
+      this.getAsistencia();
+    });
+  } */
 
   stopScan() {
     BarcodeScanner.showBackground();
