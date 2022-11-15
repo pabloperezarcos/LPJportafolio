@@ -40,14 +40,16 @@ export class HomeAlumnoPage implements OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(){
     this.stopScan();
   }
 
   async checkPermission() {
     try {
+      // Verificar o solicitar permisos.
       const status = await BarcodeScanner.checkPermission({ force: true });
       if (status.granted) {
+        // El usuario da los accesos.
         return true;
       }
       return false;
@@ -59,7 +61,7 @@ export class HomeAlumnoPage implements OnDestroy {
   async startScan() {
     try {
       const permission = await this.checkPermission();
-      if (!permission) {
+      if(!permission) {
         return;
       }
       await BarcodeScanner.hideBackground();
@@ -70,28 +72,26 @@ export class HomeAlumnoPage implements OnDestroy {
       BarcodeScanner.showBackground();
       document.querySelector('body').classList.remove('scanner-active');
       this.content_visibility = '';
-      if (result?.hasContent) {
+      if(result?.hasContent) {
         this.scanResult = result.content;
         console.log(this.scanResult);
-
-        this.agregarAsistencia(this.scanResult);
       }
-    } catch (e) {
+    } catch(e) {
       console.log(e);
       this.stopScan();
     }
   }
 
-  agregarAsistencia(scanResult) {
-    this.registro = scanResult.registro;
-
-    this.registroAsistencia.addAsistencia(this.registro)
-      .then((registro) => {
-        this.registro = "";
-        alert(registro);
-        this.getAsistencia();
-      });
-  }
+  /*   agregarAsistencia(scanResult) {
+      this.registro = scanResult.registro;
+  
+      this.registroAsistencia.addAsistencia(this.registro)
+        .then((registro) => {
+          this.registro = "";
+          alert(registro);
+          this.getAsistencia();
+        });
+    } */
 
   stopScan() {
     BarcodeScanner.showBackground();
@@ -106,7 +106,6 @@ export class HomeAlumnoPage implements OnDestroy {
       message: 'Para quedar presente en la clase, presionar el botón "Registrar asistencia" para luego escanear el código QR presentado por el profesor.',
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 

@@ -54,6 +54,7 @@ export class LoginPage implements OnInit {
         this.navCtrl.navigateForward(['home-docente/'])  
       } else if (usuario.inputOption == "alumno"){
         this.navCtrl.navigateForward(['home-alumno/'])
+        //this.navCtrl.navigateForward(['testqr/'])
       }
     } else {
       this.presentAlert();

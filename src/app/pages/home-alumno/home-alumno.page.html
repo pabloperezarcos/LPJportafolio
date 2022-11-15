@@ -22,7 +22,7 @@
     <ion-row>
       <ion-col>
         <ion-slide>
-          <ion-button (click)="startScan()" size="large" mode="ios">
+          <ion-button (click)="startScan()" size="large">
             <ion-icon shape="round" name="qr-code" slot="end" size="large"></ion-icon>
             Registrar asistencia
           </ion-button>
@@ -50,6 +50,17 @@
             {{ reg.registro }}
           </h2>
         </ion-label>
+      </ion-item>
+    </ion-list>
+    <br>
+    <ion-list>
+      <ion-label>INTENTO 8 - registro</ion-label>
+    </ion-list>
+    <br>
+    <br>
+    <ion-list>
+      <ion-item *ngIf="scanResult">
+        <ion-label class="ion-text-wrap">Resultado: {{ scanResult }}</ion-label>
       </ion-item>
     </ion-list>
 
