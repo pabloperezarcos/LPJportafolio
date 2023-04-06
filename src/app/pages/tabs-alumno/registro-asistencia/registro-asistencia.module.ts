@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { HomeAlumnoPageRoutingModule } from './home-alumno-routing.module';
-import { HomeAlumnoPage } from './home-alumno.page';
+import { RegistroAsistenciaPageRoutingModule } from './registro-asistencia-routing.module';
+import { RegistroAsistenciaPage } from './registro-asistencia.page';
 import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
@@ -11,9 +11,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeAlumnoPageRoutingModule,
+    RegistroAsistenciaPageRoutingModule,
     QRCodeModule
   ],
-  declarations: [HomeAlumnoPage]
+  declarations: [RegistroAsistenciaPage]
 })
-export class HomeAlumnoPageModule {}
+export class RegistroAsistenciaPageModule {}

@@ -4,11 +4,11 @@ import { RegistroasistenciaService } from 'src/app/services/registroasistencia.s
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home-alumno',
-  templateUrl: './home-alumno.page.html',
-  styleUrls: ['./home-alumno.page.scss'],
+  selector: 'app-registro-asistencia',
+  templateUrl: './registro-asistencia.page.html',
+  styleUrls: ['./registro-asistencia.page.scss'],
 })
-export class HomeAlumnoPage implements OnDestroy {
+export class RegistroAsistenciaPage implements OnDestroy {
 
   usuario = JSON.parse(localStorage.getItem("usuario"));
 
@@ -18,7 +18,6 @@ export class HomeAlumnoPage implements OnDestroy {
 
   bd_asistencia: any = [];
   registro: string = "";
-  //id: number = 0;
 
   constructor(
     public registroAsistencia: RegistroasistenciaService,
@@ -75,8 +74,9 @@ export class HomeAlumnoPage implements OnDestroy {
       if (result?.hasContent) {
         this.scanResult = result.content;
         this.registro = this.scanResult;
-        console.log(this.scanResult);
+        //console.log(this.scanResult);
         this.agregarAsistencia();
+
       }
     } catch (e) {
       console.log(e);

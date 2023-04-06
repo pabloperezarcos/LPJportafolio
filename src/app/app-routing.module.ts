@@ -4,16 +4,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: 'home-alumno',
-    loadChildren: () => import('./pages/home-alumno/home-alumno.module').then( m => m.HomeAlumnoPageModule)
+    loadChildren: () => import('./pages/empleado/home-alumno.module').then( m => m.HomeAlumnoPageModule)
   },
   {
-    path: 'home-docente',
-    loadChildren: () => import('./pages/home-docente/home-docente.module').then( m => m.HomeDocentePageModule)
+    path: 'home-admin',
+    loadChildren: () => import('./pages/admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
   },
   {
     path: 'login',
@@ -32,8 +32,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/modals/registro-clase-modal/registro-clase-modal.module').then( m => m.RegistroClaseModalPageModule)
   },
   {
-    path: 'welcome',
-    loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'asistencia',
@@ -49,11 +49,19 @@ const routes: Routes = [
   },
   {
     path: 'feriados',
-    loadChildren: () => import('./pages/tabs/feriados/feriados.module').then( m => m.FeriadosPageModule)
+    loadChildren: () => import('./pages/feriados/feriados.module').then( m => m.FeriadosPageModule)
   },
   {
     path: 'agregar-alumno',
-    loadChildren: () => import('./pages/agregar-alumno/agregar-alumno.module').then( m => m.AgregarAlumnoPageModule)
+    loadChildren: () => import('./pages/admin/crud-empleado/agregar-alumno.module').then( m => m.AgregarAlumnoPageModule)
+  },
+  {
+    path: 'registro-asistencia',
+    loadChildren: () => import('./pages/tabs-alumno/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
+  },
+  {
+    path: 'recordatorios',
+    loadChildren: () => import('./pages/tabs-alumno/recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
   }
 ];
 

@@ -28,10 +28,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
-      header: 'ERROR',
+      header: 'Error',
       subHeader: 'Usuario o contraseña incorrectos.',
       message: 'Por favor, vuelva a ingresar los datos.',
       buttons: ['OK']
@@ -39,6 +40,7 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
+
 
   async iniciarSesion() {
     
@@ -54,12 +56,12 @@ export class LoginPage implements OnInit {
         this.navCtrl.navigateForward(['home-docente/'])  
       } else if (usuario.inputOption == "alumno"){
         this.navCtrl.navigateForward(['home-alumno/'])
-        //this.navCtrl.navigateForward(['testqr/'])
       }
     } else {
       this.presentAlert();
     }
   }
+
 
   async recuperarPass() {
     const enterAnimation = (baseEl: any) => {

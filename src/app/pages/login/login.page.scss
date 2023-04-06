@@ -1,34 +1,37 @@
-#bg {
-    height: 35%;
-    width: auto;
-    background: url('/assets/duocVina.png') no-repeat center center/cover;
-    border-radius: 0 0 35% 35%;
-    position: relative;
-}
-
-ion-fab {
-    ion-icon {
-        font-size: 1.5rem;
-    }
-}
-
-ion-list {
-    margin-top: 6vh;
+ion-content {
+    --background: #023047;
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  ion-button {
+    --background: #FFB703;
+  }
+  
+  p {
+    font-size: 15px;
+  }
+  
+  ion-list {
     background: transparent;
-    ion-list-header {
-        font-weight: 1000;
-        font-size: 1.5rem;
-    }
-    ion-item {
-        border: 1px solid var(--ion-color-light);
-        border-radius: 20px;
-        -webkit-box-shadow: 0 6px 4px -4px var(--ion-color-medium);
-        -moz-box-shadow: 0 6px 4px -4px var(--ion-color-medium);
-        box-shadow: 0 6px 4px -4px var(--ion-color-medium);
-    }
-    p {
-        font-size: 0.8rem;
-        padding-left: 5vw;
-    }
-}
-
+    --color: #023047;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  
+  ion-icon {
+    color:#ffffff;
+  }
+  
+  ion-input {
+    border-radius: 25px;
+    max-width: 450px;
+  
+    --background: white;
+    --color:#023047;
+  }

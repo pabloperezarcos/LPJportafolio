@@ -26,6 +26,31 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 body.scanner-active {
-    --background: transparent;
-    --ion-background-color: transparent;
-  }
+  --background: transparent;
+  --ion-background-color: transparent;
+}
+
+ion-content, ion-title, ion-label, ion-button, ion-alert {
+  font-family: 'Arial Rounded MT';
+}
+
+ion-footer {
+  font-family: Arial;
+}
+
+.alert-wrapper {
+  background-color: #FFB703 !important;
+}
+
+.alert-title {
+  color: #023047 !important;
+}
+
+.alert-sub-title {
+  color: #023047 !important;
+}
+
+.alert-message {
+  color: #023047 !important;
+}
+

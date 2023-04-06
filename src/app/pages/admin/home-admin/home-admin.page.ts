@@ -4,12 +4,14 @@ import { RegistroClaseModalPage } from '../../modals/registro-clase-modal/regist
 import { format, parseISO } from 'date-fns';
 import { AsignaturasService } from 'src/app/services/asignaturas.service';
 
+
+
 @Component({
-  selector: 'app-asistencia',
-  templateUrl: './asistencia.page.html',
-  styleUrls: ['./asistencia.page.scss'],
+  selector: 'app-home-admin',
+  templateUrl: './home-admin.page.html',
+  styleUrls: ['./home-admin.page.scss'],
 })
-export class AsistenciaPage implements OnInit {
+export class HomeAdminPage implements OnInit {
 
   usuario = JSON.parse(localStorage.getItem("usuario"));
   myDate: string;

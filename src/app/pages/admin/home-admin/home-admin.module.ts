@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { WelcomePageRoutingModule } from './welcome-routing.module';
-
-import { WelcomePage } from './welcome.page';
+import { HomeAdminPageRoutingModule } from './home-admin-routing.module';
+import { HomeAdminPage } from './home-admin.page';
 
 @NgModule({
   imports: [
@@ -14,8 +11,8 @@ import { WelcomePage } from './welcome.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    WelcomePageRoutingModule
+    HomeAdminPageRoutingModule,
   ],
-  declarations: [WelcomePage]
+  declarations: [HomeAdminPage]
 })
-export class WelcomePageModule {}
+export class HomeAdminPageModule {}

@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController ,AnimationController } from '@ionic/angular';
-import { RegisterUserModalPage } from '../modals/register-user-modal/register-user-modal.page';
+import { NavController } from '@ionic/angular';
+/* import { ModalController,AnimationController } from '@ionic/angular';
+import { RegisterUserModalPage } from '../modals/register-user-modal/register-user-modal.page'; */
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.page.html',
-  styleUrls: ['./welcome.page.scss'],
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-export class WelcomePage implements OnInit {
+export class HomePage implements OnInit {
 
-  constructor(private modalCtrl: ModalController,
-              private animationCtrl: AnimationController,
+  constructor(/* private modalCtrl: ModalController,
+              private animationCtrl: AnimationController, */
               public navCtrl: NavController
               ) { }
 
   ngOnInit() {
   }
 
-  async registerUser() {
+  //FUNCIONALIDAD POR VERIFICAR SI SIGUE O NO
+  
+/*   async registerUser() {
     const enterAnimation = (baseEl: any) => {
       const root = baseEl.shadowRoot;
 
@@ -50,6 +53,6 @@ export class WelcomePage implements OnInit {
     });
 
     await modal.present();
-  }
+  } */
 
 }

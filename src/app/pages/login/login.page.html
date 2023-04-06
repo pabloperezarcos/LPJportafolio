@@ -1,49 +1,49 @@
-<ion-content class="ion-padding" mode="ios" [fullscreen]="true">
-  <div id="bg">
-    <ion-fab vertical="bottom" edge horizontal="center" slot="fixed">
-      <ion-fab-button color="white" routerLink="/welcome">
-        <ion-icon name="close-outline" color="medium"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+<ion-content class="ion-padding">
+
+  <div class="logo-container">
+    <img src="../../../assets/logo_blanco.png">
   </div>
 
-  <ion-list lines="none" class="ion-text-end">
-    <ion-list-header>RegisterApp</ion-list-header>
+  <div class="ion-text-center">
+    <br>
     <br>
     <form [formGroup]="formulariologin">
-      <ion-item class="ion-margin">
-        <ion-icon slot="start" name="mail-outline"></ion-icon>
-        <ion-input formControlName="email" type="email" clearInput="true" placeholder="Introduzca su correo"
-          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required>
-        </ion-input>
-      </ion-item>
-
-      <ion-item class="ion-margin">
-        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
-        <ion-input formControlName="password" type="password" clearInput="true" required
-          placeholder="Introduzca su contraseña">
-        </ion-input>
-      </ion-item>
-
-      <ion-text>
+      <br>
+      <ion-list>
+        <br>
+        <br>
+        <ion-item color="none" lines="none">
+          <ion-icon slot="start" size="large" name="mail-outline"></ion-icon>
+          <ion-input formControlName="email" type="email" clearInput="true" required
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" placeholder="     Correo eletrónico">
+          </ion-input>
+        </ion-item>
+        <br>
+        <ion-item color="none" lines="none">
+          <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
+          <ion-input formControlName="password" type="password" clearInput="true" required
+            placeholder="     Contraseña">
+          </ion-input>
+        </ion-item>
+        <br>
+      </ion-list>
+      <div>
         <p>
-          <ion-router-link (click)="recuperarPass()" class="underline">
-            ¿Olvidaste la contraseña?
+          <ion-router-link (click)="recuperarPass()" class="underline" color="white">
+            ¿Olvidaste tú contraseña?
           </ion-router-link>
         </p>
-      </ion-text>
-
-      <div class="ion-text-center">
-        <ion-button (click)="iniciarSesion()" shape="round" strong="true">
-          Iniciar Sesión
-          <ion-icon name="log-in" slot="end"></ion-icon>
+      </div>
+      <br>
+      <br>
+      <ion-button routerLink="/home-admin" expand="round">BOTON TEMPORAL HOME ADMINISTRADOR</ion-button>
+      <br>
+      <div>
+        <ion-button (click)="iniciarSesion()" expand="round">
+          Iniciar sesión
         </ion-button>
       </div>
     </form>
+  </div>
 
-  </ion-list>
 </ion-content>
-
-<ion-footer>
-  <p class="ion-text-center"><img src="/assets/duocLogo.png" width="150" height="40"></p>
-</ion-footer>
