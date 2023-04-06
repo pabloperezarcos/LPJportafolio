@@ -36,10 +36,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'asistencia',
-    loadChildren: () => import('./pages/tabs/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
-  },
-  {
     path: 'alumnos',
     loadChildren: () => import('./pages/tabs/alumnos/alumnos.module').then( m => m.AlumnosPageModule)
   },

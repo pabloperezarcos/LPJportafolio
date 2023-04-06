@@ -27,7 +27,7 @@ export class HomeAdminPage implements OnInit {
       this.getAsignatura();
     });
   }
-  //asdddasdasdasd
+  
   ngOnInit() {
   }
 
