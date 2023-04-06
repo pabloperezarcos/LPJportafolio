@@ -1,7 +1,7 @@
 {
-  "name": "RegistrAPP",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "name": "LPJportafolio",
+  "version": "1.0.2",
+  "author": "LPJ",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
