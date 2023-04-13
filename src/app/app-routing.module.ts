@@ -8,12 +8,24 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home-alumno',
-    loadChildren: () => import('./pages/empleado/home-alumno.module').then( m => m.HomeAlumnoPageModule)
+    path: 'home-empleado',
+    loadChildren: () => import('./pages/home-empleado/home-empleado.module').then( m => m.HomeEmpleadoPageModule)
   },
   {
     path: 'home-admin',
     loadChildren: () => import('./pages/admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
+  },
+  {
+    path: 'areas',
+    loadChildren: () => import('./pages/admin/areas/areas.module').then( m => m.AreasPageModule)
+  },
+  {
+    path: 'empleados',
+    loadChildren: () => import('./pages/admin/empleados/empleados.module').then( m => m.EmpleadosPageModule)
+  },
+  {
+    path: 'crear-empleado',
+    loadChildren: () => import('./pages/admin/crear-empleado/crear-empleado.module').then( m => m.CrearEmpleadoPageModule)
   },
   {
     path: 'login',
@@ -36,20 +48,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'alumnos',
-    loadChildren: () => import('./pages/tabs/alumnos/alumnos.module').then( m => m.AlumnosPageModule)
-  },
-  {
-    path: 'asignaturas',
-    loadChildren: () => import('./pages/tabs/asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
-  },
-  {
     path: 'feriados',
     loadChildren: () => import('./pages/feriados/feriados.module').then( m => m.FeriadosPageModule)
   },
   {
-    path: 'agregar-alumno',
-    loadChildren: () => import('./pages/admin/crud-empleado/agregar-alumno.module').then( m => m.AgregarAlumnoPageModule)
+    path: 'crear-empleado',
+    loadChildren: () => import('./pages/admin/crear-empleado/crear-empleado.module').then( m => m.CrearEmpleadoPageModule)
   },
   {
     path: 'registro-asistencia',

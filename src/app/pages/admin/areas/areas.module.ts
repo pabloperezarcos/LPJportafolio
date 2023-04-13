@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AsignaturasPageRoutingModule } from './asignaturas-routing.module';
+import { AreasPageRoutingModule } from './areas-routing.module';
 
-import { AsignaturasPage } from './asignaturas.page';
+import { AreasPage } from './areas.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     FormsModule,
     IonicModule,
     PipesModule,
-    AsignaturasPageRoutingModule
+    AreasPageRoutingModule
   ],
-  declarations: [AsignaturasPage]
+  declarations: [AreasPage]
 })
-export class AsignaturasPageModule {}
+export class AreasPageModule {}

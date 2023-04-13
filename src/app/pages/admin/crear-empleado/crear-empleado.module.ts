@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AgregarAlumnoPageRoutingModule } from './agregar-alumno-routing.module';
+import { CrearEmpleadoPageRoutingModule } from './crear-empleado-routing.module';
 
-import { AgregarAlumnoPage } from './agregar-alumno.page';
+import { CrearEmpleadoPage } from './crear-empleado.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { AgregarAlumnoPage } from './agregar-alumno.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    AgregarAlumnoPageRoutingModule
+    CrearEmpleadoPageRoutingModule
   ],
-  declarations: [AgregarAlumnoPage]
+  declarations: [CrearEmpleado]
 })
-export class AgregarAlumnoPageModule {}
+export class CrearEmpleadoPageModule {}

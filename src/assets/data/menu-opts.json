@@ -1,6 +1,6 @@
 [
     {
-      "icon": "megaphone-outline",
+      "icon": "../assets/icon/candado.svg",
       "name": "Opcion 1",
       "redirectTo": "/"
     },

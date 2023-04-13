@@ -5,11 +5,11 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 @Injectable({
   providedIn: 'root'
 })
-export class AsignaturasService {
+export class AreasService {
   databaseObj: SQLiteObject;
   //Definimos las tablas
   tables = {
-    usuarios: "asignaturas"
+    usuarios: "areas"
   };
 
 
@@ -22,7 +22,7 @@ export class AsignaturasService {
   async crearBaseDatos() {
     await this.sqlite
       .create({
-        name: "asignatura_registrApp.db",
+        name: "areas_registrApp.db",
         location: "default",
       })
       .then((db: SQLiteObject) => {
@@ -42,7 +42,7 @@ export class AsignaturasService {
 
   async crearTablaTest() {
     await this.databaseObj.executeSql(
-      `CREATE TABLE IF NOT EXISTS bd_asignatura ( 
+      `CREATE TABLE IF NOT EXISTS bd_areas ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre VARCHAR(50)
         )`,
@@ -51,82 +51,82 @@ export class AsignaturasService {
   }
 
   //----------------------------------------------------------------
-  // Agregar asignaturas a la base de datos
+  // Agregar areas a la base de datos
   //----------------------------------------------------------------
 
-  async addAsignatura(nombre: string) {
+  async addArea(nombre: string) {
     return this.databaseObj
       .executeSql(
-        `INSERT INTO bd_asignatura (nombre) VALUES 
+        `INSERT INTO bd_areas (nombre) VALUES 
         ('${nombre}')`,
         []
       )
       .then(() => {
-        return "Asignatura creada con éxito";
+        return "Área creada con éxito";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "Asignatura ya existe";
+          return "Área ya existe";
         }
 
-        return "Error creando la asignatura " + JSON.stringify(e);
+        return "Error creando el área." + JSON.stringify(e);
       });
   }
 
   //----------------------------------------------------------------
-  // Obtener asignatura de la base de datos
+  // Obtener área de la base de datos
   //----------------------------------------------------------------
 
-  async getAsignatura() {
+  async getAreas() {
     return this.databaseObj
       .executeSql(
-        `SELECT * FROM bd_asignatura ORDER BY nombre ASC`,
+        `SELECT * FROM bd_areas ORDER BY nombre ASC`,
         []
       )
       .then((res) => {
         return res;
       })
       .catch((e) => {
-        return "Error al obtener la asignatura " + JSON.stringify(e);
+        return "Error al obtener el área." + JSON.stringify(e);
       });
   }
 
   //----------------------------------------------------------------
-  // Borrar asignatura de la base de datos
+  // Borrar área de la base de datos
   //----------------------------------------------------------------
 
-  async borrarAsignatura(id: number) {
+  async borrarArea(id: number) {
     return this.databaseObj
       .executeSql(
-        `DELETE FROM bd_asignatura WHERE id = ${id}`, [])
+        `DELETE FROM bd_areas WHERE id = ${id}`, [])
       .then(() => {
-        return "Asignatura borrada";
+        return "Área borrada";
       })
       .catch((e) => {
-        return "error borrando la asignatura " + JSON.stringify(e);
+        return "error borrando el área." + JSON.stringify(e);
       })
   }
 
 
   //----------------------------------------------------------------
-  // Editar asignatura de la base de datos
+  // Editar áreas de la base de datos
   //----------------------------------------------------------------
 
-  async editarAsignatura(nombre: string, id: number) {
+  async editarArea(nombre: string, id: number) {
     return this.databaseObj
       .executeSql(
-        `UPDATE bd_asignatura SET nombre = '${nombre}' WHERE id = ${id}`,
+        `UPDATE bd_areas SET nombre = '${nombre}' WHERE id = ${id}`,
         []
       )
       .then(() => {
-        return "Asignatura actualizada";
+        return "Área actualizada";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "Asignatura ya existe";
+          return "Área ya existe";
         }
 
-        return "Error al actualizar la asignatura" + JSON.stringify(e);
+        return "Error al actualizar el área" + JSON.stringify(e);
       });
   }
 

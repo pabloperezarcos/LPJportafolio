@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { HomeAlumnoPageRoutingModule } from './home-alumno-routing.module';
-import { HomeAlumnoPage } from './home-alumno.page';
+import { HomeEmpleadoPageRoutingModule } from './home-empleado-routing.module';
+import { HomeEmpleadoPage } from './home-empleado.page';
 
 
 @NgModule({
@@ -11,8 +11,8 @@ import { HomeAlumnoPage } from './home-alumno.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeAlumnoPageRoutingModule
+    HomeEmpleadoPageRoutingModule
   ],
-  declarations: [HomeAlumnoPage]
+  declarations: [HomeEmpleadoPage]
 })
-export class HomeAlumnoPageModule {}
+export class HomeEmpleadoPageModule {}

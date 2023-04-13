@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../../modals/registro-clase-modal/registro-clase-modal.page';
 import { format, parseISO } from 'date-fns';
-import { AsignaturasService } from 'src/app/services/asignaturas.service';
+import { AsignaturasService } from 'src/app/services/areas.service';
 
 
 

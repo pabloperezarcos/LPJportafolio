@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
-import { AsignaturasService } from 'src/app/services/asignaturas.service';
+import { AreasService } from 'src/app/services/areas.service';
 
 @Component({
-  selector: 'app-asignaturas',
-  templateUrl: './asignaturas.page.html',
-  styleUrls: ['./asignaturas.page.scss'],
+  selector: 'app-areas',
+  templateUrl: './areas.page.html',
+  styleUrls: ['./areas.page.scss'],
 })
-export class AsignaturasPage implements OnInit {
+export class AreasPage implements OnInit {
 
-  bd_asignatura: any = [];
+  bd_areas: any = [];
   textoBuscar: string = '';
 
   nombre: string = "";
@@ -17,21 +17,22 @@ export class AsignaturasPage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public asignaturaService: AsignaturasService,
+    public areasService: AreasService,
     public platform: Platform,
     public alertController: AlertController
   ) {
-    this.asignaturaService.crearBaseDatos().then(() => {
-      this.getAsignatura();
+    this.areasService.crearBaseDatos().then(() => {
+      this.getAreas()
     });
+
   }
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    this.asignaturaService.crearBaseDatos().then(() => {
-      this.getAsignatura();
+    this.areasService.crearBaseDatos().then(() => {
+      this.getAreas();
     });
   }
 
@@ -41,48 +42,48 @@ export class AsignaturasPage implements OnInit {
 
   doRefresh(event) {
     setTimeout(() => {
-      this.getAsignatura();
+      this.getAreas();
       event.target.complete();
     }, 1500);
   }
 
-  getAsignatura() {
-    this.asignaturaService.getAsignatura().then((data) => {
-      this.bd_asignatura = [];
+  getAreas() {
+    this.areasService.getAreas().then((data) => {
+      this.bd_areas = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          this.bd_asignatura.push(data.rows.item(i));
+          this.bd_areas.push(data.rows.item(i));
         }
       }
     });
   }
 
-  editarAsignatura(data) {
+  editarArea(data) {
     this.nombre = data.nombre;
     this.id = data.id;
 
-    this.asignaturaService.editarAsignatura(this.nombre, this.id)
+    this.areasService.editarArea(this.nombre, this.id)
       .then((data) => {
         this.nombre = "";
         alert(data);
-        this.asignaturaService.getAsignatura();
+        this.areasService.getAreas();
       });
   }
 
-  async mostrarAlertaEditar(asignatura) {
+  async mostrarAlertaEditar(areas) {
     const alert = await this.alertController.create({
-      header: 'Editar asignatura',
+      header: 'Editar área',
       inputs: [
         {
           name: 'nombre',
           type: 'text',
-          value: asignatura.nombre,
-          placeholder: 'asignatura'
+          value: areas.nombre,
+          placeholder: 'area'
         },
         {
           name: 'id',
           type: 'text',
-          value: asignatura.id,
+          value: areas.id,
           label: 'ID: ',
           attributes: {
             disabled: true
@@ -101,7 +102,7 @@ export class AsignaturasPage implements OnInit {
           text: 'Editar',
           handler: (data) => {
             console.log('Confirm Ok');
-            this.editarAsignatura(data);
+            this.editarArea(data);
           }
         }
       ]
@@ -109,16 +110,16 @@ export class AsignaturasPage implements OnInit {
     await alert.present();
   }
 
-  borrarAsignatura(id: number) {
-    this.asignaturaService.borrarAsignatura(id).then((data) => {
+  borrarArea(id: number) {
+    this.areasService.borrarArea(id).then((data) => {
       alert(data);
-      this.getAsignatura();
+      this.getAreas();
     });
   }
 
   async alertaEliminar(id: number) {
     const alert = await this.alertController.create({
-      header: '¿Está seguro que desea borrar esta asignatura?',
+      header: '¿Está seguro que desea borrar esta área?',
       buttons: [
         {
           text: 'Cancelar',
@@ -130,7 +131,7 @@ export class AsignaturasPage implements OnInit {
         }, {
           text: 'Eliminar',
           handler: (data) => {
-            this.borrarAsignatura(id);
+            this.borrarArea(id);
           }
         }
       ]
@@ -138,25 +139,25 @@ export class AsignaturasPage implements OnInit {
     await alert.present();
   }
 
-  agregarAsignatura(data) {
+  agregarArea(data) {
     this.nombre = data.nombre;
 
-    this.asignaturaService.addAsignatura(this.nombre)
+    this.areasService.addArea(this.nombre)
       .then((data) => {
         this.nombre = "";
         alert(data);
-        this.getAsignatura();
+        this.getAreas();
       });
   }
 
   async mostrarAlertaAgregar() {
     const alert = await this.alertController.create({
-      header: 'Crear asignatura',
+      header: 'Crear area',
       inputs: [
         {
           name: 'nombre',
           type: 'text',
-          placeholder: 'Asignatura'
+          placeholder: 'Area'
         }
       ],
       buttons: [
@@ -171,7 +172,7 @@ export class AsignaturasPage implements OnInit {
           text: 'Agregar',
           handler: (data) => {
             console.log('Confirm Ok');
-            this.agregarAsignatura(data);
+            this.agregarArea(data);
           }
         }
       ]

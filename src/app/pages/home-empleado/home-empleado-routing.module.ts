@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeAlumnoPage } from './home-alumno.page';
+import { HomeEmpleadoPage } from './home-empleado.page';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home-alumno/asistencia',
+    redirectTo: '/home-empleado/asistencia',
     pathMatch: 'full',
   },
   {
     path: '',
-    component: HomeAlumnoPage,
+    component: HomeEmpleadoPage,
     children: [
       {
         path: 'asistencia',
-        loadChildren: () => import ('../tabs-alumno/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
+        loadChildren: () => import ('../tabs-empleado/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
       },
       {
         path: 'recordatorios',

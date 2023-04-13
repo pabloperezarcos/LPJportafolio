@@ -9,14 +9,17 @@
         </ion-label>
       </div>
 
-      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" autoHide="false" [routerLink]="c.redirectTo" detail>
-       
+      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" autoHide="false"
+        [routerLink]="c.redirectTo" detail>
+
         <ion-item>
-          <ion-icon [name]="c.icon"></ion-icon>
+          <ion-icon [src]="c.icon"></ion-icon>
           {{ c.name }}
         </ion-item>
-      
+
       </ion-menu-toggle>
+
+
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
