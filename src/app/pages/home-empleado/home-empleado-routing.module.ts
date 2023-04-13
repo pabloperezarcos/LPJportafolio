@@ -15,11 +15,11 @@ const routes: Routes = [
     children: [
       {
         path: 'asistencia',
-        loadChildren: () => import ('../tabs-empleado/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
+        loadChildren: () => import ('../tabs-empleados/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
       },
       {
         path: 'recordatorios',
-        loadChildren: () => import ('../tabs-alumno/recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
+        loadChildren: () => import ('../tabs-empleados/recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
       }
     ]
   }
@@ -29,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeAlumnoPageRoutingModule {}
+export class HomeEmpleadoPageRoutingModule {}

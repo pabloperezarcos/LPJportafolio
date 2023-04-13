@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
-import { AlumnosService } from 'src/app/services/alumnos.service';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
-  selector: 'app-alumnos',
-  templateUrl: './alumnos.page.html',
-  styleUrls: ['./alumnos.page.scss'],
+  selector: 'app-empleados',
+  templateUrl: './empleados.page.html',
+  styleUrls: ['./empleados.page.scss'],
 })
-export class AlumnosPage implements OnInit {
+export class EmpleadosPage implements OnInit {
 
-  alumnosbd: any = [];
+  empleadosbd: any = [];
   textoBuscar: string = '';
 
   nombre: string = "";
@@ -19,12 +19,12 @@ export class AlumnosPage implements OnInit {
 
   constructor(
     public navCtrl: NavController,
-    public alumnosService: AlumnosService,
+    public empleadosService: EmpleadosService,
     public platform: Platform,
     public alertController: AlertController
   ) {
-    this.alumnosService.crearBaseDatos().then(() => {
-      this.getAlumno();
+    this.empleadosService.crearBaseDatos().then(() => {
+      this.getEmpleados();
     });
   }
 
@@ -32,8 +32,8 @@ export class AlumnosPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.alumnosService.crearBaseDatos().then(() => {
-      this.getAlumno();
+    this.empleadosService.crearBaseDatos().then(() => {
+      this.getEmpleados();
     });
   }
 
@@ -43,64 +43,64 @@ export class AlumnosPage implements OnInit {
 
   doRefresh(event) {
     setTimeout(() => {
-      this.getAlumno();
+      this.getEmpleados();
       event.target.complete();
     }, 1500);
   }
 
-  getAlumno() {
-    this.alumnosService.getAlumno().then((data) => {
-      this.alumnosbd = [];
+  getEmpleados() {
+    this.empleadosService.getEmpleados().then((data) => {
+      this.empleadosbd = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          this.alumnosbd.push(data.rows.item(i));
+          this.empleadosbd.push(data.rows.item(i));
         }
       }
     });
   }
 
-  editarAlumno(data) {
+  editarEmpleados(data) {
     this.nombre = data.nombre;
     this.apellidoPaterno = data.apellidoPaterno;
     this.apellidoMaterno = data.apellidoMaterno;
     this.id = data.id;
 
-    this.alumnosService.editarAlumno(this.nombre, this.id, this.apellidoPaterno, this.apellidoMaterno)
+    this.empleadosService.editarEmpleados(this.nombre, this.id, this.apellidoPaterno, this.apellidoMaterno)
       .then((data) => {
         this.nombre = "";
         this.apellidoPaterno = "";
         this.apellidoMaterno = "";
         alert(data);
-        this.alumnosService.getAlumno();
+        this.empleadosService.getEmpleados();
       });
   }
 
-  async mostrarAlertaEditar(alumno) {
+  async mostrarAlertaEditar(empleado) {
     const alert = await this.alertController.create({
       header: 'Editar Usuario',
       inputs: [
         {
           name: 'nombre',
           type: 'text',
-          value: alumno.nombre,
+          value: empleado.nombre,
           placeholder: 'Nombre'
         },
         {
           name: 'apellidoPaterno',
           type: 'text',
-          value: alumno.apellidoPaterno,
+          value: empleado.apellidoPaterno,
           placeholder: 'Apellido paterno'
         },
         {
           name: 'apellidoMaterno',
           type: 'text',
-          value: alumno.apellidoMaterno,
+          value: empleado.apellidoMaterno,
           placeholder: 'Apellido materno'
         },
         {
           name: 'id',
           type: 'text',
-          value: alumno.id,
+          value: empleado.id,
           label: 'ID: ',
           attributes: {
             disabled: true
@@ -119,7 +119,7 @@ export class AlumnosPage implements OnInit {
           text: 'Editar',
           handler: (data) => {
             console.log('Confirm Ok');
-            this.editarAlumno(data);
+            this.editarEmpleados(data);
           }
         }
       ]
@@ -128,16 +128,16 @@ export class AlumnosPage implements OnInit {
   }
 
 
-  borrarAlumno(id: number) {
-    this.alumnosService.borrarAlumno(id).then((data) => {
+  borrarEmpleado(id: number) {
+    this.empleadosService.borrarEmpleado(id).then((data) => {
       alert(data);
-      this.getAlumno();
+      this.getEmpleados();
     });
   }
 
   async alertaEliminar(id: number) {
     const alert = await this.alertController.create({
-      header: '¿Está seguro que desea borrar este alumno?',
+      header: '¿Está seguro que desea borrar este empleado?',
       buttons: [
         {
           text: 'Cancelar',
@@ -149,7 +149,7 @@ export class AlumnosPage implements OnInit {
         }, {
           text: 'Eliminar',
           handler: (data) => {
-            this.borrarAlumno(id);
+            this.borrarEmpleado(id);
           }
         }
       ]
@@ -157,8 +157,8 @@ export class AlumnosPage implements OnInit {
     await alert.present();
   }
 
-  crearAlumno() {
-    this.navCtrl.navigateForward(['agregar-alumno/']);
+  crearEmpleado() {
+    this.navCtrl.navigateForward(['agregar-empleado/']);
   }
 
 }

@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AlumnosPageRoutingModule } from './alumnos-routing.module';
+import { EmpleadosPageRoutingModule } from './empleados-routing.module';
 
-import { AlumnosPage } from './alumnos.page';
+import { EmpleadosPage } from './empleados.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
@@ -16,8 +16,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     IonicModule,
     ReactiveFormsModule,
     PipesModule,
-    AlumnosPageRoutingModule
+    EmpleadosPageRoutingModule
   ],
-  declarations: [AlumnosPage]
+  declarations: [EmpleadosPage]
 })
-export class AlumnosPageModule {}
+export class EmpleadosPageModule {}

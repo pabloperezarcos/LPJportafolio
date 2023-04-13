@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../../modals/registro-clase-modal/registro-clase-modal.page';
 import { format, parseISO } from 'date-fns';
-import { AsignaturasService } from 'src/app/services/areas.service';
+import { AreasService } from 'src/app/services/areas.service';
 
 
 
@@ -17,14 +17,14 @@ export class HomeAdminPage implements OnInit {
   myDate: string;
   nuevaFecha: string;
   inputOption: string;
-  bd_asignatura: any = [];
+  bd_areas: any = [];
 
   constructor(private modalCtr: ModalController,
     private animationCtrl: AnimationController,
-    public asignaturaService: AsignaturasService
+    public areasService: AreasService
   ) {
-    this.asignaturaService.crearBaseDatos().then(() => {
-      this.getAsignatura();
+    this.areasService.crearBaseDatos().then(() => {
+      this.getAreas();
     });
   }
   
@@ -32,17 +32,17 @@ export class HomeAdminPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.asignaturaService.crearBaseDatos().then(() => {
-      this.getAsignatura();
+    this.areasService.crearBaseDatos().then(() => {
+      this.getAreas();
     });
   }
 
-  getAsignatura() {
-    this.asignaturaService.getAsignatura().then((data) => {
-      this.bd_asignatura = [];
+  getAreas() {
+    this.areasService.getAreas().then((data) => {
+      this.bd_areas = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          this.bd_asignatura.push(data.rows.item(i));
+          this.bd_areas.push(data.rows.item(i));
         }
       }
     });

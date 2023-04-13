@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlumnosService } from 'src/app/services/alumnos.service';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
-  selector: 'app-agregar-alumno',
-  templateUrl: './agregar-alumno.page.html',
-  styleUrls: ['./agregar-alumno.page.scss'],
+  selector: 'app-crear-empleado',
+  templateUrl: './crear-empleado.page.html',
+  styleUrls: ['./crear-empleado.page.scss'],
 })
-export class AgregarAlumnoPage implements OnInit {
+export class CrearEmpleadoPage implements OnInit {
 
   formularioRegistro: FormGroup;
 
@@ -16,12 +16,12 @@ export class AgregarAlumnoPage implements OnInit {
   apellidoPaterno: string = "";
   apellidoMaterno: string = "";
 
-  alumnosbd: any = [];
+  empleadosbd: any = [];
 
   constructor(
     private alertCtrl: AlertController,
     public navCtrl: NavController,
-    public alumnosService: AlumnosService,
+    public empleadosService: EmpleadosService,
     public platform: Platform,
     public fb: FormBuilder
   ) {
@@ -30,8 +30,8 @@ export class AgregarAlumnoPage implements OnInit {
       'apellidoPaterno': new FormControl("", Validators.required),
       'apellidoMaterno': new FormControl("", Validators.required)
     });
-    this.alumnosService.crearBaseDatos().then(() => {
-      this.getAlumno();
+    this.empleadosService.crearBaseDatos().then(() => {
+      this.getEmpleados();
     });
   }
 
@@ -55,7 +55,7 @@ export class AgregarAlumnoPage implements OnInit {
       backdropDismiss: false,
       header: 'Éxito al guardar',
       subHeader: '',
-      message: 'Alumno creado.',
+      message: 'Empleado creado.',
       buttons: ['OK']
     });
 
@@ -63,21 +63,21 @@ export class AgregarAlumnoPage implements OnInit {
   }
 
   crearAlumno() {
-    this.alumnosService.addTest(this.nombre, this.apellidoPaterno, this.apellidoMaterno).then((data) => {
+    this.empleadosService.addTest(this.nombre, this.apellidoPaterno, this.apellidoMaterno).then((data) => {
       this.nombre = "";
       this.apellidoPaterno = "";
       this.apellidoMaterno = "";
       alert(data);
-      this.getAlumno();
+      this.getEmpleados();
     });
   }
 
-  getAlumno() {
-    this.alumnosService.getAlumno().then((data) => {
-      this.alumnosbd = [];
+  getEmpleados() {
+    this.empleadosService.getEmpleados().then((data) => {
+      this.empleadosbd = [];
       if (data.rows.length > 0) {
         for (var i = 0; i < data.rows.length; i++) {
-          this.alumnosbd.push(data.rows.item(i));
+          this.empleadosbd.push(data.rows.item(i));
         }
       }
     });

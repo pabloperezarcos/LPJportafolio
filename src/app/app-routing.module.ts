@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { EmpleadosPageModule } from './pages/admin/empleados/empleados.module';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'empleados',
-    loadChildren: () => import('./pages/admin/empleados/empleados.module').then( m => m.EmpleadosPageModule)
+    loadChildren: () => import('./pages/admin/empleados/empleados.module').then( m => EmpleadosPageModule)
   },
   {
     path: 'crear-empleado',
@@ -57,11 +58,11 @@ const routes: Routes = [
   },
   {
     path: 'registro-asistencia',
-    loadChildren: () => import('./pages/tabs-alumno/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
+    loadChildren: () => import('./pages/tabs-empleados/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   },
   {
     path: 'recordatorios',
-    loadChildren: () => import('./pages/tabs-alumno/recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
+    loadChildren: () => import('./pages/tabs-empleados/recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
   }
 ];
 

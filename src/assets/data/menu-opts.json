@@ -1,17 +1,22 @@
 [
-    {
-      "icon": "../assets/icon/candado.svg",
-      "name": "Opcion 1",
-      "redirectTo": "/"
-    },
-    {
-      "icon": "link-outline",
-      "name": "Opcion 2",
-      "redirectTo": "/"
-    },
-    {
-      "icon": "log-out-outline",
-      "name": "Cerrar sesión",
-      "redirectTo": "/welcome"
-    }
-  ]
+  {
+    "icon": "../assets/icon/qr.svg",
+    "name": "Asistencia",
+    "redirectTo": "/home-admin"
+  },
+  {
+    "icon": "../assets/icon/usuario.svg",
+    "name": "Empleados",
+    "redirectTo": "/empleados"
+  },
+  {
+    "icon": "../assets/icon/maleta.svg",
+    "name": "Área",
+    "redirectTo": "/areas"
+  },
+  {
+    "icon": "../assets/icon/calendario.svg",
+    "name": "Feriados",
+    "redirectTo": "/feriados"
+  }
+]

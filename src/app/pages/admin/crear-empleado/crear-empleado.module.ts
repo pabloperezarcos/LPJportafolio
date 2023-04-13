@@ -16,6 +16,6 @@ import { CrearEmpleadoPage } from './crear-empleado.page';
     ReactiveFormsModule,
     CrearEmpleadoPageRoutingModule
   ],
-  declarations: [CrearEmpleado]
+  declarations: [CrearEmpleadoPage]
 })
 export class CrearEmpleadoPageModule {}

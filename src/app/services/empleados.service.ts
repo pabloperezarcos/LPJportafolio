@@ -5,11 +5,11 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 @Injectable({
   providedIn: 'root'
 })
-export class AlumnosService {
+export class EmpleadosService {
   databaseObj: SQLiteObject;
   //Definimos las tablas
   tables = {
-    usuarios: "alumnosbd"
+    usuarios: "empleadosbd"
   };
 
 
@@ -42,7 +42,7 @@ export class AlumnosService {
 
   async crearTablaTest() {
     await this.databaseObj.executeSql(
-      `CREATE TABLE IF NOT EXISTS alumnosbd ( 
+      `CREATE TABLE IF NOT EXISTS empleadosbd ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nombre VARCHAR(50),
         apellidoPaterno VARCHAR(50),
@@ -59,19 +59,19 @@ export class AlumnosService {
   async addTest(nombre: string, apellidoPaterno: string, apellidoMaterno: string) {
     return this.databaseObj
       .executeSql(
-        `INSERT INTO alumnosbd (nombre, apellidoPaterno, apellidoMaterno) VALUES 
+        `INSERT INTO empleadosbd (nombre, apellidoPaterno, apellidoMaterno) VALUES 
         ('${nombre}', '${apellidoPaterno}', '${apellidoMaterno}')`,
         []
       )
       .then(() => {
-        return "Alumno creado con éxito";
+        return "Empleado creado con éxito";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "Alumno ya existe";
+          return "Empleado ya existe";
         }
 
-        return "Error creando el alumno " + JSON.stringify(e);
+        return "Error creando el empleado " + JSON.stringify(e);
       });
   }
 
@@ -79,17 +79,17 @@ export class AlumnosService {
   // Obtener usuario de la base de datos
   //----------------------------------------------------------------
 
-  async getAlumno() {
+  async getEmpleados() {
     return this.databaseObj
       .executeSql(
-        `SELECT * FROM alumnosbd ORDER BY nombre ASC`,
+        `SELECT * FROM empleadosbd ORDER BY nombre ASC`,
         []
       )
       .then((res) => {
         return res;
       })
       .catch((e) => {
-        return "Error al obtener el alumno " + JSON.stringify(e);
+        return "Error al obtener el empleado " + JSON.stringify(e);
       });
   }
 
@@ -97,15 +97,15 @@ export class AlumnosService {
   // Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-  async borrarAlumno(id: number) {
+  async borrarEmpleado(id: number) {
     return this.databaseObj
       .executeSql(
-        `DELETE FROM alumnosbd WHERE id = ${id}`, [])
+        `DELETE FROM empleadosbd WHERE id = ${id}`, [])
       .then(() => {
-        return "alumno eliminado";
+        return "empleado eliminado";
       })
       .catch((e) => {
-        return "error borrando el alumno " + JSON.stringify(e);
+        return "error borrando el empleado " + JSON.stringify(e);
       })
   }
 
@@ -114,24 +114,23 @@ export class AlumnosService {
   // Editar usuario de la base de datos
   //----------------------------------------------------------------
 
-  async editarAlumno(nombre: string, id: number, apellidoPaterno: string, apellidoMaterno: string) {
+  async editarEmpleados(nombre: string, id: number, apellidoPaterno: string, apellidoMaterno: string) {
     return this.databaseObj
       .executeSql(
-        `UPDATE alumnosbd SET nombre = '${nombre}', apellidoPaterno = '${apellidoPaterno}', apellidoMaterno = '${apellidoMaterno}' WHERE id = ${id}`,
+        `UPDATE empleadosbd SET nombre = '${nombre}', apellidoPaterno = '${apellidoPaterno}', apellidoMaterno = '${apellidoMaterno}' WHERE id = ${id}`,
         []
       )
       .then(() => {
-        return "Alumno actualizado";
+        return "Empleado actualizado";
       })
       .catch((e) => {
         if (e.code === 6) {
-          return "Alumno ya existe";
+          return "Empleado ya existe";
         }
 
-        return "Error al actualizar el alumno " + JSON.stringify(e);
+        return "Error al actualizar el empleado " + JSON.stringify(e);
       });
   }
-
 
   //----------------------------------------------------------------
   // FIN DEL SERVICE
