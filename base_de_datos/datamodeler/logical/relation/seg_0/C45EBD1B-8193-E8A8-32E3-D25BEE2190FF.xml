@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="relacion_empleados_vacaciones" directorySegmentName="seg_0" id="C45EBD1B-8193-E8A8-32E3-D25BEE2190FF">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-04-15 17:54:28 UTC</createdTime>
+<ownerDesignName>datamodeler</ownerDesignName>
+<engineerTo>
+<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+</engineerTo>
+<sourcePk>8192EF48-D7B7-F8BB-6537-8C9C7D999268</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>21B7DDF6-D0D4-E268-0B34-0C98FB0EDFA1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>6411B9DE-4F79-0EB6-BF2F-D79773ACD69C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

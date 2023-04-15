@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0FEC84E2-7590-BB6B-1151-5163FC0301E2" name="Areas">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<generatorID>04086C41-9426-EC8A-736D-8B9C003D4686</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IdArea" id="CDB115DE-B1E1-80EE-7BBE-EFE3E74C9DAB">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<generatorID>816BCE3F-9213-A189-4319-2F393921D53B</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NombreArea" id="87A16FE2-530B-AC3F-893B-117D420C9192">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<generatorID>B0E621BD-34B3-6EDF-6B89-356614307B56</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DescripcionArea" id="596325A1-63DB-3ABB-041C-1075B9DC7117">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<generatorID>3711BBE0-10FF-3EBA-F0E7-12813D07AEA3</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BEE228E7-31A9-3998-EB6F-6C3E3E8F5159" name="Areas_PK">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<generatorID>7FC88886-B325-4710-9915-1B3A2752B79F</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CDB115DE-B1E1-80EE-7BBE-EFE3E74C9DAB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -2,21 +2,25 @@
   <ion-menu menuId="first" contentId="main">
     <ion-content>
       <div class="menu-header-bg"></div>
-     
-      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" autoHide="false" [routerLink]="c.redirectTo" detail>
-       
+
+      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" autoHide="false"
+        [routerLink]="c.redirectTo" detail>
+
         <ion-item>
           <ion-icon [src]="c.icon"></ion-icon>
           {{ c.name }}
         </ion-item>
 
-        
-      </ion-menu-toggle>
 
-      <ion-button (click)="salir()" expand="round" >
-        Salir
-      </ion-button>
-          
+      </ion-menu-toggle>
+      <br>
+      <br>
+      <div class="ion-text-center">
+        <ion-button (click)="salir()" expand="round">
+          Salir
+        </ion-button>
+      </div>
+
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="main"></ion-router-outlet>
