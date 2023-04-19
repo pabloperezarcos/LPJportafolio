@@ -27,7 +27,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
   
   async presentAlert() {
     const alert = await this.alertCtrl.create({

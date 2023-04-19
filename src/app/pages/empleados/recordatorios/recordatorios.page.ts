@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
+
 @Component({
   selector: 'app-recordatorios',
   templateUrl: './recordatorios.page.html',
@@ -19,9 +21,7 @@ export class RecordatoriosPage implements OnInit {
     })
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   crearNota() {
     var f = this.form_notas.value;

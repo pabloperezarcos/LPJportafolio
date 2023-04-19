@@ -92,14 +92,6 @@ export class RegistroAsistenciaPage implements OnDestroy {
       });
   }
 
- /*  agregarAsistencia() {
-    this.registroAsistencia.addAsistencia(this.registro).then((data) => {
-      this.registro = "";
-      alert(data);
-      this.getAsistencia();
-    });
-  } */
-
   stopScan() {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();

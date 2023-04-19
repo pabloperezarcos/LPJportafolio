@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="93128E67-BF8D-E24D-FB1F-C7933E9A856A" name="VacacionesEmpleado">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="87C9D9A0-3A56-E53B-082C-169B5C442784" name="Vacaciones">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:21 UTC</createdTime>
 <generatorID>6411B9DE-4F79-0EB6-BF2F-D79773ACD69C</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="IdVacaciones" id="19754252-E9D9-CF94-C671-8DD936870774">
+<Column name="IdVacaciones" id="FD58A058-9A20-5AB2-6A4C-C9D8767DECA7">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:21 UTC</createdTime>
 <generatorID>B1E19A8A-D816-AE3E-E21C-247077901C77</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,9 +19,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="FechaInicio" id="47EE6EAC-469B-8384-5DC3-2B9803061ED9">
+<Column name="FechaInicio" id="EB8D016B-786F-1000-53E7-959A668EB3C2">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:21 UTC</createdTime>
 <generatorID>528B7867-338C-5B3B-4C26-0F4238097209</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -30,9 +30,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="FechaTermino" id="958A19C1-0A09-139D-20B9-F2CD17E20919">
+<Column name="FechaTermino" id="41AAE1BF-71BA-83EC-C24D-341CC16DB409">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:21 UTC</createdTime>
 <generatorID>354365C2-5F08-0B41-EE74-2F2673E84803</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -41,9 +41,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Empleados_IdEmpleado" id="EF10362A-501D-DCCD-222F-21F25123E49E">
+<Column name="Empleados_IdEmpleado" id="E9DEAFC4-A7F3-46C3-979F-3037187557B9">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:21 UTC</createdTime>
 <generatorID>1048402F-8881-C202-6395-42A86568953B</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -53,32 +53,32 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="233C5E6A-2F32-B1B4-43C6-48627B3A8B14" referredColumn="AC40F708-03E2-D269-C19A-AE3E9F59CF14"/>
+<colAssociation fkAssociation="66E85F54-B9AC-8DAB-6800-349D0F4ADF40" referredColumn="033E36CE-1D47-F1AA-89D0-6A2E31F0972C"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="5055B157-243D-7F81-4BF6-C0ACE06FDD7A" name="VacacionesEmpleado_PK">
+<ind_PK_UK id="5F15D66F-79BA-EC85-4EA8-BE4208C95A29" name="Vacaciones_PK">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:21 UTC</createdTime>
 <generatorID>DE5C66FD-1E82-4D6A-E464-9AB6E2BFC8D0</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="19754252-E9D9-CF94-C671-8DD936870774"/>
+<colUsage columnID="FD58A058-9A20-5AB2-6A4C-C9D8767DECA7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="46D9C855-68BB-A353-090A-26813AE54ADE" name="VacacionesEmpleado_Empleados_FK">
+<ind_PK_UK id="3D5AE0DF-5C60-3A5B-89B2-AEDFD36EFF70" name="Vacaciones_Empleados_FK">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 17:58:24 UTC</createdTime>
+<createdTime>2023-04-18 21:21:22 UTC</createdTime>
 <generatorID>C45EBD1B-8193-E8A8-32E3-D25BEE2190FF</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="EF10362A-501D-DCCD-222F-21F25123E49E"/>
+<colUsage columnID="E9DEAFC4-A7F3-46C3-979F-3037187557B9"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
