@@ -62,7 +62,7 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
-  crearAlumno() {
+  crearEmpleado() {
     this.empleadosService.addTest(this.nombre, this.apellidoPaterno, this.apellidoMaterno).then((data) => {
       this.nombre = "";
       this.apellidoPaterno = "";
@@ -84,7 +84,7 @@ export class CrearEmpleadoPage implements OnInit {
   }
 
   cancelar() {
-    this.navCtrl.navigateForward(['home-docente/alumnos']);
+    this.navCtrl.navigateBack(['../empleados']);
   }
 
 }

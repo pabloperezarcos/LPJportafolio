@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Añadir Empleado</ion-title>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>Añadir empleado</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,6 +9,7 @@
   <ion-card class="ion-padding">
     <ion-list>
       <ion-item>
+        <ion-icon slot="end" name="person-circle-outline"></ion-icon>
         <ion-label>Nombre:</ion-label>
         <ion-input [(ngModel)]="nombre" placeholder="Introduzca el nombre" type="text" required>
         </ion-input>
@@ -17,22 +18,77 @@
     <ion-list>
       <ion-item>
         <ion-label>Apellido paterno:</ion-label>
-        <ion-input [(ngModel)]="apellidoPaterno" placeholder="Introduzca apellido paterno" type="text" required>
+        <ion-icon slot="end" name="person-circle-outline"></ion-icon>
+        <ion-input [(ngModel)]="apellidoPaterno" placeholder="Introduzca el apellido paterno" type="text" required>
         </ion-input>
       </ion-item>
     </ion-list>
     <ion-list>
       <ion-item>
         <ion-label>Apellido materno:</ion-label>
-        <ion-input [(ngModel)]="apellidoMaterno" placeholder="Introduzca su apellido materno" type="text" required>
+        <ion-icon slot="end" name="person-circle-outline"></ion-icon>
+        <ion-input [(ngModel)]="apellidoMaterno" placeholder="Introduzca el apellido materno" type="text" required>
         </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Dirección:</ion-label>
+        <ion-icon slot="end" name="home-outline"></ion-icon>
+        <ion-input [(ngModel)]="direccion" placeholder="Introduzca la dirección" type="text" required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>RUN:</ion-label>
+        <ion-icon slot="end" name="person-circle-outline"></ion-icon>
+        <ion-input [(ngModel)]="run" placeholder="Introduzca el RUN" type="text" required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Contraseña:</ion-label>
+        <ion-icon slot="end" name="key-outline"></ion-icon>
+        <ion-input [(ngModel)]="pass1" placeholder="Introduzca su contraseña" type="text" required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Repita su contraseña:</ion-label>
+        <ion-icon slot="end" name="key-outline"></ion-icon>
+        <ion-input [(ngModel)]="pass2" placeholder="Introduzca su contraseña" type="text" required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo de usuario:</ion-label>
+        <ion-icon slot="end" name="people-outline"></ion-icon>
+        <ion-select [(ngModel)]="inputOptionTipo" placeholder="Seleccione una opción:">
+          <ion-select-option value="administrador">Administrador</ion-select-option>
+          <ion-select-option value="empleado">Empleado</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>Estado de empleado:</ion-label>
+        <ion-icon slot="end" name="flag-outline"></ion-icon>
+        <ion-select [(ngModel)]="inputOptionEstado" placeholder="Seleccione una opción:">
+          <ion-select-option value="activo">Activo</ion-select-option>
+          <ion-select-option value="inactivo">Inactivo</ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-list>
     <br>
     <br>
     <ion-col>
-      <ion-button (click)="crearEmpleado()" type="submit" shape="round" expand="block">
-        Crear alumno
+      <ion-button (click)="crearEmpleado()" type="submit" shape="round" color="success" expand="block">
+        <ion-icon slot="end" name="person-add-outline"></ion-icon>
+        Crear
       </ion-button>
     </ion-col>
     <br>
@@ -40,7 +96,8 @@
     <br>
     <ion-col>
       <ion-button (click)="cancelar()" shape="round" expand="block" color="danger">
-        Cerrar
+        <ion-icon slot="end" name="close-circle-outline"></ion-icon>
+        Cancelar
       </ion-button>
     </ion-col>
   </ion-card>

@@ -158,7 +158,7 @@ export class EmpleadosPage implements OnInit {
   }
 
   crearEmpleado() {
-    this.navCtrl.navigateForward(['agregar-empleado/']);
+    this.navCtrl.navigateForward(['/crear-empleado']);
   }
 
 }

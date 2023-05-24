@@ -15,13 +15,13 @@
       </ion-menu-toggle>
       <br>
       <br>
-      <div class="ion-text-center">
-        <ion-button (click)="salir()" expand="round">
-          Salir
-        </ion-button>
-      </div>
+      <ion-menu-toggle>
+        <div class="ion-text-center">
+          <ion-button routerLink="/home" expand="round" autoHide="false">Cerrar sesión</ion-button>
+        </div>
+      </ion-menu-toggle>
 
-    </ion-content>
+    </ion-content> 
   </ion-menu>
 
 

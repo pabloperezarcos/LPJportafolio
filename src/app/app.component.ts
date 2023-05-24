@@ -20,5 +20,9 @@ export class AppComponent {
     this.components = this.dataService.getMenuOpts();
   }
 
+  salir(){
+    
+  }
+
 }
 

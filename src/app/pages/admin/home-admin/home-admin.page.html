@@ -6,12 +6,6 @@
 
     <ion-title>Bienvenido {{usuario.nombre}} {{usuario.apellido}}</ion-title>
 
-<!--     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons> -->
-    
   </ion-toolbar>
 </ion-header>
 
@@ -20,6 +14,7 @@
     <ion-list>
       <ion-item>
         <ion-label class="ion-text-center">
+          <br>
           <h2>
             REGISTRO DE ASISTENCIA
           </h2>
@@ -27,45 +22,39 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <ion-item>
-      <ion-select mode="ios" [(ngModel)]="inputOption" placeholder="1.- Seleccione una asignatura:">
-        <ion-select-option *ngFor="let asignatura of bd_asignatura">
-          {{ asignatura.nombre }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <br>
-    <ion-item>
-      <ion-label>2.- Fecha y hora:</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime [(ngModel)]="myDate" (ngModelChange)="change()" displayFormat="dd-MM-yyyy; HH:mm"
-            pickerFormat="dd-MM-yyyy; HH:mm" [isDateEnabled]="isWeekday" [firstDayOfWeek]="1"
-            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" id="datetime"></ion-datetime>
-        </ng-template>
-      </ion-modal>
-    </ion-item>
     <br>
-    <br>
-    <ion-item>
-      <ion-text>
-        <h6>Ud. ha seleccionado lo siguiente:</h6>
-        <h6> {{ inputOption }} </h6>
-        <h6> {{ nuevaFecha }} </h6>
-      </ion-text>
-    </ion-item>
-    <br>
-    <br>
+
     <div class="ion-text-center">
       <ion-button (click)="iniciarRegistro()" size="medium" mode="ios">
         <ion-icon shape="round" size="large" slot="end" name="add-circle"></ion-icon>
         Iniciar Registro
       </ion-button>
     </div>
+
+    <br>
+    <br>
+
+    <ion-item class="ion-text-center">
+      <ion-label>
+        <h2>
+          Últimos registros
+        </h2>
+        <br>
+      </ion-label>
+    </ion-item>
+
+    <table class="tabla-centrada">
+      <tr>
+        <th>INGRESOS</th>
+        <th>SALIDAS</th>
+      </tr>
+      <tr>
+        <td>Dato 1</td>
+        <td>Dato 2</td>
+      </tr>
+    </table>
     <br>
   </ion-card>
+
 </ion-content>
