@@ -17,10 +17,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
   },
   {
-    path: 'areas',
-    loadChildren: () => import('./pages/admin/areas/areas.module').then( m => m.AreasPageModule)
-  },
-  {
     path: 'empleados',
     loadChildren: () => import('./pages/admin/empleados/empleados.module').then( m => EmpleadosPageModule)
   },
@@ -61,8 +57,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/empleados/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   },
   {
-    path: 'recordatorios',
-    loadChildren: () => import('./pages/empleados/recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
+    path: 'reportes',
+    loadChildren: () => import('./pages/admin/reportes/reportes.module').then( m => m.ReportesPageModule)
+  },
+  {
+    path: 'notas-recordatorio',
+    loadChildren: () => import('./pages/notas-recordatorio/notas-recordatorio.module').then( m => m.NotasRecordatorioPageModule)
   }
 ];
 

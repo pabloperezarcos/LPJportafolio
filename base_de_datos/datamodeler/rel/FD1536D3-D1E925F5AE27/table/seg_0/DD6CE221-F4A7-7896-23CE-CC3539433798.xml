@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B3A5B3A8-5B48-E576-05B3-D0573798A8F7" name="Recordatorios">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DD6CE221-F4A7-7896-23CE-CC3539433798" name="Notas">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>F866D1BB-EBC5-8947-010A-23D33F9BBB1F</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="IdRecordatorios" id="082701C6-92DB-932E-ECBA-2EDB3A9EEAB8">
+<Column name="IdNotas" id="3777B816-D93C-4620-BBDB-3975B6711A2C">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>487FC90E-62B2-480E-E8A5-82D34862B5DD</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -19,9 +19,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TituloRecordatorio" id="EC1BD486-304E-F8EE-14BB-855F71FC82DB">
+<Column name="TituloNotas" id="F97CA545-A180-8E5C-A096-88507488E1F4">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>7B59B9CB-CD07-8223-8C2A-0182740877C5</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -31,9 +31,9 @@
 <ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="ContenidoRecordatorios" id="68C6A8B9-217D-E758-7E82-7D22AFA1DC3F">
+<Column name="ContenidoNotas" id="B4347C16-D8CF-8B3B-B954-2239FE254415">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>3704DC73-410F-4280-664E-DD133FD404E0</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -43,9 +43,9 @@
 <ownDataTypeParameters>200 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="FechaCreacion" id="43D153E1-3DFE-F45E-2F6F-B0C549CDB1F5">
+<Column name="FechaCreacion" id="D5B51954-AF1C-FE9A-D1A0-E62A726EF293">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>3803A512-9DBC-4D3A-D68C-B52A7092CD25</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -54,9 +54,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="FechaVencimiento" id="1DC4F911-9662-71C1-800A-DFC9F932A6BE">
+<Column name="FechaVencimiento" id="10A897EC-D816-BCA0-CF6E-6EFF140CFD4C">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>20ACDD59-E201-9450-A085-C79F625651F7</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -65,9 +65,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Empleados_IdEmpleado" id="9A6FAE21-98B6-0115-02F0-CDC0EB390D7F">
+<Column name="Empleados_IdEmpleado" id="484EF8C3-565E-7680-DF61-A5D5751D037C">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>EDF362AB-50C0-33C6-A41E-1F2D730D23EE</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -77,32 +77,32 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="62841DAF-D666-44F0-6BF7-F0FFCCEDEA8D" referredColumn="033E36CE-1D47-F1AA-89D0-6A2E31F0972C"/>
+<colAssociation fkAssociation="77B8ABF9-FE93-970B-60A3-95A39369B279" referredColumn="9E7D87D7-8B90-A8C8-BBF5-06D0CF46C45F"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="3EADCD0A-BDD1-BC9E-BF4C-3FD1582A1D67" name="Recordatorios_PK">
+<ind_PK_UK id="D6BA5E68-018D-2D66-9BC7-19B63A9B94CE" name="Notas_PK">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:21 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>5FF70635-7276-0BE4-6F7B-097874D73306</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="082701C6-92DB-932E-ECBA-2EDB3A9EEAB8"/>
+<colUsage columnID="3777B816-D93C-4620-BBDB-3975B6711A2C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7CFFE618-C66E-76DC-C5FB-D3AC21CE4FAC" name="Recordatorios_Empleados_FK">
+<ind_PK_UK id="ED099C1B-2CDF-3F6D-3930-AC4E832A07E4" name="Notas_Empleados_FK">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-18 21:21:22 UTC</createdTime>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
 <generatorID>DFD3BB60-2B87-D605-2BA0-7C4AAA41CD84</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="9A6FAE21-98B6-0115-02F0-CDC0EB390D7F"/>
+<colUsage columnID="484EF8C3-565E-7680-DF61-A5D5751D037C"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

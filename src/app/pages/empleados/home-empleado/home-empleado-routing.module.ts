@@ -16,10 +16,6 @@ const routes: Routes = [
       {
         path: 'asistencia',
         loadChildren: () => import ('../registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
-      },
-      {
-        path: 'recordatorios',
-        loadChildren: () => import ('../recordatorios/recordatorios.module').then( m => m.RecordatoriosPageModule)
       }
     ]
   }

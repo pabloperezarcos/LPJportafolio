@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="relacion_empleados_recordatorios" directorySegmentName="seg_0" id="DFD3BB60-2B87-D605-2BA0-7C4AAA41CD84">
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="relacion_empleados_notas" directorySegmentName="seg_0" id="DFD3BB60-2B87-D605-2BA0-7C4AAA41CD84">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 17:35:46 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <sourcePk>8192EF48-D7B7-F8BB-6537-8C9C7D999268</sourcePk>
 <identifying>false</identifying>

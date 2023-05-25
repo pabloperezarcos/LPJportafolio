@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A30DBB9B-A614-A911-DAF7-68D396A12398" name="Empleados">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>21B7DDF6-D0D4-E268-0B34-0C98FB0EDFA1</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IdEmpleado" id="9E7D87D7-8B90-A8C8-BBF5-06D0CF46C45F">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>EE70BA48-0079-DA44-08F3-798B19A64548</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NombreEmpleado" id="3FA36129-3215-32BF-458A-8A2083A950DB">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>231D5887-CF2D-94AB-C03A-94878C36BB69</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ap_paternoEmpleado" id="70B6CE24-8EE0-4EB4-214D-64900B769BF3">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>228804C9-6C6B-CC37-BD17-FF99C6A0273A</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ap_maternoEmpleado" id="D5ABA36B-F78E-52E4-E674-8C8630B72A96">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>BAE8931C-E52A-435F-141F-F6B3103D74FF</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 CHAR</dataTypeSize>
+<ownDataTypeParameters>30 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DireccionEmpleado" id="0AD445CA-5696-2F99-2C8A-00BA9F95AC6C">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>0395051A-7447-0E94-4B30-3FCAB52BB451</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RutEmpleado" id="511A9966-0F15-E0A9-5D96-89A220B5BB22">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>D5FF5D8E-47A8-7229-13E4-9696388D0EA9</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PasswordHash" id="C42177B1-4014-FEF7-2887-28934AF3CE1C">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>7541D768-A31B-B667-9B2E-7AA9F564FBDC</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>64 CHAR</dataTypeSize>
+<ownDataTypeParameters>64 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TipoUsuario" id="824DF2E3-2F11-B935-F182-C11C1529B932">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>FD7FE627-BCF2-35A5-9FCF-88CDB94185CF</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<ownDataTypeParameters>15 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EstadoEmpleado" id="9B1A11EC-4BC5-A9D8-95BF-F7B59F447831">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>CF2FA6E4-6B53-D813-AF40-8812D12998C1</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F38C1660-FEBC-34DE-C4F9-839D312463C3" name="Empleados_PK">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-23 01:51:21 UTC</createdTime>
+<generatorID>8192EF48-D7B7-F8BB-6537-8C9C7D999268</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9E7D87D7-8B90-A8C8-BBF5-06D0CF46C45F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

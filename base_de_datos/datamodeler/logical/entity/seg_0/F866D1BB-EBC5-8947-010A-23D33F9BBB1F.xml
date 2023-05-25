@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F866D1BB-EBC5-8947-010A-23D33F9BBB1F" name="Recordatorios">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F866D1BB-EBC5-8947-010A-23D33F9BBB1F" name="Notas">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 17:33:50 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -15,24 +15,24 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="IdRecordatorios" id="487FC90E-62B2-480E-E8A5-82D34862B5DD">
+<Attribute name="IdNotas" id="487FC90E-62B2-480E-E8A5-82D34862B5DD">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 17:34:00 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TituloRecordatorio" id="7B59B9CB-CD07-8223-8C2A-0182740877C5">
+<Attribute name="TituloNotas" id="7B59B9CB-CD07-8223-8C2A-0182740877C5">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 17:34:01 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -40,12 +40,12 @@
 <dataTypeSize>20 CHAR</dataTypeSize>
 <ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="ContenidoRecordatorios" id="3704DC73-410F-4280-664E-DD133FD404E0">
+<Attribute name="ContenidoNotas" id="3704DC73-410F-4280-664E-DD133FD404E0">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 17:34:03 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -58,7 +58,7 @@
 <createdTime>2023-04-15 17:34:04 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -70,7 +70,7 @@
 <createdTime>2023-04-15 17:34:05 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -83,7 +83,7 @@
 <generatorID>DFD3BB60-2B87-D605-2BA0-7C4AAA41CD84</generatorID>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="true"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <referedAttribute>EE70BA48-0079-DA44-08F3-798B19A64548</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -97,9 +97,8 @@
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 17:34:20 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="4DEFED2F-D3E4-9BB0-1035-8127A5882B58" value="false"/>
+<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

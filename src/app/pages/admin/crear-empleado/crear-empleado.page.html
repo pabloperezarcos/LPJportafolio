@@ -5,6 +5,14 @@
 </ion-header>
 
 <ion-content>
+<ion-card>
+  <ion-list>
+    <ion-item *ngFor="let empleado of empleados">
+      {{ empleado.nombreempleado }} {{ empleado.rutempleado }}
+    </ion-item>
+  </ion-list>
+</ion-card>
+  
 
   <ion-card class="ion-padding">
     <ion-list>

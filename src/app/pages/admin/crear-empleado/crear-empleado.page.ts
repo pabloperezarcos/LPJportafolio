@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
@@ -9,33 +8,25 @@ import { EmpleadosService } from 'src/app/services/empleados.service';
   styleUrls: ['./crear-empleado.page.scss'],
 })
 export class CrearEmpleadoPage implements OnInit {
-
-  formularioRegistro: FormGroup;
-
-  nombre: string = "";
-  apellidoPaterno: string = "";
-  apellidoMaterno: string = "";
-
-  empleadosbd: any = [];
+  datos: any;
+  apiEmpleados: any;
 
   constructor(
     private alertCtrl: AlertController,
     public navCtrl: NavController,
     public empleadosService: EmpleadosService,
-    public platform: Platform,
-    public fb: FormBuilder
+    public platform: Platform
   ) {
-    this.formularioRegistro = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
-      'apellidoPaterno': new FormControl("", Validators.required),
-      'apellidoMaterno': new FormControl("", Validators.required)
-    });
-    this.empleadosService.crearBaseDatos().then(() => {
-      this.getEmpleados();
-    });
+    this.obtenerEmpleados();
   }
 
   ngOnInit() {
+    this.empleadosService.getDatos()
+      .subscribe((data) => {
+        this.datos = data;
+      }, (error) => {
+        console.log(error);
+      });
   }
 
   async presentAlert() {
@@ -62,26 +53,21 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
-  crearEmpleado() {
-    this.empleadosService.addTest(this.nombre, this.apellidoPaterno, this.apellidoMaterno).then((data) => {
-      this.nombre = "";
-      this.apellidoPaterno = "";
-      this.apellidoMaterno = "";
-      alert(data);
-      this.getEmpleados();
-    });
-  }
+  //----------------------------------------------------------------
+  // Obtener usuario de la base de datos
+  //----------------------------------------------------------------
 
-  getEmpleados() {
-    this.empleadosService.getEmpleados().then((data) => {
-      this.empleadosbd = [];
-      if (data.rows.length > 0) {
-        for (var i = 0; i < data.rows.length; i++) {
-          this.empleadosbd.push(data.rows.item(i));
-        }
-      }
-    });
-  }
+  obtenerEmpleados() {
+    this.empleadosService.getEmpleados()
+    .then(data => {
+      //console.log(data['data'])
+      this.apiEmpleados = data.data;
+    },
+      (error) => {
+        console.error(error)
+      });
+}
+
 
   cancelar() {
     this.navCtrl.navigateBack(['../empleados']);
