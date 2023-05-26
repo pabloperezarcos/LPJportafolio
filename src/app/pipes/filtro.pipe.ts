@@ -5,13 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroPipe implements PipeTransform {
 
+  item = "";
+
   transform(arreglo: any[], texto: string = ''): any[] {
 
-    if ( texto === '' ) {
-     return arreglo; 
+    if (texto === '') {
+      return arreglo;
     }
 
-    if ( !arreglo ) {
+    if (!arreglo) {
       return arreglo;
     }
 
@@ -20,9 +22,12 @@ export class FiltroPipe implements PipeTransform {
     console.log(arreglo);
     console.log(texto);
 
-    return arreglo.filter( 
-      item => item.nombre.toLocaleLowerCase().includes( texto )
-     );
+    return arreglo.filter(item => {
+      if (item.nombreempleado && typeof item.nombreempleado === 'string') {
+        return item.nombreempleado.toLocaleLowerCase().includes(texto);
+      }
+      return false;
+    });
   }
 
 }

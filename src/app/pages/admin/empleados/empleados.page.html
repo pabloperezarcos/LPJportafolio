@@ -32,9 +32,9 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let empleado of empleadosbd | filtro:textoBuscar">
+    <ion-item-sliding *ngFor="let emp of empleados | filtro:textoBuscar">
       <ion-item-options side="start">
-        <ion-item-option (click)="mostrarAlertaEditar(empleado)">
+        <ion-item-option (click)="mostrarAlertaEditar(emp)">
           Editar
         </ion-item-option>
       </ion-item-options>
@@ -43,13 +43,14 @@
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
         <ion-label>
           <h2>
-            {{ empleado.nombre }} {{ empleado.apellidoPaterno }} {{ empleado.apellidoMaterno }}
+            {{ emp.nombreempleado }} {{ emp.ap_paternoempleado }} {{ emp.ap_maternoempleado }}
           </h2>
+          <h6>{{ emp.idempleado }}</h6>
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="alertaEliminar(empleado.id)">
+        <ion-item-option color="danger" (click)="mostrarAlertaEliminar(emp.idempleado)">
           Eliminar
         </ion-item-option>
       </ion-item-options>

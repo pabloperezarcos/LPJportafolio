@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class EmpleadosService {
 
-  private urlBase = "http://144.22.40.186:8000/api/empleados/";
+  private urlBase = "http://144.22.40.186:8000/api/empleados";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,22 +23,29 @@ export class EmpleadosService {
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-
-
-  //----------------------------------------------------------------
-  // PUT: Editar usuario de la base de datos
-  //----------------------------------------------------------------
-
-
+  delEmpleados(id: number) {
+    const url = `${this.urlBase}${id}/`;
+    return this.httpClient.delete(url);
+  }
 
   //----------------------------------------------------------------
-  // POS: Editar usuario de la base de datos
+  // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
 
+  putEmpleados(id: number, empleado: any) {
+    const url = `${this.urlBase}${id}/`;
+    return this.httpClient.put(url, empleado);
+  }
 
+  //----------------------------------------------------------------
+  // POS: Crear usuario de la base de datos
+  //----------------------------------------------------------------
 
+  posEmpleados(empleado: any) {
+    return this.httpClient.post(this.urlBase, empleado);
+  }
 
-
-
-
+  //----------------------------------------------------------------
+  // FIN SERVICE
+  //----------------------------------------------------------------
 }

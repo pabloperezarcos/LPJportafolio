@@ -9,9 +9,7 @@ import { EmpleadosService } from 'src/app/services/empleados.service';
 })
 export class CrearEmpleadoPage implements OnInit {
 
-  /* apiEmpleados: any; */
   empleados: any[];
-
 
   constructor(
     private alertCtrl: AlertController,
@@ -19,12 +17,11 @@ export class CrearEmpleadoPage implements OnInit {
     public empleadosService: EmpleadosService,
     public platform: Platform
   ) {
-    /* this.listarEmpleados(); */
+    
   }
 
   ngOnInit() {
-    /* this.listarEmpleados(); */
-    this.getEmpleados();
+
   }
 
   async presentAlert() {
@@ -50,32 +47,6 @@ export class CrearEmpleadoPage implements OnInit {
 
     await alert.present();
   }
-
-  //----------------------------------------------------------------
-  // Obtener usuario de la base de datos
-  //----------------------------------------------------------------
-
-  getEmpleados(){
-    this.empleadosService.getEmpleados().subscribe(
-      (data: any) => {
-        this.empleados = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    )
-  }
-
-/*   listarEmpleados() {
-    this.empleadosService.getEmpleados()
-    .then(data => {
-      //console.log(data['data'])
-      this.apiEmpleados = data.data;
-    },
-      (error) => {
-        console.error(error)
-      });
-} */
 
 
   cancelar() {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../../modals/registro-clase-modal/registro-clase-modal.page';
 import { format, parseISO } from 'date-fns';
-import { AreasService } from 'src/app/services/areas.service';
+
 
 
 
@@ -21,23 +21,23 @@ export class HomeAdminPage implements OnInit {
 
   constructor(private modalCtr: ModalController,
     private animationCtrl: AnimationController,
-    public areasService: AreasService
+
   ) {
-    this.areasService.crearBaseDatos().then(() => {
+/*     this.areasService.crearBaseDatos().then(() => {
       this.getAreas();
-    });
+    }); */
   }
   
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    this.areasService.crearBaseDatos().then(() => {
+/*     this.areasService.crearBaseDatos().then(() => {
       this.getAreas();
-    });
+    }); */
   }
 
-  getAreas() {
+/*   getAreas() {
     this.areasService.getAreas().then((data) => {
       this.bd_areas = [];
       if (data.rows.length > 0) {
@@ -46,7 +46,7 @@ export class HomeAdminPage implements OnInit {
         }
       }
     });
-  }
+  } */
 
   change() {
     const dateFromIonDatetime = this.myDate;

@@ -5,26 +5,7 @@
 </ion-header>
 
 <ion-content>
-<!-- JENNY  -->
-  <ion-card>
-    <ion-list>
-      <ion-item *ngFor="let emp of empleados">
-        Nombre: {{ emp.nombreempleado }}
-        <br>
-        Apellido:{{ emp.ap_paternoempleado }}
-        <br>
-        ID: {{ emp.idempleado }}
-        <br>
-        RUN: {{ emprutempleado }}
-        <br>
-        Tipo de usuario:{{ emp.tipousaurio }}
-        <br>
-        Direccion: {{ emp.direccionempleado }}
-      </ion-item>
-    </ion-list>
-  </ion-card>
-
-
+  
   <ion-card class="ion-padding">
     <ion-list>
       <ion-item>
@@ -103,15 +84,12 @@
       </ion-item>
     </ion-list>
     <br>
-    <br>
     <ion-col>
       <ion-button (click)="crearEmpleado()" type="submit" shape="round" color="success" expand="block">
         <ion-icon slot="end" name="person-add-outline"></ion-icon>
         Crear
       </ion-button>
     </ion-col>
-    <br>
-    <br>
     <br>
     <ion-col>
       <ion-button (click)="cancelar()" shape="round" expand="block" color="danger">

@@ -8,6 +8,8 @@ import { EmpleadosPageRoutingModule } from './empleados-routing.module';
 
 import { EmpleadosPage } from './empleados.page';
 import { PipesModule } from 'src/app/pipes/pipes.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     IonicModule,
     ReactiveFormsModule,
     PipesModule,
+    HttpClientModule,
     EmpleadosPageRoutingModule
   ],
   declarations: [EmpleadosPage]

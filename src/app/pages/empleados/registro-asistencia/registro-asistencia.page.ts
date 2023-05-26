@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { RegistroasistenciaService } from 'src/app/services/registroasistencia.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -20,15 +19,12 @@ export class RegistroAsistenciaPage implements OnDestroy {
   registro: string = "";
 
   constructor(
-    public registroAsistencia: RegistroasistenciaService,
     public alertCtrl: AlertController
   ) {
-    this.registroAsistencia.crearBaseDatos().then(() => {
-      this.getAsistencia();
-    });
+
   }
 
-  getAsistencia() {
+/*   getAsistencia() {
     this.registroAsistencia.getAsistencia().then((data) => {
       this.bd_asistencia = [];
       if (data.rows.length > 0) {
@@ -37,7 +33,7 @@ export class RegistroAsistenciaPage implements OnDestroy {
         }
       }
     });
-  }
+  } */
 
   ngOnDestroy() {
     this.stopScan();
@@ -75,7 +71,7 @@ export class RegistroAsistenciaPage implements OnDestroy {
         this.scanResult = result.content;
         this.registro = this.scanResult;
         //console.log(this.scanResult);
-        this.agregarAsistencia();
+      /*   this.agregarAsistencia(); */
 
       }
     } catch (e) {
@@ -84,13 +80,13 @@ export class RegistroAsistenciaPage implements OnDestroy {
     }
   }
 
-  agregarAsistencia() {
+/*   agregarAsistencia() {
     this.registroAsistencia.addAsistencia(this.registro).then((registro) => {
-        this.registro = "";
-        alert(registro);
-        this.getAsistencia();
-      });
-  }
+      this.registro = "";
+      alert(registro);
+      this.getAsistencia();
+    });
+  } */
 
   stopScan() {
     BarcodeScanner.showBackground();

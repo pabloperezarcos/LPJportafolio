@@ -8,7 +8,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { SQLite } from '@ionic-native/sqlite/ngx';
 import { FiltroPipe } from './pipes/filtro.pipe';
 
 @NgModule({
@@ -19,10 +18,11 @@ import { FiltroPipe } from './pipes/filtro.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  
+
   providers: [
-    SQLite, { 
-      provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {
+      provide: RouteReuseStrategy, useClass: IonicRouteStrategy
+    }
   ],
   bootstrap: [AppComponent],
 })
