@@ -11,8 +11,8 @@
   },
   {
     "icon": "../assets/icon/maleta.svg",
-    "name": "Área",
-    "redirectTo": "/areas"
+    "name": "Notas",
+    "redirectTo": "/notas"
   },
   {
     "icon": "../assets/icon/calendario.svg",

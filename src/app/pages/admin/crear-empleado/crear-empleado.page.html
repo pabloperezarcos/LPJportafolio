@@ -5,16 +5,34 @@
 </ion-header>
 
 <ion-content>
+
+<ion-card class="ion-padding">
+  <ion-list *ngFor="let emp of apiEmpleados">
+    <ion-item>
+      <ion-label>
+        <h2>{{ emp.nombreempleado }}</h2>
+        <h3>{{ emp.ap_paternoempleado }}</h3>
+        <h3>{{ emp.idempleado }}</h3>
+        <h2>{{ emp.title }}</h2>
+        <h3>{{ emp.extra }}</h3>
+        <h3>{{ emp.date }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
 <ion-card>
   <ion-list>
     <ion-item *ngFor="let empleado of empleados">
-      {{ empleado.nombreempleado }} {{ empleado.rutempleado }}
+      {{ empleado.nombreempleado }}
+      {{ empleado.ap_paternoempleado }}
+      {{ empleado.idempleado }}
     </ion-item>
   </ion-list>
 </ion-card>
   
 
-  <ion-card class="ion-padding">
+<!--   <ion-card class="ion-padding">
     <ion-list>
       <ion-item>
         <ion-icon slot="end" name="person-circle-outline"></ion-icon>
@@ -108,6 +126,6 @@
         Cancelar
       </ion-button>
     </ion-col>
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>
