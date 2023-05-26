@@ -8,10 +8,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { FiltroPipe } from './pipes/filtro.pipe';
 
 @NgModule({
-  declarations: [AppComponent, FiltroPipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

@@ -35,19 +35,16 @@ export class EmpleadosPage implements OnInit {
     this.textoBuscar = event.detail.value;
   }
 
-  doRefresh(event) {
+/*   doRefresh(event) {
     setTimeout(() => {
       this.getEmpleados();
       event.target.complete();
     }, 1500);
-  }
+  } */
 
   crearEmpleado() {
     this.navCtrl.navigateForward(['/crear-empleado']);
   }
-
-
-
 
   //----------------------------------------------------------------
   // GET: Obtener usuario de la base de datos
@@ -205,6 +202,7 @@ export class EmpleadosPage implements OnInit {
             }).subscribe(
               () => {
                 // Manejar la respuesta exitosa
+                this.getEmpleados();
                 console.log('Empleado actualizado con éxito');
               },
               error => {
@@ -237,6 +235,7 @@ export class EmpleadosPage implements OnInit {
             this.httpClient.delete(url)
               .subscribe(
                 () => {
+                  this.getEmpleados();
                   console.log('Empleado eliminado con éxito');
                 },
                 error => {
@@ -250,8 +249,6 @@ export class EmpleadosPage implements OnInit {
 
     await alert.present();
   }
-
-
 
   /* FIN EMPLEADOS.PAGE.TS */
 }

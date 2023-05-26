@@ -9,7 +9,15 @@ import { EmpleadosService } from 'src/app/services/empleados.service';
 })
 export class CrearEmpleadoPage implements OnInit {
 
-  empleados: any[];
+  nombreempleado: string = '';
+  ap_paternoempleado: string = '';
+  ap_maternoempleado: string = '';
+  direccionempleado: string = '';
+  rutempleado: string = '';
+  passwordhash: string = '';
+  pass2: string = '';
+  tipousuario: string = 'administrador';
+  estadoempleado: string = 'activo';
 
   constructor(
     private alertCtrl: AlertController,
@@ -17,7 +25,7 @@ export class CrearEmpleadoPage implements OnInit {
     public empleadosService: EmpleadosService,
     public platform: Platform
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -48,9 +56,56 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
+  resetForm() {
+    this.nombreempleado = '';
+    this.ap_paternoempleado = '';
+    this.ap_maternoempleado = '';
+    this.direccionempleado = '';
+    this.rutempleado = '';
+    this.passwordhash = '';
+    this.pass2 = '';
+    this.estadoempleado = 'administrador';
+    this.tipousuario = 'activo';
+  }
 
   cancelar() {
     this.navCtrl.navigateBack(['../empleados']);
   }
 
+  //----------------------------------------------------------------
+  // POS: Crear usuario en la base de datos
+  //----------------------------------------------------------------
+
+  crearEmpleado() {
+    if (this.passwordhash !== this.pass2) {
+      this.presentAlert();
+      return;
+    }
+
+    const empleado = {
+      nombreempleado: this.nombreempleado,
+      ap_paternoempleado: this.ap_paternoempleado,
+      ap_maternoempleado: this.ap_maternoempleado,
+      direccionempleado: this.direccionempleado,
+      rutempleado: this.rutempleado,
+      passwordhash: this.passwordhash,
+      tipousuario: this.tipousuario,
+      estadoempleado: this.estadoempleado
+    };
+
+    this.empleadosService.posEmpleados(empleado)
+      .subscribe(
+        () => {
+          console.log('Empleado creado con éxito');
+          this.successAlert();
+          this.resetForm();
+        },
+        error => {
+          console.error('Error al crear el empleado', error);
+          // Agregar aquí cualquier manejo de error adicional
+        }
+      );
+  }
+
+  /* FIN CREAR-EMPLEADO.PAGE.TS */
 }
