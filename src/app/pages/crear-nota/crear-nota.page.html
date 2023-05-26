@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>Crear Nota</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-label>Título:</ion-label>
+        <ion-input [(ngModel)]="titulonota" placeholder="Introduce el título de la nota" type="text"
+          required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contenido:</ion-label>
+        <ion-textarea [(ngModel)]="contenidonota" placeholder="Introduce el contenido de la nota"
+          required></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha de creación:</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fechacreacion"
+          displayInline="true"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha de vencimiento:</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fechavencimiento"
+          displayInline="true"></ion-datetime>
+      </ion-item>
+      <!--       <ion-item>
+        <ion-label>Empleado:</ion-label>
+        <ion-select [(ngModel)]="empleado_idempleado" interface="popover">
+          <ion-select-option *ngFor="let empleado of empleados" [value]="empleado.id">{{ empleado.nombre
+            }}</ion-select-option>
+        </ion-select>
+      </ion-item> -->
+    </ion-list>
+
+    <ion-button expand="full" (click)="crearNota()">Crear Nota</ion-button>
+    <br>
+    <ion-button expand="full" color="danger" (click)="cerrar()">Cerrar</ion-button>
+  </ion-card>
+</ion-content>

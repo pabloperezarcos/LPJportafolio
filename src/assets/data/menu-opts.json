@@ -10,9 +10,9 @@
     "redirectTo": "/empleados"
   },
   {
-    "icon": "../assets/icon/maleta.svg",
+    "icon": "../assets/icon/nota.svg",
     "name": "Notas",
-    "redirectTo": "/notas"
+    "redirectTo": "/notas-recordatorio"
   },
   {
     "icon": "../assets/icon/calendario.svg",

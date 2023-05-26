@@ -63,7 +63,11 @@ const routes: Routes = [
   {
     path: 'notas-recordatorio',
     loadChildren: () => import('./pages/notas-recordatorio/notas-recordatorio.module').then( m => m.NotasRecordatorioPageModule)
+  },  {
+    path: 'crear-nota',
+    loadChildren: () => import('./pages/crear-nota/crear-nota.module').then( m => m.CrearNotaPageModule)
   }
+
 ];
 
 @NgModule({
