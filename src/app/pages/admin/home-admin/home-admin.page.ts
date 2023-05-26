@@ -3,9 +3,6 @@ import { ModalController, AnimationController } from '@ionic/angular';
 import { RegistroClaseModalPage } from '../../modals/registro-clase-modal/registro-clase-modal.page';
 import { format, parseISO } from 'date-fns';
 
-
-
-
 @Component({
   selector: 'app-home-admin',
   templateUrl: './home-admin.page.html',
@@ -13,40 +10,23 @@ import { format, parseISO } from 'date-fns';
 })
 export class HomeAdminPage implements OnInit {
 
-  usuario = JSON.parse(localStorage.getItem("usuario"));
   myDate: string;
   nuevaFecha: string;
   inputOption: string;
-  bd_areas: any = [];
 
   constructor(private modalCtr: ModalController,
     private animationCtrl: AnimationController,
 
   ) {
-/*     this.areasService.crearBaseDatos().then(() => {
-      this.getAreas();
-    }); */
+
   }
-  
+
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-/*     this.areasService.crearBaseDatos().then(() => {
-      this.getAreas();
-    }); */
-  }
 
-/*   getAreas() {
-    this.areasService.getAreas().then((data) => {
-      this.bd_areas = [];
-      if (data.rows.length > 0) {
-        for (var i = 0; i < data.rows.length; i++) {
-          this.bd_areas.push(data.rows.item(i));
-        }
-      }
-    });
-  } */
+  }
 
   change() {
     const dateFromIonDatetime = this.myDate;

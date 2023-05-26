@@ -35,13 +35,6 @@ export class EmpleadosPage implements OnInit {
     this.textoBuscar = event.detail.value;
   }
 
-/*   doRefresh(event) {
-    setTimeout(() => {
-      this.getEmpleados();
-      event.target.complete();
-    }, 1500);
-  } */
-
   crearEmpleado() {
     this.navCtrl.navigateForward(['/crear-empleado']);
   }
@@ -201,12 +194,10 @@ export class EmpleadosPage implements OnInit {
               estadoempleado: nuevoEstado
             }).subscribe(
               () => {
-                // Manejar la respuesta exitosa
                 this.getEmpleados();
                 console.log('Empleado actualizado con éxito');
               },
               error => {
-                // Manejar el error
                 console.error('Error al actualizar el empleado', error);
               }
             );

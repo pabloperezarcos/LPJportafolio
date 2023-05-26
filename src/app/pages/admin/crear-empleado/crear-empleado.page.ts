@@ -102,7 +102,6 @@ export class CrearEmpleadoPage implements OnInit {
         },
         error => {
           console.error('Error al crear el empleado', error);
-          // Agregar aquí cualquier manejo de error adicional
         }
       );
   }
