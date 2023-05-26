@@ -23,19 +23,7 @@ export class EmpleadosService {
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-  /*   eliminarEmpleado(id: number): Observable<any> {
-      const url = `${this.apiEmp}/${id}`;
-      return this.httpClient.delete(url);
-    } */
 
-  //----------------------------------------------------------------
-  // PUT: Editar usuario de la base de datos
-  //----------------------------------------------------------------
-
-  /*   actualizarEmpleado(id: number, empleado: any): Observable<any> {
-      const url = `${this.apiEmp}/${id}`;
-      return this.httpClient.put(url, empleado);
-    } */
 
   //----------------------------------------------------------------
   // PUT: Editar usuario de la base de datos
@@ -43,8 +31,14 @@ export class EmpleadosService {
 
 
 
+  //----------------------------------------------------------------
+  // POS: Editar usuario de la base de datos
+  //----------------------------------------------------------------
 
 
 
-  
+
+
+
+
 }
