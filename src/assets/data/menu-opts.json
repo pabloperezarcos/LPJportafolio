@@ -10,13 +10,18 @@
     "redirectTo": "/empleados"
   },
   {
+    "icon": "../assets/icon/maletabold.svg",
+    "name": "Reportes",
+    "redirectTo": "/reportes"
+  },
+  {
     "icon": "../assets/icon/nota.svg",
-    "name": "Notas",
+    "name": "Recordatorios",
     "redirectTo": "/notas-recordatorio"
   },
   {
     "icon": "../assets/icon/calendario.svg",
-    "name": "Feriados",
+    "name": "Feriados de Chile",
     "redirectTo": "/feriados"
   }
 ]

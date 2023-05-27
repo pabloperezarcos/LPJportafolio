@@ -1,37 +1,48 @@
 ion-content {
-    --background: #023047;
-  }
-  
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-  
-  ion-button {
-    --background: #FFB703;
-  }
-  
-  p {
-    font-size: 15px;
-  }
-  
-  ion-list {
-    background: transparent;
-    --color: #023047;
-    max-width: 450px;
-    margin: 0 auto;
-  }
-  
-  ion-icon {
-    color:#ffffff;
-  }
-  
-  ion-input {
-    border-radius: 25px;
-    max-width: 450px;
-  
-    --background: white;
-    --color:#023047;
-  }
+  --background: #023047;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+ion-button {
+  --background: #FFB703;
+}
+
+p {
+  font-size: 15px;
+}
+
+ion-list {
+  background: transparent;
+  --color: #023047;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+ion-icon {
+  color: #ffffff;
+}
+
+ion-input {
+  border-radius: 25px;
+  max-width: 450px;
+
+  --background: white;
+  --color: #023047;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+}

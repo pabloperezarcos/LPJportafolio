@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController, Platform } from '@ionic/angular';
-import { EmpleadosService } from 'src/app/services/empleados.service';
 import { HttpClient } from '@angular/common/http';
+import { AlertController, NavController, Platform, ModalController } from '@ionic/angular';
+import { EmpleadosService } from 'src/app/services/empleados.service';
+import { DetallesEmpleadosPage } from '../../modals/detalles-empleados/detalles-empleados.page';
+
 
 @Component({
   selector: 'app-empleados',
@@ -18,7 +20,8 @@ export class EmpleadosPage implements OnInit {
     public empleadosService: EmpleadosService,
     public platform: Platform,
     public alertController: AlertController,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private modalController: ModalController
   ) {
 
   };
@@ -240,6 +243,22 @@ export class EmpleadosPage implements OnInit {
 
     await alert.present();
   }
+
+  //----------------------------------------------------------------
+  // SE CREA UN MODAL PARA MOSTRAR LA INFO COMPLETA DEL EMPLEADO
+  //----------------------------------------------------------------
+
+  async mostrarInformacionEmpleado(empleado: any) {
+    const modal = await this.modalController.create({
+      component: DetallesEmpleadosPage,
+      componentProps: {
+        empleado: empleado
+      }
+    });
+  
+    await modal.present();
+  }
+
 
   /* FIN EMPLEADOS.PAGE.TS */
 }

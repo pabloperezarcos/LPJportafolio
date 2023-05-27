@@ -34,7 +34,7 @@ export class HomeAdminPage implements OnInit {
     this.nuevaFecha = formattedString;
   }
 
-  async iniciarRegistro() {
+/*   async iniciarRegistro() {
     const enterAnimation = (baseEl: any) => {
       const root = baseEl.shadowRoot;
 
@@ -71,6 +71,8 @@ export class HomeAdminPage implements OnInit {
     });
 
     await modal.present();
-  }
+  } */
 
+
+  /* FIN HOME-ADMIN.PAGE.TS */
 }

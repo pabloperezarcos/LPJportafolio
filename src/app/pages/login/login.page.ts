@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { ModalController, NavController, AnimationController } from '@ionic/angular';
 import { RecuperarPassModalPage } from '../modals/recuperar-pass-modal/recuperar-pass-modal.page';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -11,23 +13,23 @@ import { RecuperarPassModalPage } from '../modals/recuperar-pass-modal/recuperar
 })
 export class LoginPage implements OnInit {
 
-  formulariologin: FormGroup;
+  run: string;
+  password: string;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private animationCtrl: AnimationController,
-    public fb: FormBuilder
+    private httpClient: HttpClient,
+    private router: Router
   ) {
-    this.formulariologin = this.fb.group({
-      'run': new FormControl("", Validators.required),
-      'password': new FormControl("", Validators.required)
-    })
+
   }
 
   ngOnInit() {
   }
-  
+
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
@@ -40,27 +42,34 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
+  //----------------------------------------------------------------
+  // lógica para iniciar sesión.
+  //----------------------------------------------------------------
 
   async iniciarSesion() {
-    
-    var f = this.formulariologin.value;
-    
-    var usuario = JSON.parse(localStorage.getItem("usuario"));
-    
-    if (usuario.run == f.run && usuario.password == f.password) {
-      
-      localStorage.setItem('ingresado', 'true');
-      
-      if (usuario.inputOption == "profesor") {
-        this.navCtrl.navigateForward(['home-docente/'])  
-      } else if (usuario.inputOption == "alumno"){
-        this.navCtrl.navigateForward(['home-alumno/'])
+    const credentials = {
+      rutempleado: this.run,
+      passwordhash: this.password
+    };
+
+    this.httpClient.post('http://144.22.40.186:8000/login/', credentials).subscribe(
+      (response) => {
+        // Aquí puedes manejar la respuesta del inicio de sesión exitoso
+        console.log(response);
+        // Realiza cualquier acción adicional que necesites, como redireccionar a la página principal
+        this.router.navigate(['/home-admin']);
+      },
+      (error) => {
+        // Aquí puedes manejar el error de inicio de sesión
+        console.error(error);
+        this.presentAlert(); // Mostrar alerta de error
       }
-    } else {
-      this.presentAlert();
-    }
+    );
   }
 
+  //----------------------------------------------------------------
+  // lógica para recuperar contraseña en un modals.
+  //----------------------------------------------------------------
 
   async recuperarPass() {
     const enterAnimation = (baseEl: any) => {
@@ -99,4 +108,5 @@ export class LoginPage implements OnInit {
 
 
 
+  /* FIN LOGIN.PAGE.TS */
 }

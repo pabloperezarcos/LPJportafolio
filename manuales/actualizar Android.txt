@@ -1,6 +1,20 @@
-Ejecuta el siguiente comando para actualizar 
-la carpeta android en tu proyecto Ionic:
+Abre una terminal y navega hasta la carpeta raíz de tu proyecto Ionic.
 
-ionic capacitor copy android
+Ejecuta el siguiente comando para construir tu aplicación de Ionic:
 
 
+ionic build
+
+Esto construirá tu aplicación de Ionic y generará los archivos necesarios en la carpeta "www" del directorio "android" en tu proyecto de Capacitor.
+
+Después de construir tu aplicación, ejecuta el siguiente comando para sincronizar los cambios con la plataforma de Android:
+
+npx cap sync android
+
+Esto copiará los archivos generados en el paso anterior a la carpeta "android/app/src/main/assets/public" en tu proyecto de Capacitor.
+
+Abre Android Studio y selecciona "Open an existing Android Studio project". Navega hasta la carpeta "android" de tu proyecto de Capacitor y haz clic en "OK" para abrirlo.
+
+En Android Studio, espera a que se carguen todos los archivos y configuraciones del proyecto. Puedes ver el progreso en la barra de estado inferior.
+
+Una vez que se haya cargado el proyecto, puedes compilar, depurar y generar el archivo APK siguiendo los pasos habituales en Android Studio.

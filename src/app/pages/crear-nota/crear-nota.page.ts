@@ -12,8 +12,8 @@ export class CrearNotaPage implements OnInit {
   titulonota: string = '';
   contenidonota: string = '';
   fechacreacion: string = '';
-  fechavencimiento: Date = null;
-  empleado_idempleado: number = 23;
+ /*  fechavencimiento: Date = null;
+  empleado_idempleado: number = 23; */
 
   constructor(
     private alertCtrl: AlertController,
@@ -66,8 +66,8 @@ export class CrearNotaPage implements OnInit {
     this.titulonota = '';
     this.contenidonota = '';
     this.fechacreacion = '';
-    this.fechavencimiento = null;
-    this.empleado_idempleado = 0;
+/*     this.fechavencimiento = null;
+    this.empleado_idempleado = 0; */
   }
 
   cerrar() {
@@ -79,7 +79,7 @@ export class CrearNotaPage implements OnInit {
   //----------------------------------------------------------------
 
   crearNota() {
-
+/* 
     const fechaVencimiento = new Date(this.fechavencimiento);
     const nota = {
       titulonota: this.titulonota,
@@ -99,7 +99,7 @@ export class CrearNotaPage implements OnInit {
         error => {
           console.error('Error al crear la nota', error);
         }
-      );
+      ); */
   }
 
 

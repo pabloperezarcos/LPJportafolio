@@ -1,29 +1,39 @@
 <ion-app>
   <ion-menu menuId="first" contentId="main">
+
     <ion-content>
       <div class="menu-header-bg"></div>
 
-      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" autoHide="false"
-        [routerLink]="c.redirectTo" detail>
+      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" [routerLink]="c.redirectTo"
+        autoHide="false" detail>
 
         <ion-item>
           <ion-icon [src]="c.icon"></ion-icon>
           {{ c.name }}
         </ion-item>
-
-
-      </ion-menu-toggle>
-      <br>
-      <br>
-      <ion-menu-toggle>
-        <div class="ion-text-center">
-          <ion-button routerLink="/home" expand="round" autoHide="false">Cerrar sesión</ion-button>
-        </div>
       </ion-menu-toggle>
 
-    </ion-content> 
+      <br>
+      <br>
+
+      <div class="ion-text-center">
+        <ion-button routerLink="/home" expand="round">
+          Cerrar sesión
+        </ion-button>
+      </div>
+      <br>
+      <br>
+      <p class="ion-text-center">
+        © 2023 LPJ
+      </p>
+      <p class="ion-text-center">
+        Todos los derechos reservados.
+      </p>
+      <p class="ion-text-center">
+        versión 1.56
+      </p>
+    </ion-content>
   </ion-menu>
-
 
   <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

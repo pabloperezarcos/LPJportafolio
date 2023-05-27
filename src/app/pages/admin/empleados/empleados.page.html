@@ -30,14 +30,15 @@
         </ion-item-option>
       </ion-item-options>
 
-      <ion-item>
+      <ion-item (click)="mostrarInformacionEmpleado(emp)">
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
         <ion-label>
           <h2>
-            {{ emp.nombreempleado }} {{ emp.ap_paternoempleado }} {{ emp.ap_maternoempleado }}
+            {{ emp.nombreempleado | titlecase }} {{ emp.ap_paternoempleado | titlecase }} {{ emp.ap_maternoempleado | titlecase }}
           </h2>
           <h6>{{ emp.rutempleado }}</h6>
-        </ion-label>
+          <h6>{{ emp.tipousuario | titlecase }}</h6>
+        </ion-label>        
       </ion-item>
 
       <ion-item-options side="end">

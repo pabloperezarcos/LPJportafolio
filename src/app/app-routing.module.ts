@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'home-empleado',
-    loadChildren: () => import('./pages/empleados/home-empleado/home-empleado.module').then( m => m.HomeEmpleadoPageModule)
+    loadChildren: () => import('./pages/home-empleado/home-empleado.module').then( m => m.HomeEmpleadoPageModule)
   },
   {
     path: 'home-admin',
@@ -54,7 +54,7 @@ const routes: Routes = [
   },
   {
     path: 'registro-asistencia',
-    loadChildren: () => import('./pages/empleados/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
+    loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   },
   {
     path: 'reportes',
@@ -63,9 +63,14 @@ const routes: Routes = [
   {
     path: 'notas-recordatorio',
     loadChildren: () => import('./pages/notas-recordatorio/notas-recordatorio.module').then( m => m.NotasRecordatorioPageModule)
-  },  {
+  },
+  {
     path: 'crear-nota',
     loadChildren: () => import('./pages/crear-nota/crear-nota.module').then( m => m.CrearNotaPageModule)
+  },
+  {
+    path: 'detalles-empleados',
+    loadChildren: () => import('./pages/modals/detalles-empleados/detalles-empleados.module').then( m => m.DetallesEmpleadosPageModule)
   }
 
 ];

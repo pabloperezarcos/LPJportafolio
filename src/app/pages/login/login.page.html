@@ -1,45 +1,35 @@
 <ion-content class="ion-padding">
-  
+
   <div class="logo-container">
     <img src="../../../assets/logo_blanco.png">
   </div>
 
-  <div class="ion-text-center">
+  <form #formulariologin="ngForm" (ngSubmit)="iniciarSesion()">
+    <ion-list>
+      <ion-item color="none" lines="none">
+        <ion-icon slot="start" size="large" name="person-circle-outline"></ion-icon>
+        <ion-input name="run" ngModel required placeholder=". Ingrese su RUN sin puntos y con guión"></ion-input>
+      </ion-item>
+
+      <ion-item color="none" lines="none">
+        <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
+        <ion-input name="password" type="password" ngModel required placeholder=". Contraseña"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="button-container">
+      <ion-button type="submit" shape="round" expand="block">Iniciar sesión</ion-button>
+    </div>
     <br>
-    <br>
-    <form [formGroup]="formulariologin">
-      <ion-list>
-        <ion-item color="none" lines="none">
-          <ion-icon slot="start" size="large" name="person-circle-outline"></ion-icon>
-          <ion-input formControlName="run" clearInput="true" required helperText="Enter a valid email" placeholder="     Ingrese su RUN">
-          </ion-input>
-        </ion-item>
-        <br>
-        <ion-item color="none" lines="none">
-          <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
-          <ion-input formControlName="password" type="password" clearInput="true" required
-            placeholder="     Contraseña">
-          </ion-input>
-        </ion-item>
-      </ion-list>
-      <div>
-        <p>
-          <ion-router-link (click)="recuperarPass()" class="underline" color="white">
-            ¿Olvidaste tú contraseña?
-          </ion-router-link>
-        </p>
-      </div>
-      <br>
-      <br>
-      <ion-button routerLink="/home-admin" expand="round">BOTON TEMPORAL HOME ADMINISTRADOR</ion-button>
-      <ion-button routerLink="/home-empleado" expand="round">BOTON TEMPORAL HOME EMPLEADO</ion-button>
-      <br>
-      <div>
-        <ion-button (click)="iniciarSesion()" expand="round">
-          Iniciar sesión
-        </ion-button>
-      </div>
-    </form>
-  </div>
+    <div class="forgot-password">
+      <ion-router-link (click)="recuperarPass()" class="underline" color="white">¿Olvidaste tu
+        contraseña?</ion-router-link>
+    </div>
+  </form>
+
 
 </ion-content>
+
+
+ <ion-button routerLink="/home-admin" expand="round">BOTON TEMPORAL HOME ADMINISTRADOR</ion-button>
+      <ion-button routerLink="/home-empleado" expand="round">BOTON TEMPORAL HOME EMPLEADO</ion-button>

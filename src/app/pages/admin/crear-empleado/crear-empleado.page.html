@@ -5,33 +5,27 @@
 </ion-header>
 
 <ion-content>
-  
+
   <ion-card class="ion-padding">
     <ion-list>
       <ion-item>
-        <ion-icon slot="end" name="person-circle-outline"></ion-icon>
         <ion-label>Nombre:</ion-label>
+        <ion-icon slot="end" name="person-circle-outline"></ion-icon>
         <ion-input [(ngModel)]="nombreempleado" placeholder="Introduzca el nombre" type="text" required>
         </ion-input>
       </ion-item>
-    </ion-list>
-    <ion-list>
       <ion-item>
         <ion-label>Apellido paterno:</ion-label>
         <ion-icon slot="end" name="person-circle-outline"></ion-icon>
         <ion-input [(ngModel)]="ap_paternoempleado" placeholder="Introduzca el apellido paterno" type="text" required>
         </ion-input>
       </ion-item>
-    </ion-list>
-    <ion-list>
       <ion-item>
         <ion-label>Apellido materno:</ion-label>
         <ion-icon slot="end" name="person-circle-outline"></ion-icon>
         <ion-input [(ngModel)]="ap_maternoempleado" placeholder="Introduzca el apellido materno" type="text" required>
         </ion-input>
       </ion-item>
-    </ion-list>
-    <ion-list>
       <ion-item>
         <ion-label>Dirección:</ion-label>
         <ion-icon slot="end" name="home-outline"></ion-icon>
@@ -39,6 +33,7 @@
         </ion-input>
       </ion-item>
     </ion-list>
+
     <ion-list>
       <ion-item>
         <ion-label>RUN:</ion-label>
@@ -46,23 +41,20 @@
         <ion-input [(ngModel)]="rutempleado" placeholder="Introduzca el RUN" type="text" required>
         </ion-input>
       </ion-item>
-    </ion-list>
-    <ion-list>
       <ion-item>
         <ion-label>Contraseña:</ion-label>
         <ion-icon slot="end" name="key-outline"></ion-icon>
-        <ion-input [(ngModel)]="passwordhash" placeholder="Introduzca su contraseña" type="text" required>
+        <ion-input [(ngModel)]="passwordhash" placeholder="Introduzca su contraseña" type="password" required>
         </ion-input>
       </ion-item>
-    </ion-list>
-    <ion-list>
       <ion-item>
         <ion-label>Repita su contraseña:</ion-label>
         <ion-icon slot="end" name="key-outline"></ion-icon>
-        <ion-input [(ngModel)]="pass2" placeholder="Introduzca su contraseña" type="text" required>
+        <ion-input [(ngModel)]="pass2" placeholder="Introduzca su contraseña" type="password" required>
         </ion-input>
       </ion-item>
     </ion-list>
+
     <ion-list>
       <ion-item>
         <ion-label>Tipo de usuario:</ion-label>
@@ -72,8 +64,6 @@
           <ion-select-option value="empleado">Empleado</ion-select-option>
         </ion-select>
       </ion-item>
-    </ion-list>
-    <ion-list>
       <ion-item>
         <ion-label>Estado de empleado:</ion-label>
         <ion-icon slot="end" name="flag-outline"></ion-icon>
@@ -84,19 +74,20 @@
       </ion-item>
     </ion-list>
     <br>
-    <ion-col>
-      <ion-button (click)="crearEmpleado()" type="submit" shape="round" color="success" expand="block">
-        <ion-icon slot="end" name="person-add-outline"></ion-icon>
-        Crear
-      </ion-button>
-    </ion-col>
-    <br>
-    <ion-col>
-      <ion-button (click)="cancelar()" shape="round" expand="block" color="danger">
-        <ion-icon slot="end" name="close-circle-outline"></ion-icon>
-        Cancelar
-      </ion-button>
-    </ion-col>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="crearEmpleado()" type="submit" shape="round" color="success" expand="full">
+          <ion-icon slot="end" name="person-add-outline"></ion-icon>
+          Crear
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="cerrar()" shape="round" expand="full" color="danger">
+          <ion-icon slot="end" name="close-circle-outline"></ion-icon>
+          Cerrar
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-card>
 
 </ion-content>

@@ -25,11 +25,9 @@ export class CrearEmpleadoPage implements OnInit {
     public empleadosService: EmpleadosService,
     public platform: Platform
   ) {
-
   }
 
   ngOnInit() {
-
   }
 
   async presentAlert() {
@@ -56,6 +54,16 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
+  async mostrarAlertaRun() {
+    const alert = await this.alertCtrl.create({
+      header: 'Error de RUN',
+      message: 'El RUN ingresado no es válido.',
+      buttons: ['Aceptar']
+    });
+  
+    await alert.present();
+  }
+
   resetForm() {
     this.nombreempleado = '';
     this.ap_paternoempleado = '';
@@ -68,8 +76,29 @@ export class CrearEmpleadoPage implements OnInit {
     this.tipousuario = 'activo';
   }
 
-  cancelar() {
-    this.navCtrl.navigateBack(['../empleados']);
+  async cerrar() {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirmar cierre',
+      message: '¿Estás seguro de que quieres cerrar la ventana?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            // El usuario ha cancelado, no se realiza ninguna acción.
+          }
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            // El usuario ha aceptado, se navega hacia atrás.
+            this.navCtrl.navigateBack(['../empleados']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   //----------------------------------------------------------------
@@ -82,29 +111,84 @@ export class CrearEmpleadoPage implements OnInit {
       return;
     }
 
-    const empleado = {
-      nombreempleado: this.nombreempleado,
-      ap_paternoempleado: this.ap_paternoempleado,
-      ap_maternoempleado: this.ap_maternoempleado,
-      direccionempleado: this.direccionempleado,
-      rutempleado: this.rutempleado,
-      passwordhash: this.passwordhash,
-      tipousuario: this.tipousuario,
-      estadoempleado: this.estadoempleado
-    };
+    if (this.validarRut(this.rutempleado)) {
+      const empleado = {
+        nombreempleado: this.nombreempleado,
+        ap_paternoempleado: this.ap_paternoempleado,
+        ap_maternoempleado: this.ap_maternoempleado,
+        direccionempleado: this.direccionempleado,
+        rutempleado: this.rutempleado,
+        passwordhash: this.passwordhash,
+        tipousuario: this.tipousuario,
+        estadoempleado: this.estadoempleado
+      };
 
-    this.empleadosService.posEmpleados(empleado)
-      .subscribe(
-        () => {
-          console.log('Empleado creado con éxito');
-          this.successAlert();
-          this.resetForm();
-        },
-        error => {
-          console.error('Error al crear el empleado', error);
-        }
-      );
+      this.empleadosService.posEmpleados(empleado)
+        .subscribe(
+          () => {
+            console.log('Empleado creado con éxito');
+            this.successAlert();
+            this.resetForm();
+          },
+          error => {
+            console.error('Error al crear el empleado', error);
+          }
+        );
+
+    } else {
+      this.mostrarAlertaRun();
+    }
+
   }
+
+  //----------------------------------------------------------------
+  // CALIDACIÓN PARA CAMPO RUN - CHILE
+  //----------------------------------------------------------------
+
+  validarRut(rut: string): boolean {
+    // Remover puntos y guión del RUT
+    rut = rut.replace(/\./g, '').replace(/-/g, '');
+
+    // Validar longitud mínima del RUT
+    if (rut.length < 2) {
+      return false;
+    }
+
+    // Obtener el dígito verificador
+    const dv = rut.slice(-1).toUpperCase();
+    const num = parseInt(rut.slice(0, -1), 10);
+
+    // Calcular el dígito verificador esperado
+    const expectedDv = this.calcularDigitoVerificador(num);
+
+    // Comparar el dígito verificador ingresado con el esperado
+    return dv === expectedDv;
+  }
+
+  calcularDigitoVerificador(rut: number): string {
+    let sum = 0;
+    let factor = 2;
+
+    while (rut > 0) {
+      const digit = rut % 10;
+      sum += digit * factor;
+      rut = Math.floor(rut / 10);
+      factor = factor === 7 ? 2 : factor + 1;
+    }
+
+    const remainder = sum % 11;
+    const verificador = 11 - remainder;
+
+    if (verificador === 11) {
+      return '0';
+    } else if (verificador === 10) {
+      return 'K';
+    } else {
+      return verificador.toString();
+    }
+  }
+
+
 
   /* FIN CREAR-EMPLEADO.PAGE.TS */
 }
