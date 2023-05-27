@@ -54,11 +54,127 @@ export class NotasRecordatorioPage implements OnInit {
     )
   }
 
+  //----------------------------------------------------------------
+  // PUT: Actualizar usuario de la base de datos
+  //----------------------------------------------------------------
+
+  async putEmpleados(id: number) {
+    let notaActualizada: any = {};
+
+    // Obtener la nota existente
+    this.notasService.getNotas().subscribe(
+      (data: any) => {
+        notaActualizada = data.find((nota: any) => nota.id === id);
+
+        // Mostrar el AlertController con los campos de entrada
+        this.mostrarAlertaEditar(notaActualizada);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  //----------------------------------------------------------------
+  // DEL: Borrar usuario de la base de datos
+  //----------------------------------------------------------------
+
+  delNotas(id: number) {
+    this.notasService.delNotas(id).subscribe(
+      () => {
+        console.log('Nota eliminada');
+        // Realiza cualquier acción adicional después de eliminar la nota
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  //----------------------------------------------------------------
+  // SE CONFIGURAN LOS ALERT CONTROLLER PARA ACTUALIZAR 
+  //----------------------------------------------------------------
+
+  async mostrarAlertaEditar(nota: any) {
+    const alert = await this.alertController.create({
+      header: 'Editar nota',
+      inputs: [
+        {
+          name: 'titulo',
+          type: 'text',
+          value: nota.titulo, // Asigna el valor actual del título de la nota al campo de entrada
+          placeholder: 'Título de la nota'
+        },
+        {
+          name: 'contenido',
+          type: 'textarea',
+          value: nota.contenido, // Asigna el valor actual del contenido de la nota al campo de entrada
+          placeholder: 'Contenido de la nota'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Guardar',
+          handler: (data) => {
+            const notaActualizada = {
+              id: nota.id,
+              titulo: data.titulo,
+              contenido: data.contenido
+            };
+
+            this.notasService.putNotas(nota.id).subscribe(
+              () => {
+                console.log('Nota actualizada con éxito');
+                this.getNotas();
+              },
+              (error) => {
+                console.error('Error al actualizar la nota', error);
+              }
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async mostrarAlertaEliminar(idNota: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar nota',
+      message: '¿Estás seguro de que quieres eliminar esta nota?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            const url = `http://144.22.40.186:8000/api/notas/${idNota}/`;
+
+            this.httpClient.delete(url)
+              .subscribe(
+                () => {
+                  this.getNotas();
+                  console.log('Nota eliminada con éxito');
+                },
+                error => {
+                  console.error('Error al eliminar la nota', error);
+                }
+              );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 
-
-
-
-
-
+  /* FIN NOTAS-RECORDATORIO.PAGE.TS */
 }

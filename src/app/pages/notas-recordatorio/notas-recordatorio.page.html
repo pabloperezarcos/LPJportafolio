@@ -31,12 +31,11 @@
       <ion-item>
         <ion-icon slot="start" name="person-circle-outline"></ion-icon>
         <ion-label>
-          <h2>
-            {{ nota.titulonota }}
-          </h2>
-          <h6>Fecha creación: {{ nota.fechacreacion }}</h6>
-          <h6>Fecha vencimiento: {{ nota.fechavencimiento }}</h6>
-          <h4>Contenido: {{ nota.contenidonota }}</h4>
+          <h1 style="margin-bottom: 10px;">{{ nota.titulonota }}</h1>
+          <h2 style="margin-bottom: 10px; white-space: normal;">{{ nota.contenidonota }}</h2>
+          <h6 style="margin-bottom: 5px;">Fecha creación: {{ nota.fechacreacion }}</h6>
+          <h6 style="margin-bottom: 5px;">Fecha vencimiento: {{ nota.fechavencimiento }}</h6>
+          <br>
         </ion-label>
       </ion-item>
 

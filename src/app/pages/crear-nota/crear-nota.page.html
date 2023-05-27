@@ -18,22 +18,9 @@
           required></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label>Fecha de creación:</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fechacreacion"
-          displayInline="true"></ion-datetime>
-      </ion-item>
-      <ion-item>
         <ion-label>Fecha de vencimiento:</ion-label>
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="fechavencimiento"
-          displayInline="true"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="fechavencimiento" displayInline="true"></ion-datetime>
       </ion-item>
-      <!--       <ion-item>
-        <ion-label>Empleado:</ion-label>
-        <ion-select [(ngModel)]="empleado_idempleado" interface="popover">
-          <ion-select-option *ngFor="let empleado of empleados" [value]="empleado.id">{{ empleado.nombre
-            }}</ion-select-option>
-        </ion-select>
-      </ion-item> -->
     </ion-list>
 
     <ion-button expand="full" (click)="crearNota()">Crear Nota</ion-button>

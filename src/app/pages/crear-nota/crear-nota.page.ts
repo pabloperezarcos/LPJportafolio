@@ -12,17 +12,30 @@ export class CrearNotaPage implements OnInit {
   titulonota: string = '';
   contenidonota: string = '';
   fechacreacion: string = '';
-  fechavencimiento: string = '';
-  empleado_idempleado: number = 0;
+  fechavencimiento: Date = null;
+  empleado_idempleado: number = 23;
 
   constructor(
     private alertCtrl: AlertController,
     public navCtrl: NavController,
     public notasService: NotasService,
     public platform: Platform
-  ) { }
+  ) {
+    this.obtenerFechaActual();
+  }
 
   ngOnInit() {
+    this.setFechaCreacion();
+  }
+
+  obtenerFechaActual() {
+    const fechaActual = new Date();
+    this.fechacreacion = fechaActual.toISOString();
+  }
+
+  setFechaCreacion() {
+    const currentDate = new Date();
+    this.fechacreacion = currentDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
   }
 
   async presentAlert() {
@@ -53,7 +66,7 @@ export class CrearNotaPage implements OnInit {
     this.titulonota = '';
     this.contenidonota = '';
     this.fechacreacion = '';
-    this.fechavencimiento = '';
+    this.fechavencimiento = null;
     this.empleado_idempleado = 0;
   }
 
@@ -66,16 +79,13 @@ export class CrearNotaPage implements OnInit {
   //----------------------------------------------------------------
 
   crearNota() {
-    if (!this.titulonota || !this.contenidonota || !this.fechacreacion || !this.fechavencimiento || !this.empleado_idempleado) {
-      this.presentAlert();
-      return;
-    }
 
+    const fechaVencimiento = new Date(this.fechavencimiento);
     const nota = {
       titulonota: this.titulonota,
       contenidonota: this.contenidonota,
       fechacreacion: this.fechacreacion,
-      fechavencimiento: this.fechavencimiento,
+      fechavencimiento: fechaVencimiento.toISOString().split('T')[0], // Formato YYYY-MM-DD
       empleado_idempleado: this.empleado_idempleado
     };
 
@@ -88,7 +98,6 @@ export class CrearNotaPage implements OnInit {
         },
         error => {
           console.error('Error al crear la nota', error);
-          // Agrega aquí cualquier manejo de error adicional
         }
       );
   }

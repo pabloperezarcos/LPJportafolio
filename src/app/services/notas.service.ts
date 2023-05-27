@@ -32,10 +32,11 @@ private urlBase = "http://144.22.40.186:8000/api/notas/";
   // PUT: Actualizar nota recordatorio de la base de datos
   //----------------------------------------------------------------
 
-  putNotas(id: number, nota: any) {
+  putNotas(id: number) {
     const url = `${this.urlBase}${id}/`;
-    return this.httpClient.put(url, nota);
+    return this.httpClient.put(url, {});
   }
+  
 
   //----------------------------------------------------------------
   // POS: Crear nota recordatorio de la base de datos
