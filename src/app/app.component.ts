@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { Componente } from 'src/app/interfaces/interfaces';
-import { DataService } from 'src/app/services/data.service';
-import { Observable } from 'rxjs';
-import { MenuController } from '@ionic/angular';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,18 +8,31 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
 
-  components: Observable<Componente[]>;
+  isAdmin: boolean = false;
 
-  constructor( private menuCtrl : MenuController,
-              private dataService: DataService) { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
-    this.components = this.dataService.getMenuOpts();
+    this.checkUserRole();
   }
 
-  salir(){
-    
+  checkUserRole() {
+    const usuarioActual = this.authService.getUsuario();
+
+    if (usuarioActual && usuarioActual.tipoempleado === 'administrador') {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
   }
 
+  salir() {
+    // Lógica para cerrar sesión
+  }
+
+
+  /* FIN APP.COMPONENT.TS */
 }
 

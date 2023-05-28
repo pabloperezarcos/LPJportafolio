@@ -1,19 +1,50 @@
 <ion-app>
   <ion-menu menuId="first" contentId="main">
-
     <ion-content>
-      <div class="menu-header-bg"></div>
+      <div class="menu-header-bg">
+        <div class="user-photo"></div>
+      </div>
 
-      <ion-menu-toggle class="menu-items" lines="none" *ngFor="let c of components | async" [routerLink]="c.redirectTo"
-        autoHide="false" detail>
-
-        <ion-item>
-          <ion-icon [src]="c.icon"></ion-icon>
-          {{ c.name }}
+      <!-- MENÚ LATERAL PARA ADMINISTRADOR -->
+      <ion-menu-toggle *ngIf="!isAdmin" class="menu-items" lines="none" autoHide="false" detail>
+        <ion-item routerLink="/home-admin">
+          <ion-icon src="assets/icon/qr.svg"></ion-icon>
+          Asistencia
+        </ion-item>
+        <ion-item routerLink="/empleados">
+          <ion-icon src="assets/icon/usuario.svg"></ion-icon>
+          Empleados
+        </ion-item>
+        <ion-item routerLink="/reportes">
+          <ion-icon src="assets/icon/maletabold.svg"></ion-icon>
+          Reportes
+        </ion-item>
+        <ion-item routerLink="/notas-recordatorio">
+          <ion-icon src="assets/icon/nota.svg"></ion-icon>
+          Recordatorios
+        </ion-item>
+        <ion-item routerLink="/feriados">
+          <ion-icon src="assets/icon/calendario.svg"></ion-icon>
+          Feriados de Chile
         </ion-item>
       </ion-menu-toggle>
 
-      <br>
+      <!-- MENÚ LATERAL PARA EMPLEADO -->
+      <ion-menu-toggle *ngIf="isAdmin">
+        <ion-item routerLink="/home-empleado">
+          <ion-icon src="assets/icon/qr.svg"></ion-icon>
+          Asistencia
+        </ion-item>
+        <ion-item routerLink="/notas-recordatorio">
+          <ion-icon src="assets/icon/nota.svg"></ion-icon>
+          Recordatorios
+        </ion-item>
+        <ion-item routerLink="/feriados">
+          <ion-icon src="assets/icon/calendario.svg"></ion-icon>
+          Feriados de Chile
+        </ion-item>
+      </ion-menu-toggle>
+
       <br>
 
       <div class="ion-text-center">
@@ -22,16 +53,13 @@
         </ion-button>
       </div>
       <br>
-      <br>
-      <p class="ion-text-center">
-        © 2023 LPJ
-      </p>
-      <p class="ion-text-center">
-        Todos los derechos reservados.
-      </p>
-      <p class="ion-text-center">
-        versión 1.56
-      </p>
+      
+      <div class="ion-text-center">
+        <p>© 2023 LPJ</p>
+        <p>Todos los derechos reservados.</p>
+        <p>versión 1.56</p>
+      </div>
+
     </ion-content>
   </ion-menu>
 

@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="324842AA-3B8D-F02E-6405-BE4B80F544CB" name="Notas">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>F866D1BB-EBC5-8947-010A-23D33F9BBB1F</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IdNotas" id="D69CDBF4-C1CE-A7FC-2D96-6D0613EE11C3">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>487FC90E-62B2-480E-E8A5-82D34862B5DD</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TituloNotas" id="C7546F3D-181F-E217-0E47-4695E32DF8F2">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>7B59B9CB-CD07-8223-8C2A-0182740877C5</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ContenidoNotas" id="F54CD863-2559-BE45-232F-75CF4CC3F99F">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>3704DC73-410F-4280-664E-DD133FD404E0</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<ownDataTypeParameters>200 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FechaCreacion" id="3DCDEB2B-2A10-52D8-9624-A1ABC97408E8">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>3803A512-9DBC-4D3A-D68C-B52A7092CD25</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Empleados_RutEmpleado" id="9DE8BCE8-9263-DF6F-9901-79BCB1910984">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>0D0CBA65-BE40-669A-09B5-F9962E9F7248</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9DCDD036-10BF-7CD6-0657-CF437F4AEE00" referredColumn="6D2264FF-408D-BE02-BCDE-3E29E399FE6C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2055E42D-C658-326F-0846-BF9BFF35D4B4" name="Notas_PK">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>5FF70635-7276-0BE4-6F7B-097874D73306</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D69CDBF4-C1CE-A7FC-2D96-6D0613EE11C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CCF7919A-2937-1AAC-C4AF-AE3C4A65B183" name="Notas_Empleados_FK">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>DFD3BB60-2B87-D605-2BA0-7C4AAA41CD84</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9DE8BCE8-9263-DF6F-9901-79BCB1910984"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

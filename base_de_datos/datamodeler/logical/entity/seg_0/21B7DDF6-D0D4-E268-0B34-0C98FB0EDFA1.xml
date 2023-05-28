@@ -4,7 +4,7 @@
 <createdTime>2023-04-14 23:59:26 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -15,24 +15,25 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name="IdEmpleado" id="EE70BA48-0079-DA44-08F3-798B19A64548">
+<Attribute name="RutEmpleado" id="D5FF5D8E-47A8-7229-13E4-9696388D0EA9">
 <createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 00:00:34 UTC</createdTime>
+<createdTime>2023-04-15 00:39:20 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="NombreEmpleado" id="231D5887-CF2D-94AB-C03A-94878C36BB69">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 00:00:36 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -45,7 +46,7 @@
 <createdTime>2023-04-15 00:00:36 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -58,7 +59,7 @@
 <createdTime>2023-04-15 17:36:56 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -71,7 +72,7 @@
 <createdTime>2023-04-15 00:48:01 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -79,25 +80,12 @@
 <dataTypeSize>50 CHAR</dataTypeSize>
 <ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="RutEmpleado" id="D5FF5D8E-47A8-7229-13E4-9696388D0EA9">
-<createdBy>Pablo</createdBy>
-<createdTime>2023-04-15 00:39:20 UTC</createdTime>
-<ownerDesignName>datamodeler</ownerDesignName>
-<engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>10 CHAR</dataTypeSize>
-<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="PasswordHash" id="7541D768-A31B-B667-9B2E-7AA9F564FBDC">
 <createdBy>Pablo</createdBy>
 <createdTime>2023-04-15 18:52:37 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -111,7 +99,7 @@
 <createdTime>2023-04-15 00:39:26 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -124,7 +112,7 @@
 <createdTime>2023-04-15 17:39:07 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -139,11 +127,11 @@
 <createdTime>2023-04-15 00:01:56 UTC</createdTime>
 <ownerDesignName>datamodeler</ownerDesignName>
 <engineerTo>
-<item key="FD1536D3-C00A-E925-E31A-D1E925F5AE27" value="true"/>
+<item key="AF68A798-214C-D65D-E9D7-B8E3526F22FA" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
-<attributeRef>EE70BA48-0079-DA44-08F3-798B19A64548</attributeRef>
+<attributeRef>D5FF5D8E-47A8-7229-13E4-9696388D0EA9</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

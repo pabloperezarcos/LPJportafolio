@@ -4,6 +4,7 @@ import { ModalController, NavController, AnimationController } from '@ionic/angu
 import { RecuperarPassModalPage } from '../modals/recuperar-pass-modal/recuperar-pass-modal.page';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
     private alertCtrl: AlertController,
     private animationCtrl: AnimationController,
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
 
   }
@@ -57,6 +59,7 @@ export class LoginPage implements OnInit {
         // Aquí puedes manejar la respuesta del inicio de sesión exitoso
         console.log(response);
         // Realiza cualquier acción adicional que necesites, como redireccionar a la página principal
+        this.authService.setUsuario(response);
         this.router.navigate(['/home-admin']);
       },
       (error) => {

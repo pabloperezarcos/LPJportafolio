@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9C720310-5627-3147-5E9F-31020B6A9E2F" name="Asistencias">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>CF958750-1B07-7887-9B3B-A4AA6246F8CE</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IdAsistencia" id="B88C3B29-8B81-5068-E518-F26DBFD6A001">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>671D8181-C2A7-FB3D-1BF3-C03E4977A19A</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FechaRegistro" id="0087717B-4DF2-E0CC-4CBB-EA9A875795CC">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>B2A84607-BAB6-24B1-C4D4-86A0BC1749CC</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HoraEntrada" id="D0CE1677-50E3-07C9-A964-2005E0986BF2">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>A4D09156-0761-6D91-560B-66758082119A</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>91229484-D19C-D458-8647-333C7FFE7B60</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="HoraSalida" id="7FD3A818-07A4-AA68-CC30-667A3960AD0A">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>0464352D-AB7F-8523-4FCA-44CBE48E37FB</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>91229484-D19C-D458-8647-333C7FFE7B60</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Empleados_RutEmpleado" id="2879FE56-FDCA-6413-9599-8EB23B92FC03">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>870A6E2B-92EA-F328-85D9-8B4D7A73A2C1</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C65647BC-EBBB-7AEE-70A3-20D12EB5B87E" referredColumn="6D2264FF-408D-BE02-BCDE-3E29E399FE6C"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8C5D2ACE-6C97-7EE6-1E11-996BAAF755C0" name="Asistencias_PK">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>53041DDF-6005-C608-B913-2EBAC8CC9D50</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B88C3B29-8B81-5068-E518-F26DBFD6A001"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A1F28D79-8D2F-0004-65E9-C615DE0A32F5" name="Asistencias_Empleados_FK">
+<createdBy>Pablo</createdBy>
+<createdTime>2023-05-28 21:21:56 UTC</createdTime>
+<generatorID>D87AC793-A9FB-2C09-801A-D0B41A36616D</generatorID>
+<ownerDesignName>datamodeler</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2879FE56-FDCA-6413-9599-8EB23B92FC03"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
