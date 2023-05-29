@@ -61,13 +61,13 @@ export class EmpleadosPage implements OnInit {
   // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
 
-  async putEmpleados(id: number) {
+  async putEmpleados(rutempleado: string) {
     let empleadoActualizado: any = {};
 
     // Obtener el empleado existente
     this.empleadosService.getEmpleados().subscribe(
       (data: any) => {
-        empleadoActualizado = data.find((empleado: any) => empleado.id === id);
+        empleadoActualizado = data.find((empleado: any) => empleado.rutempleado === rutempleado);
 
         // Mostrar el AlertController con los campos de entrada
         this.mostrarAlertaEditar(empleadoActualizado);
@@ -82,8 +82,9 @@ export class EmpleadosPage implements OnInit {
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-  delEmpleados(id: number) {
-    this.empleadosService.delEmpleados(id).subscribe(
+  delEmpleados(rutempleado: string) {
+    console.log(rutempleado);
+    this.empleadosService.delEmpleados(rutempleado).subscribe(
       () => {
         console.log('Empleado eliminado');
         // Realiza cualquier acción adicional después de eliminar el empleado
@@ -99,6 +100,7 @@ export class EmpleadosPage implements OnInit {
   //----------------------------------------------------------------
 
   async mostrarAlertaEditar(emp: any) {
+    console.log(emp);
     const alert = await this.alertController.create({
       header: 'Editar empleado',
       inputs: [
@@ -184,7 +186,7 @@ export class EmpleadosPage implements OnInit {
             const nuevoEstado = data.estado;
 
             // Construir la URL de actualización con el id del empleado
-            const url = `http://144.22.40.186:8000/api/empleados/${emp.idempleado}/`;
+            const url = `http://144.22.40.186:8000/api/empleados/${emp.rutempleado}/`;
 
             // Realizar la solicitud PUT con los nuevos datos
             this.httpClient.put(url, {
@@ -212,7 +214,8 @@ export class EmpleadosPage implements OnInit {
     await alert.present();
   }
 
-  async mostrarAlertaEliminar(idEmpleado: number) {
+  async mostrarAlertaEliminar(rutempleado: string) {
+    console.log(rutempleado);
     const alert = await this.alertController.create({
       header: 'Eliminar empleado',
       message: '¿Estás seguro de que quieres eliminar a este empleado?',
@@ -224,7 +227,7 @@ export class EmpleadosPage implements OnInit {
         {
           text: 'Eliminar',
           handler: () => {
-            const url = `http://144.22.40.186:8000/api/empleados/${idEmpleado}/`;
+            const url = `http://144.22.40.186:8000/api/empleados/${rutempleado}/`;
 
             this.httpClient.delete(url)
               .subscribe(

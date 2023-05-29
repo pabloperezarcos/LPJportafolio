@@ -71,7 +71,11 @@ const routes: Routes = [
   {
     path: 'detalles-empleados',
     loadChildren: () => import('./pages/modals/detalles-empleados/detalles-empleados.module').then( m => m.DetallesEmpleadosPageModule)
+  },  {
+    path: 'reporteobtenido',
+    loadChildren: () => import('./pages/modals/reporteobtenido/reporteobtenido.module').then( m => m.ReporteobtenidoPageModule)
   }
+
 
 ];
 

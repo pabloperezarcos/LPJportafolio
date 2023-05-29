@@ -8,12 +8,12 @@
     <ion-list>
       <ion-item color="none" lines="none">
         <ion-icon slot="start" size="large" name="person-circle-outline"></ion-icon>
-        <ion-input name="run" ngModel required placeholder=". Ingrese su RUN sin puntos y con guión"></ion-input>
+        <ion-input name="run" [(ngModel)]="run" required placeholder=". Ingrese su RUN sin puntos y con guión"></ion-input>
       </ion-item>
 
       <ion-item color="none" lines="none">
         <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
-        <ion-input name="password" type="password" ngModel required placeholder=". Contraseña"></ion-input>
+        <ion-input name="password" type="password" [(ngModel)]="password" required placeholder=". Contraseña"></ion-input>
       </ion-item>
     </ion-list>
 

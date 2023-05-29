@@ -27,14 +27,17 @@
     "@capacitor/haptics": "4.0.1",
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
+    "@ionic-native/social-sharing": "^5.36.0",
     "@ionic-native/sqlite": "^5.36.0",
     "@ionic/angular": "^6.1.9",
     "angularx-qrcode": "^14.0.0",
     "cordova-sqlite-storage": "^6.0.0",
     "date-fns": "^2.29.3",
     "ionicons": "^6.0.3",
+    "pdfmake": "^0.2.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

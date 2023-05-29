@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>reportes</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first" color="primary"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Reportes</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Empleado:</ion-label>
+      <ion-select placeholder="Seleccionar empleado" [(ngModel)]="empleadoSeleccionado">
+        <ion-select-option *ngFor="let emp of employees" [value]="emp.id">{{ emp.name
+          }}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>Fecha:</ion-label>
+      <ion-datetime placeholder="Seleccionar fecha" [(ngModel)]="fechaSeleccionada"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <br>
+  <div class="ion-text-center">
+    <ion-button expand="none" shape="round" (click)="obtenerReporte()">Obtener Reporte</ion-button>
+  </div>
+
+  <div *ngIf="report">
+    <!-- Mostrar los datos del reporte -->
+    <ion-list>
+      <ion-item *ngFor="let entry of report.entries">
+        <ion-label>{{ entry.employeeName }}</ion-label>
+        <ion-label>{{ entry.date | date }}</ion-label>
+        <ion-label>{{ entry.status }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

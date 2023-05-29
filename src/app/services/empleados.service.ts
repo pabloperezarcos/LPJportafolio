@@ -23,8 +23,8 @@ export class EmpleadosService {
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-  delEmpleados(id: number) {
-    const url = `${this.urlBase}${id}/`;
+  delEmpleados(rutempleado: string) {
+    const url = `${this.urlBase}${rutempleado}/`;
     return this.httpClient.delete(url);
   }
 
@@ -32,8 +32,8 @@ export class EmpleadosService {
   // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
 
-  putEmpleados(id: number, empleado: any) {
-    const url = `${this.urlBase}${id}/`;
+  putEmpleados(rutempleado: string, empleado: any) {
+    const url = `${this.urlBase}${rutempleado}/`;
     return this.httpClient.put(url, empleado);
   }
 

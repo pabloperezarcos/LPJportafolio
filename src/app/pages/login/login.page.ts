@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { ModalController, NavController, AnimationController } from '@ionic/angular';
-import { RecuperarPassModalPage } from '../modals/recuperar-pass-modal/recuperar-pass-modal.page';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertController, ModalController, NavController, AnimationController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { RecuperarPassModalPage } from '../modals/recuperar-pass-modal/recuperar-pass-modal.page';
 
 
 @Component({
@@ -53,6 +52,9 @@ export class LoginPage implements OnInit {
       rutempleado: this.run,
       passwordhash: this.password
     };
+
+    console.log(this.run);
+    console.log(this.password);
 
     this.httpClient.post('http://144.22.40.186:8000/login/', credentials).subscribe(
       (response) => {
