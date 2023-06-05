@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar class="ion-text-center">
-    <ion-title>Añadir Nota</ion-title>
+    <ion-title>Añadir Recordatorio</ion-title>
+    <ion-icon name="bookmarks-outline" size="large" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -9,12 +10,12 @@
     <ion-list>
       <ion-item>
         <ion-label>Título:</ion-label>
-        <ion-input [(ngModel)]="titulonota" placeholder="Introduce el título de la nota" type="text" required
+        <ion-input [(ngModel)]="titulo" placeholder="Introduce el título de la nota" type="text" required
           minlength="3" maxlength="50"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Contenido:</ion-label>
-        <ion-textarea [(ngModel)]="contenidonota" placeholder="Introduce el contenido de la nota" required
+        <ion-textarea [(ngModel)]="contenido" placeholder="Introduce el contenido de la nota" required
           minlength="3"></ion-textarea>
       </ion-item>
     </ion-list>
@@ -23,7 +24,7 @@
       <ion-row>
         <ion-col>
           <ion-button (click)="crearNota()" type="submit" shape="round" color="success" expand="full">
-            <ion-icon slot="end" name="book-outline"></ion-icon>
+            <ion-icon slot="end" name="add-circle-outline"></ion-icon>
             Crear Nota
           </ion-button>
         </ion-col>
@@ -38,9 +39,3 @@
   </ion-card>
 
 </ion-content>
-
-<!--       <ion-item>
-        <ion-label>Fecha de vencimiento:</ion-label>
-        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="fechavencimiento" displayInline="true"></ion-datetime>
-      </ion-item>
-    </ion-list> -->

@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 export class FeriadosService {
 
   urlBase = "https://api.victorsanmartin.com/feriados/en.json";
-  //urlBase = "https://www.feriadosapp.com/api/holidays-2019.json";
 
   constructor(private httpClient: HttpClient) { }
 

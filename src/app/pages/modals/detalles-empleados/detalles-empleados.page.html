@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detallesEmpleados</ion-title>
+    <ion-title class="ion-text-center">Detalles del trabajador</ion-title>
+    <ion-icon name="person-circle-outline" size="large" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card class="translucent-card">
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">RUT</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.rut) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">Nombre</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.nombre) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">Apellido Paterno</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.ap_paterno) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">Apellido Materno</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.ap_materno) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">Dirección</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.direccion) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">Tipo de Usuario</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.tipo_usuario) }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" class="label-bold">Estado</ion-label>
+        <ion-label class="value">{{ capitalizeFirstLetter(empleado.estado) }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-padding">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button (click)="cerrar()" color="danger">
+          <ion-icon name="close-circle-outline" size="large" slot="end"></ion-icon>
+          Cerrar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

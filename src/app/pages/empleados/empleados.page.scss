@@ -1,0 +1,94 @@
+ion-header {
+  ion-toolbar {
+    --background: #023047;
+    color: white;
+  }
+}
+
+ion-title {
+  margin: 0 auto;
+}
+
+ion-content {
+  --background: #f4f4f4;
+}
+
+.ion-text-center {
+  text-align: center;
+}
+
+ion-button {
+  margin-top: 20px;
+}
+
+ion-searchbar {
+  margin-top: 20px;
+  --background: #fff;
+  color: black;
+}
+
+ion-list {
+  ion-item-sliding {
+    ion-item {
+      --background: rgba(2, 48, 71, 0.8);
+
+      ion-label {
+        h2 {
+          font-size: 16px;
+          font-weight: bold;
+          color: white;
+        }
+
+        h6 {
+          font-size: 14px;
+          color: white;
+        }
+      }
+    }
+
+    ion-item-options {
+      ion-item-option {
+        &.start {
+          --ion-item-option-background-color: #36a9e0;
+          color: white;
+        }
+
+        &.end {
+          --ion-item-option-background-color: #e74c3c;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+ion-card.translucent-card {
+  --background: rgba(2, 48, 71, 0.8);
+  --color: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(2, 48, 71, 0.8);
+  margin: 0;
+}
+
+ion-card.translucent-card ion-item {
+  --background: transparent;
+  color: white;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0rem;
+}
+
+.filter-col {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.filter-button {
+  width: 100%;
+  margin: 0.2rem;
+}

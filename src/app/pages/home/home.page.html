@@ -1,22 +1,64 @@
-<ion-content class="ion-padding">
-  <div id="bg" class="ion-text-center">
-    <img width="60%" src="../../../assets/logofondoblanco.png">
-  </div>
+<ion-header [style.visibility]="content_visibility">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first" color="primary"></ion-menu-button>
+    </ion-buttons>
 
-  <ion-title class="ion-text-center">
-    <h2>Registro de</h2>
-    <h2>Asistencia</h2>
-  </ion-title>
+    <ion-title class="ion-text-center">Registro de asistencia</ion-title>
+    <ion-icon name="qr-code-outline" size="large" slot="end"></ion-icon>
 
-  <div class="ion-text-center">
-    <ion-button routerLink="/login" expand="round">Iniciar sesión</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" mode="ios" [style.visibility]="content_visibility">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <ion-slide>
+          <ion-button (click)="registrarEntrada()" shape="round" expand="full" color="success"
+            [disabled]="entradaRegistrada">
+            <ion-icon shape="round" name="enter-outline" size="large" slot="end"></ion-icon>
+            Registrar Entrada
+          </ion-button>
+
+          <ion-button (click)="registrarSalida()" shape="round" expand="full" color="danger"
+            [disabled]="!entradaRegistrada">
+            <ion-icon shape="round" name="exit-outline" size="large" slot="end"></ion-icon>
+            Registrar Salida
+          </ion-button>
+
+        </ion-slide>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <ion-card class="translucent-card">
     <br>
-    <ion-button routerLink="/register" expand="round">Crear cuenta</ion-button>
-  </div>
-</ion-content>
+    <ion-item>
+      <ion-label class="ion-text-center">
+        <h1>
+          HISTORIAL
+        </h1>
+        <br>
+      </ion-label>
+    </ion-item>
 
-<ion-footer class="ion-text-center">
-  <p>
-    © 2023 LPJ. Todos los derechos reservados.
-  </p>
-</ion-footer>
+    <table class="tabla-centrada">
+      <tr>
+        <th>FECHA</th>
+        <th>HORA ENTRADA</th>
+        <th>HORA SALIDA</th>
+      </tr>
+      <tr *ngFor="let asistencia of asistencias">
+        <td>{{ formatDate(asistencia.fecha_registro) }}</td>
+        <td>{{ asistencia.hora_entrada !== null ? asistencia.hora_entrada : '' }}</td>
+        <td>{{ asistencia.hora_salida !== null ? asistencia.hora_salida : '' }}</td>
+      </tr>
+    </table>
+
+    <br>
+  </ion-card>
+
+
+</ion-content>

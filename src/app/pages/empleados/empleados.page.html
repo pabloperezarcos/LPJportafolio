@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first" color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Listado de empleados</ion-title>
+    <ion-icon name="people-outline" size="large" slot="end"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" mode="ios">
+  <div class="ion-text-center">
+    <ion-button (click)="crearEmpleado()" color="success" shape="round">
+      <ion-icon slot="end" name="add"></ion-icon>
+      Crear empleado
+    </ion-button>
+  </div>
+
+  <ion-searchbar placeholder="Buscar por nombre de empleado" (ionChange)="busquedaChange( $event )" animated>
+  </ion-searchbar>
+
+  <div class="filter-container">
+    <ion-grid>
+      <ion-row class="filter-row">
+        <ion-col class="filter-col">
+          <ion-button size="small" class="filter-button" [color]="tipoUsuarioFiltro === 'todos' ? 'primary' : 'medium'"
+            (click)="filtrarPorTipoUsuario('todos')">Todos</ion-button>
+        </ion-col>
+        <ion-col class="filter-col">
+          <ion-button size="small" class="filter-button"
+            [color]="tipoUsuarioFiltro === 'administrador' ? 'primary' : 'medium'"
+            (click)="filtrarPorTipoUsuario('administrador')">Administradores</ion-button>
+        </ion-col>
+        <ion-col class="filter-col">
+          <ion-button size="small" class="filter-button"
+            [color]="tipoUsuarioFiltro === 'empleado' ? 'primary' : 'medium'"
+            (click)="filtrarPorTipoUsuario('empleado')">Empleados</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="filter-row">
+        <ion-col class="filter-col">
+          <ion-button size="small" class="filter-button" [color]="estadoFiltro === 'todos' ? 'primary' : 'medium'"
+            (click)="filtrarPorEstado('todos')">Todos</ion-button>
+        </ion-col>
+        <ion-col class="filter-col">
+          <ion-button size="small" class="filter-button" [color]="estadoFiltro === 'activo' ? 'primary' : 'medium'"
+            (click)="filtrarPorEstado('activo')">Activos</ion-button>
+        </ion-col>
+        <ion-col class="filter-col">
+          <ion-button size="small" class="filter-button" [color]="estadoFiltro === 'inactivo' ? 'primary' : 'medium'"
+            (click)="filtrarPorEstado('inactivo')">Inactivos</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card class="translucent-card">
+    <ion-list>
+      <ion-item-sliding *ngFor="let emp of empleadosFiltrados | filtro:textoBuscar">
+
+        <ion-item-options side="start">
+          <ion-item-option (click)="mostrarAlertaEditar(emp)">
+            Editar
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item (click)="mostrarInformacionEmpleado(emp)">
+          <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+          <ion-label>
+            <h2>
+              {{ emp.nombre | titlecase }} {{ emp.ap_paterno | titlecase }} {{ emp.ap_materno |
+              titlecase }}
+            </h2>
+            <h6>{{ emp.rut }}</h6>
+            <h6>{{ emp.tipo_usuario | titlecase }}</h6>
+          </ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="mostrarAlertaEliminar(emp.rut)">
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

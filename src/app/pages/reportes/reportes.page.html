@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first" color="primary"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Reportes</ion-title>
+    <ion-icon name="document-text-outline" size="large" slot="end"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="translucent-card">
+    <ion-list>
+      <ion-item>
+        <ion-label>Empleado:</ion-label>
+        <ion-select placeholder="Seleccionar empleado" [(ngModel)]="empleadoSeleccionado">
+          <ion-select-option *ngFor="let empleado of employees" [value]="empleado.id">{{ empleado.nombre
+            }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha:</ion-label>
+        <ion-datetime placeholder="Seleccionar fecha" [(ngModel)]="fechaSeleccionada"></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <br>
+    <div class="ion-text-center">
+      <ion-button expand="none" shape="round" color="success"
+        (click)="obtenerAsistencias(empleadoSeleccionado, fechaSeleccionada, fechaSeleccionada)">Obtener
+        Reporte</ion-button>
+    </div>
+    <br>
+  </ion-card>
+
+  <div *ngIf="report">
+    <!-- Mostrar los datos del reporte -->
+    <ion-list>
+      <ion-item *ngFor="let entry of report">
+        <ion-label>{{ entry.fecha_registro }}</ion-label>
+        <ion-label>{{ entry.hora_entrada }}</ion-label>
+        <ion-label>{{ entry.hora_salida }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="ion-text-center">
+    <ion-button expand="none" shape="round" color="primary" (click)="exportarPDF()">Exportar PDF</ion-button>
+    <ion-button expand="none" shape="round" color="primary" (click)="exportarXLSX()">Exportar XLSX</ion-button>
+    <ion-button expand="none" shape="round" color="primary" (click)="compartirWhatsApp('pdf')">Compartir PDF por
+      WhatsApp</ion-button>
+    <ion-button expand="none" shape="round" color="primary" (click)="compartirGmail('pdf')">Compartir PDF por
+      Gmail</ion-button>
+    <ion-button expand="none" shape="round" color="primary" (click)="compartirWhatsApp('xlsx')">Compartir XLSX por
+      WhatsApp</ion-button>
+    <ion-button expand="none" shape="round" color="primary" (click)="compartirGmail('xlsx')">Compartir XLSX por
+      Gmail</ion-button>
+  </div>
+</ion-content>

@@ -1,12 +1,20 @@
 ion-content {
   --background: #023047;
+  --color: white;
 }
 
 .logo-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 100px;
   margin-bottom: 50px;
+}
+
+.login-form {
+  --background: white;
+  --color: #023047;
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 ion-button {
@@ -45,4 +53,6 @@ ion-input {
 .forgot-password {
   text-align: center;
   margin-top: 10px;
+  color: white;
+  font-size: 14px;
 }

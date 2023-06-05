@@ -1,0 +1,35 @@
+ion-header {
+    ion-toolbar {
+        --background: #023047;
+        color: white;
+    }
+}
+
+ion-title {
+    margin: 0 auto;
+}
+
+ion-content {
+    --background: #f4f4f4;
+}
+
+.ion-text-center {
+    text-align: center;
+}
+
+ion-button {
+    margin-top: 20px;
+}
+
+ion-card.translucent-card {
+    --background: rgba(2, 48, 71, 0.8);
+    --color: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(2, 48, 71, 0.8);
+    margin: 0;
+}
+
+ion-card.translucent-card ion-item {
+    --background: transparent;
+}

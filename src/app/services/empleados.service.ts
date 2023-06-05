@@ -9,7 +9,9 @@ export class EmpleadosService {
 
   urlBase = "http://144.22.40.186:8000/api/empleados/";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   //----------------------------------------------------------------
   // GET: Obtener usuario de la base de datos
@@ -23,8 +25,8 @@ export class EmpleadosService {
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
 
-  delEmpleados(rutempleado: string) {
-    const url = `${this.urlBase}${rutempleado}/`;
+  delEmpleados(rut: string) {
+    const url = `${this.urlBase}${rut}/`;
     return this.httpClient.delete(url);
   }
 
@@ -32,8 +34,8 @@ export class EmpleadosService {
   // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
 
-  putEmpleados(rutempleado: string, empleado: any) {
-    const url = `${this.urlBase}${rutempleado}/`;
+  putEmpleados(rut: string, empleado: any) {
+    const url = `${this.urlBase}${rut}/`;
     return this.httpClient.put(url, empleado);
   }
 

@@ -7,11 +7,13 @@ import { HttpClient } from '@angular/common/http';
 
 export class NotasService {
 
-private urlBase = "http://144.22.40.186:8000/api/notas/";
+  urlBase = "http://144.22.40.186:8000/api/notas/";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
- //----------------------------------------------------------------
+  //----------------------------------------------------------------
   // GET: Obtener nota recordatorio de la base de datos
   //----------------------------------------------------------------
 
@@ -32,9 +34,9 @@ private urlBase = "http://144.22.40.186:8000/api/notas/";
   // PUT: Actualizar nota recordatorio de la base de datos
   //----------------------------------------------------------------
 
-  putNotas(id: number) {
+  putNotas(id: number, nota: any) {
     const url = `${this.urlBase}${id}/`;
-    return this.httpClient.put(url, {});
+    return this.httpClient.put(url, nota);
   }
   
 

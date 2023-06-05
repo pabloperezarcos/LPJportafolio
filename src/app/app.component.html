@@ -7,7 +7,7 @@
 
       <!-- MENÚ LATERAL PARA ADMINISTRADOR -->
       <ion-menu-toggle *ngIf="!isAdmin" class="menu-items" lines="none" autoHide="false" detail>
-        <ion-item routerLink="/home-admin">
+        <ion-item routerLink="/home">
           <ion-icon src="assets/icon/qr.svg"></ion-icon>
           Asistencia
         </ion-item>
@@ -19,7 +19,7 @@
           <ion-icon src="assets/icon/maletabold.svg"></ion-icon>
           Reportes
         </ion-item>
-        <ion-item routerLink="/notas-recordatorio">
+        <ion-item routerLink="/notas">
           <ion-icon src="assets/icon/nota.svg"></ion-icon>
           Recordatorios
         </ion-item>
@@ -27,15 +27,22 @@
           <ion-icon src="assets/icon/calendario.svg"></ion-icon>
           Feriados de Chile
         </ion-item>
+        <br>
+        <div class="ion-text-center">
+          <ion-button routerLink="/index" expand="round">
+            Cerrar sesión
+          </ion-button>
+        </div>
+        <br>
       </ion-menu-toggle>
 
       <!-- MENÚ LATERAL PARA EMPLEADO -->
-      <ion-menu-toggle *ngIf="isAdmin">
+      <ion-menu-toggle *ngIf="isAdmin" class="menu-items" lines="none" autoHide="false" detail>
         <ion-item routerLink="/home-empleado">
           <ion-icon src="assets/icon/qr.svg"></ion-icon>
           Asistencia
         </ion-item>
-        <ion-item routerLink="/notas-recordatorio">
+        <ion-item routerLink="/notas">
           <ion-icon src="assets/icon/nota.svg"></ion-icon>
           Recordatorios
         </ion-item>
@@ -43,17 +50,15 @@
           <ion-icon src="assets/icon/calendario.svg"></ion-icon>
           Feriados de Chile
         </ion-item>
+        <br>
+        <div class="ion-text-center">
+          <ion-button routerLink="/index" expand="round">
+            Cerrar sesión
+          </ion-button>
+        </div>
+        <br>
       </ion-menu-toggle>
 
-      <br>
-
-      <div class="ion-text-center">
-        <ion-button routerLink="/home" expand="round">
-          Cerrar sesión
-        </ion-button>
-      </div>
-      <br>
-      
       <div class="ion-text-center">
         <p>© 2023 LPJ</p>
         <p>Todos los derechos reservados.</p>

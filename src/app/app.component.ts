@@ -1,38 +1,24 @@
-import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  isAdmin: boolean = false;
+  tipoUsuario = "";
 
   constructor(
-    private authService: AuthService
-  ) { }
+    private storage: Storage
+  ) {}
 
   ngOnInit() {
-    this.checkUserRole();
-  }
-
-  checkUserRole() {
-    const usuarioActual = this.authService.getUsuario();
-
-    if (usuarioActual && usuarioActual.tipoempleado === 'administrador') {
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
+    this.tipoUsuario = localStorage.getItem('tipoUsuario') ?? '';
   }
 
   salir() {
     // Lógica para cerrar sesión
   }
-
-
-  /* FIN APP.COMPONENT.TS */
 }
-

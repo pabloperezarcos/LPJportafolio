@@ -5,27 +5,27 @@
     </ion-buttons>
 
     <ion-title class="ion-text-center">Días feriados Chile</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-icon name="calendar-outline" size="large" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-card class="ion-padding">
-    <ion-list *ngFor="let f of apiFeriados">
-      <ion-item>
-        <ion-label>
-          <h2>{{ f.title }}</h2>
-          <h3>{{ f.extra }}</h3>
-          <h3>{{ f.date }}</h3>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+<ion-content class="ion-padding">
+<br>
+  <ion-card class="translucent-card">
+    <br>
+    <table class="tabla-centrada">
+      <tr>
+        <th>Título</th>
+        <th>Información adicional</th>
+        <th>Fecha</th>
+      </tr>
+      <tr *ngFor="let f of apiFeriados">
+        <td>{{ f.title }}</td>
+        <td>{{ f.extra }}</td>
+        <td>{{ formatDate(f.date) }}</td>
+      </tr>
+    </table>
+    <br>
   </ion-card>
 
 </ion-content>

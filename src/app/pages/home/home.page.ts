@@ -1,58 +1,221 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-/* import { ModalController,AnimationController } from '@ionic/angular';
-import { RegisterUserModalPage } from '../modals/register-user-modal/register-user-modal.page'; */
+import { Component, OnDestroy } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+
+import { AsistenciaService } from 'src/app/services/asistencias.service';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnDestroy {
 
-  constructor(/* private modalCtrl: ModalController,
-              private animationCtrl: AnimationController, */
-              public navCtrl: NavController
-              ) { }
+  content_visibility = '';
+  asistencias: any[] = [];
+  scanActive: boolean = false;
+  scanResult: any;
+  horaEntrada: string;
+  horaSalida: string;
+  entradaRegistrada: boolean = false;
 
-  ngOnInit() {
+  constructor(
+    public alertCtrl: AlertController,
+    private asistenciaService: AsistenciaService,
+    private storage: Storage
+  ) {
   }
 
-  //FUNCIONALIDAD POR VERIFICAR SI SIGUE O NO
-  
-/*   async registerUser() {
-    const enterAnimation = (baseEl: any) => {
-      const root = baseEl.shadowRoot;
+  ngOnDestroy() {
+    this.stopScan();
+  }
 
-      const backdropAnimation = this.animationCtrl.create()
-        .addElement(root.querySelector('ion-backdrop')!)
-        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+  ionViewWillEnter() {
+    //Esto realiza el GET de asistencias al entrar al momento de entrar a la page.
+    this.obtenerAsistencias();
+  }
 
-      const wrapperAnimation = this.animationCtrl.create()
-        .addElement(root.querySelector('.modal-wrapper')!)
-        .keyframes([
-          { offset: 0, opacity: '0', transform: 'scale(0)' },
-          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
-        ]);
+  //----------------------------------------------------------------
+  // lógica para el botón para registrar las entradas.
+  //----------------------------------------------------------------
+  async registrarEntrada() {
+    try {
+      const permission = await this.checkPermission();
+      if (!permission) {
+        return;
+      }
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body').classList.add('scanner-active');
+      this.content_visibility = 'hidden';
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
+      this.content_visibility = '';
+      if (result?.hasContent) {
+        this.scanResult = result.content;
+        this.horaEntrada = this.scanResult;
+        this.entradaRegistrada = true;
 
-      return this.animationCtrl.create()
-        .addElement(baseEl)
-        .easing('ease-out')
-        .duration(500)
-        .addAnimation([backdropAnimation, wrapperAnimation]);
+        const idEmpleado = await this.storage.get('id');
+
+        const nuevaAsistencia = {
+          hora_entrada: this.horaEntrada,
+          hora_salida: null,
+          empleado: idEmpleado
+        };
+
+        this.asistenciaService.createAsistencia(nuevaAsistencia).subscribe(
+          (response) => {
+            console.log('Asistencia creada:', response);
+            this.obtenerAsistencias();
+          },
+          (error) => {
+            console.error('Error al crear asistencia:', error);
+          }
+        );
+
+        await this.mostrarAlerta('Entrada registrada', `Hora de entrada: ${this.horaEntrada}`);
+      }
+    } catch (e) {
+      console.log(e);
+      this.stopScan();
     }
+  }
 
-    const leaveAnimation = (baseEl: any) => {
-      return enterAnimation(baseEl).direction('reverse');
+  //----------------------------------------------------------------
+  // lógica para el botón para registrar las salidas.
+  //----------------------------------------------------------------
+  async registrarSalida() {
+    try {
+      const permission = await this.checkPermission();
+      if (!permission) {
+        return;
+      }
+      await BarcodeScanner.hideBackground();
+      document.querySelector('body').classList.add('scanner-active');
+      this.content_visibility = 'hidden';
+      const result = await BarcodeScanner.startScan();
+      console.log(result);
+      BarcodeScanner.showBackground();
+      document.querySelector('body').classList.remove('scanner-active');
+      this.content_visibility = '';
+      if (result?.hasContent) {
+        this.scanResult = result.content;
+        this.horaSalida = this.scanResult;
+        this.entradaRegistrada = false;
+
+        const idEmpleado = await this.storage.get('id');
+
+        const nuevaAsistencia = {
+          hora_entrada: null,
+          hora_salida: this.horaSalida,
+          empleado: idEmpleado
+        };
+
+        this.asistenciaService.createAsistencia(nuevaAsistencia).subscribe(
+          (response) => {
+            console.log('Asistencia creada:', response);
+            this.obtenerAsistencias();
+          },
+          (error) => {
+            console.error('Error al crear asistencia:', error);
+          }
+        );
+
+        await this.mostrarAlerta('Salida registrada', `Hora de salida: ${this.horaSalida}`);
+      }
+    } catch (e) {
+      console.log(e);
+      this.stopScan();
     }
+  }
 
-    const modal = await this.modalCtrl.create({
-      component: RegisterUserModalPage,
-      enterAnimation,
-      leaveAnimation
+  //----------------------------------------------------------------
+  // GET a la API para traer los registros del empleado logueado.
+  //----------------------------------------------------------------
+  obtenerAsistencias() {
+    this.storage.get('id').then((idEmpleado) => {
+      //console.log('ID EMPLEADO ANTES DEL FILTRO:', idEmpleado);
+
+      this.asistenciaService.getAsistencias().subscribe(
+        (response: any) => {
+          // Ordenar por ID de forma ascendente
+          this.asistencias = response
+            .filter((asistencia) => asistencia.empleado === idEmpleado)
+            .sort((a, b) => a.id - b.id);
+
+          // console.log('ID EMPLEADO DESPUES DEL FILTRO:', idEmpleado);
+          // console.log('Asistencias obtenidas:', this.asistencias);
+
+          this.asistencias.forEach((asistencia) => {
+            asistencia.hora_entrada = this.convertirFormatoHora(asistencia.hora_entrada);
+            asistencia.hora_salida = this.convertirFormatoHora(asistencia.hora_salida);
+          });
+        },
+        (error) => {
+          console.error('Error al obtener asistencias:', error);
+        }
+      );
+    }).catch((error) => {
+      console.error('Error al obtener el ID del empleado:', error);
     });
+  }
 
-    await modal.present();
-  } */
+  //----------------------------------------------------------------
+  // FUNCIONES VARIAS
+  //----------------------------------------------------------------
+  convertirFormatoHora(hora: string): string {
+    //Transforma la hora recibida de la base de datos a formato horas:minutos 00:00
+    if (hora) {
+      const fechaHora = new Date(hora);
+      const horas = fechaHora.getHours();
+      const minutos = fechaHora.getMinutes();
+      return `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`;
+    }
+    return '';
+  }
 
+  formatDate(dateString: string): string {
+    //Transforma la fecha recibida de la base de datos a formato dia/mes/año 01/01/2000
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  async checkPermission() {
+    //Esto verifica si la aplicación tiene los permisos para acceder a la cámara.
+    try {
+      const status = await BarcodeScanner.checkPermission({ force: true });
+      if (status.granted) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async mostrarAlerta(titulo: string, mensaje: string) {
+    //Esto muestra una alerta positiva o negativa de cuando alguien registra entrada o salida.
+    const alert = await this.alertCtrl.create({
+      header: titulo,
+      message: mensaje,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  stopScan() {
+    //Esto se ejecuta para cerrar la camara una vez que captó informacion en el codigo QR.
+    BarcodeScanner.showBackground();
+    BarcodeScanner.stopScan();
+    document.querySelector('body').classList.remove('scanner-active');
+    this.content_visibility = '';
+  }
+
+
+  /* FIN HOME.PAGE.TS */
 }

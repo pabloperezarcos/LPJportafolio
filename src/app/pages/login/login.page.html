@@ -5,15 +5,17 @@
   </div>
 
   <form #formulariologin="ngForm" (ngSubmit)="iniciarSesion()">
-    <ion-list>
+    <ion-list class="login-form">
       <ion-item color="none" lines="none">
         <ion-icon slot="start" size="large" name="person-circle-outline"></ion-icon>
-        <ion-input name="run" [(ngModel)]="run" required placeholder=". Ingrese su RUN sin puntos y con guión"></ion-input>
+        <ion-input name="run" [(ngModel)]="run" required
+          placeholder=". Ingrese su RUN sin puntos y con guión"></ion-input>
       </ion-item>
 
       <ion-item color="none" lines="none">
         <ion-icon slot="start" size="large" name="lock-closed-outline"></ion-icon>
-        <ion-input name="password" type="password" [(ngModel)]="password" required placeholder=". Contraseña"></ion-input>
+        <ion-input name="password" type="password" [(ngModel)]="password" required
+          placeholder=". Contraseña"></ion-input>
       </ion-item>
     </ion-list>
 
@@ -30,6 +32,7 @@
 
 </ion-content>
 
-
+<!-- 
  <ion-button routerLink="/home-admin" expand="round">BOTON TEMPORAL HOME ADMINISTRADOR</ion-button>
-      <ion-button routerLink="/home-empleado" expand="round">BOTON TEMPORAL HOME EMPLEADO</ion-button>
+ <ion-button routerLink="/home-empleado" expand="round">BOTON TEMPORAL HOME EMPLEADO</ion-button>
+     -->

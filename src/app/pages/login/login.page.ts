@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AlertController, ModalController, NavController, AnimationController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service';
 import { RecuperarPassModalPage } from '../modals/recuperar-pass-modal/recuperar-pass-modal.page';
+import { Storage } from '@ionic/storage-angular';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 
 @Component({
@@ -23,9 +24,10 @@ export class LoginPage implements OnInit {
     private animationCtrl: AnimationController,
     private httpClient: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private storage: Storage,
+    private empleadosService: EmpleadosService
   ) {
-
+    this.storage.create();
   }
 
   ngOnInit() {
@@ -49,23 +51,50 @@ export class LoginPage implements OnInit {
 
   async iniciarSesion() {
     const credentials = {
-      rutempleado: this.run,
-      passwordhash: this.password
+      rut: this.run,
+      password: this.password
     };
-
-    console.log(this.run);
-    console.log(this.password);
-
     this.httpClient.post('http://144.22.40.186:8000/login/', credentials).subscribe(
       (response) => {
-        // Aquí puedes manejar la respuesta del inicio de sesión exitoso
         console.log(response);
-        // Realiza cualquier acción adicional que necesites, como redireccionar a la página principal
-        this.authService.setUsuario(response);
-        this.router.navigate(['/home-admin']);
+        this.storage.set('rut', this.run).then(() => {
+          console.log('Dato almacenado en Storage:', this.run);
+          this.router.navigate(['/home']);
+
+          // Obtener empleados y buscar el empleado con el rut
+          this.empleadosService.getEmpleados().subscribe(
+            (empleados: any[]) => {
+              let empleadoEncontrado: any = null;
+              empleados.forEach((empleado: any) => {
+                if (empleado.rut === this.run) {
+                  empleadoEncontrado = empleado;
+                }
+              });
+
+              if (empleadoEncontrado) {
+                const empleadoId = empleadoEncontrado.id;
+                const tipoUsuario = empleadoEncontrado.tipo_usuario;
+                // Guardar empleadoId y tipoUsuario en otras variables del local storage
+                this.storage.set('id', empleadoId).then(() => {
+                  console.log('Valor id almacenado en el local storage:', empleadoId);
+                }).catch((error) => {
+                  console.error('Error al almacenar el valor id en el local storage:', error);
+                });
+
+                this.storage.set('tipoUsuario', tipoUsuario).then(() => {
+                  console.log('Valor tipoUsuario almacenado en el local storage:', tipoUsuario);
+                }).catch((error) => {
+                  console.error('Error al almacenar el valor tipoUsuario en el local storage:', error);
+                });
+              }
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+        });
       },
       (error) => {
-        // Aquí puedes manejar el error de inicio de sesión
         console.error(error);
         this.presentAlert(); // Mostrar alerta de error
       }

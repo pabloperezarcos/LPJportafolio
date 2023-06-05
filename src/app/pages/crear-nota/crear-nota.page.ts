@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, Platform } from '@ionic/angular';
 import { NotasService } from 'src/app/services/notas.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-crear-nota',
@@ -9,33 +10,19 @@ import { NotasService } from 'src/app/services/notas.service';
 })
 export class CrearNotaPage implements OnInit {
 
-  titulonota: string = '';
-  contenidonota: string = '';
-  fechacreacion: string = '';
- /*  fechavencimiento: Date = null;
-  empleado_idempleado: number = 23; */
+  titulo: string = '';
+  contenido: string = '';
 
   constructor(
     private alertCtrl: AlertController,
     public navCtrl: NavController,
     public notasService: NotasService,
-    public platform: Platform
+    public platform: Platform,
+    private storage: Storage
   ) {
-    this.obtenerFechaActual();
   }
 
   ngOnInit() {
-    this.setFechaCreacion();
-  }
-
-  obtenerFechaActual() {
-    const fechaActual = new Date();
-    this.fechacreacion = fechaActual.toISOString();
-  }
-
-  setFechaCreacion() {
-    const currentDate = new Date();
-    this.fechacreacion = currentDate.toISOString().split('T')[0]; // Formato YYYY-MM-DD
   }
 
   async presentAlert() {
@@ -63,15 +50,12 @@ export class CrearNotaPage implements OnInit {
   }
 
   resetForm() {
-    this.titulonota = '';
-    this.contenidonota = '';
-    this.fechacreacion = '';
-/*     this.fechavencimiento = null;
-    this.empleado_idempleado = 0; */
+    this.titulo = '';
+    this.contenido = '';
   }
 
   cerrar() {
-    this.navCtrl.navigateBack(['../notas-recordatorio']);
+    this.navCtrl.navigateBack(['../notas']);
   }
 
   //----------------------------------------------------------------
@@ -79,28 +63,28 @@ export class CrearNotaPage implements OnInit {
   //----------------------------------------------------------------
 
   crearNota() {
-/* 
-    const fechaVencimiento = new Date(this.fechavencimiento);
-    const nota = {
-      titulonota: this.titulonota,
-      contenidonota: this.contenidonota,
-      fechacreacion: this.fechacreacion,
-      fechavencimiento: fechaVencimiento.toISOString().split('T')[0], // Formato YYYY-MM-DD
-      empleado_idempleado: this.empleado_idempleado
-    };
-
-    this.notasService.posNotas(nota)
-      .subscribe(
-        () => {
-          console.log('Nota creada exitosamente');
-          this.successAlert();
-          this.resetForm();
-        },
-        error => {
-          console.error('Error al crear la nota', error);
-        }
-      ); */
+    this.storage.get('rut').then((rut) => {
+      const nota = {
+        titulo: this.titulo,
+        contenido: this.contenido,
+        empleados_rut: rut
+      };
+  
+      this.notasService.posNotas(nota)
+        .subscribe(
+          () => {
+            console.log('Nota creada exitosamente');
+            this.successAlert();
+            this.resetForm();
+          },
+          error => {
+            console.error('Error al crear la nota', error);
+          }
+        );
+    });
   }
+  
+
 
 
   /* FIN CREAR-NOTA.PAGE.TS */
