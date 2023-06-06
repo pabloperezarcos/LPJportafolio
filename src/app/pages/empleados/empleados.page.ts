@@ -94,6 +94,7 @@ export class EmpleadosPage implements OnInit {
   //----------------------------------------------------------------
   // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
+
   async putEmpleados(rut: string) {
     let empleadoActualizado: any = {};
 
@@ -109,7 +110,6 @@ export class EmpleadosPage implements OnInit {
         console.error(error);
       }
     );
-
   }
 
   //----------------------------------------------------------------
@@ -132,8 +132,7 @@ export class EmpleadosPage implements OnInit {
   // ALERT CONTROLLER PARA EDITAR
   //----------------------------------------------------------------
   async mostrarAlertaEditar(emp: any) {
-    console.log(emp);
-    const alert = await this.alertController.create({
+     const alert = await this.alertController.create({
       header: 'Editar empleado',
       inputs: [
         {
@@ -215,33 +214,47 @@ export class EmpleadosPage implements OnInit {
             const nuevaDireccion = data.direccion;
             const nuevoTipoUsuario = data.tipoUsuario;
             const nuevoEstado = data.estado;
-
-            // Construir la URL de actualización con el id del empleado
-            const url = `http://144.22.40.186:8000/api/empleados/${emp.rut}/`;
-
-            // Realizar la solicitud PUT con los nuevos datos
-            this.httpClient.put(url, {
-              nombre: nuevoNombre,
-              ap_paterno: nuevoApellidoPaterno,
-              ap_materno: nuevoApellidoMaterno,
-              rut: nuevoRut,
-              direccion: nuevaDireccion,
-              tipo_usuario: nuevoTipoUsuario,
-              estado: nuevoEstado
-            }).subscribe(
-              () => {
-                this.getEmpleados();
-                console.log('Empleado actualizado con éxito');
+  
+            // Consultar la base de datos para obtener el ID del empleado por su RUT
+            this.httpClient.get(`http://144.22.40.186:8000/api/empleados?rut=${nuevoRut}`).subscribe(
+              (response: any) => {
+                if (response.length > 0) {
+                  const empleado = response[0];
+                  const empleadoId = empleado.id;
+  
+                  // Construir la URL de actualización con el ID del empleado
+                  const url = `http://144.22.40.186:8000/api/empleados/${empleadoId}/`;
+  
+                  // Realizar la solicitud PUT con los nuevos datos
+                  this.httpClient.put(url, {
+                    nombre: nuevoNombre,
+                    ap_paterno: nuevoApellidoPaterno,
+                    ap_materno: nuevoApellidoMaterno,
+                    rut: nuevoRut,
+                    direccion: nuevaDireccion,
+                    tipo_usuario: nuevoTipoUsuario,
+                    estado: nuevoEstado
+                  }).subscribe(
+                    () => {
+                      this.getEmpleados();
+                      console.log('Empleado actualizado con éxito');
+                    },
+                    error => {
+                      console.error('Error al actualizar el empleado', error);
+                    }
+                  );
+                } else {
+                  console.error('No se encontró ningún empleado con el RUT proporcionado');
+                }
               },
               error => {
-                console.error('Error al actualizar el empleado', error);
+                console.error('Error al consultar la base de datos', error);
               }
             );
           }
         }
       ]
     });
-
     await alert.present();
   }
 

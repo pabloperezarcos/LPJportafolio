@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
-import { QRCodeModule } from 'angularx-qrcode';
+
 
 @NgModule({
   imports: [
@@ -12,8 +12,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    HomePageRoutingModule,
-    QRCodeModule
+    HomePageRoutingModule
   ],
   declarations: [HomePage]
 })
