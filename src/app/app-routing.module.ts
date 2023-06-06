@@ -10,55 +10,51 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'empleados',
-    loadChildren: () => import('./pages/empleados/empleados.module').then( m => EmpleadosPageModule)
+    loadChildren: () => import('./pages/empleados/empleados.module').then(m => EmpleadosPageModule)
   },
   {
     path: 'crear-empleado',
-    loadChildren: () => import('./pages/crear-empleado/crear-empleado.module').then( m => m.CrearEmpleadoPageModule)
+    loadChildren: () => import('./pages/crear-empleado/crear-empleado.module').then(m => m.CrearEmpleadoPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'recuperar-pass-modal',
-    loadChildren: () => import('./pages/modals/recuperar-pass-modal/recuperar-pass-modal.module').then( m => m.RecuperarPassModalPageModule)
+    loadChildren: () => import('./pages/modals/recuperar-pass-modal/recuperar-pass-modal.module').then(m => m.RecuperarPassModalPageModule)
   },
   {
     path: 'index',
-    loadChildren: () => import('./pages/index/index.module').then( m => m.IndexPageModule)
+    loadChildren: () => import('./pages/index/index.module').then(m => m.IndexPageModule)
   },
   {
     path: 'feriados',
-    loadChildren: () => import('./pages/feriados/feriados.module').then( m => m.FeriadosPageModule)
+    loadChildren: () => import('./pages/feriados/feriados.module').then(m => m.FeriadosPageModule)
   },
   {
     path: 'crear-empleado',
-    loadChildren: () => import('./pages/crear-empleado/crear-empleado.module').then( m => m.CrearEmpleadoPageModule)
+    loadChildren: () => import('./pages/crear-empleado/crear-empleado.module').then(m => m.CrearEmpleadoPageModule)
   },
   {
     path: 'reportes',
-    loadChildren: () => import('./pages/reportes/reportes.module').then( m => m.ReportesPageModule)
+    loadChildren: () => import('./pages/reportes/reportes.module').then(m => m.ReportesPageModule)
   },
   {
     path: 'notas',
-    loadChildren: () => import('./pages/notas/notas.module').then( m => m.NotasPageModule)
+    loadChildren: () => import('./pages/notas/notas.module').then(m => m.NotasPageModule)
   },
   {
     path: 'crear-nota',
-    loadChildren: () => import('./pages/crear-nota/crear-nota.module').then( m => m.CrearNotaPageModule)
+    loadChildren: () => import('./pages/crear-nota/crear-nota.module').then(m => m.CrearNotaPageModule)
   },
   {
     path: 'detalles-empleados',
-    loadChildren: () => import('./pages/modals/detalles-empleados/detalles-empleados.module').then( m => m.DetallesEmpleadosPageModule)
-  },
-  {
-    path: 'reporteobtenido',
-    loadChildren: () => import('./pages/modals/reporteobtenido/reporteobtenido.module').then( m => m.ReporteobtenidoPageModule)
+    loadChildren: () => import('./pages/modals/detalles-empleados/detalles-empleados.module').then(m => m.DetallesEmpleadosPageModule)
   }
 
 

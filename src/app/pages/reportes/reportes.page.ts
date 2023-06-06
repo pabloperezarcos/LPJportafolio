@@ -12,11 +12,12 @@ import { XlsxService } from 'src/app/services/xlsx.service';
 })
 export class ReportesPage implements OnInit {
 
-  empleadoSeleccionado: number;
-  fechaSeleccionada: string;
   report: any;
-  rutaArchivoXLSX: string;
-  employees: any[];
+  employees: any[] = [];
+
+  //empleadoSeleccionado: number;
+  //fechaSeleccionada: string;
+  //rutaArchivoXLSX: string;
 
   constructor(
     private reportesService: ReportesService,
@@ -34,8 +35,8 @@ export class ReportesPage implements OnInit {
   obtenerEmpleados() {
     this.empleadosService.getEmpleados()
       .subscribe(
-        (empleados: any[]) => {
-          this.employees = empleados;
+        (empleados: object) => {
+          this.employees = empleados as any[];
         },
         (error) => {
           console.error(error);
@@ -46,7 +47,7 @@ export class ReportesPage implements OnInit {
   obtenerAsistencias(empleadoId: number, fechaInicio: string, fechaFin: string) {
     this.reportesService.getAsistenciasPorEmpleadoYFechas(empleadoId, fechaInicio, fechaFin)
       .subscribe(
-        (asistencias: any[]) => {
+        (asistencias: object) => {
           this.report = asistencias;
         },
         (error) => {
@@ -94,12 +95,6 @@ export class ReportesPage implements OnInit {
   compartirGmail() {
 
   }
-
-
-
-
-
-
 
 
   /* FIN REPORTES.PAGE.TS */

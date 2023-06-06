@@ -15,8 +15,9 @@
       <ion-item>
         <ion-label>Empleado:</ion-label>
         <ion-select placeholder="Seleccionar empleado" [(ngModel)]="empleadoSeleccionado">
-          <ion-select-option *ngFor="let empleado of employees" [value]="empleado.id">{{ empleado.nombre
-            }}</ion-select-option>
+          <ion-select-option *ngFor="let empleado of employees" [value]="empleado.id">
+            {{ empleado.nombre}} {{empleado.ap_paterno}} {{empleado.ap_materno}}
+          </ion-select-option>
         </ion-select>
       </ion-item>
 
