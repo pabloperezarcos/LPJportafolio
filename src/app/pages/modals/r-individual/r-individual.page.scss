@@ -34,8 +34,12 @@ ion-card.translucent-card ion-item {
     --background: transparent;
 }
 
+ion-label {
+    color: #023047;
+}
+
 ion-footer {
     background-color: #023047;
     font-size: 11px;
     color: white;
-  }
+}

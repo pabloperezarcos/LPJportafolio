@@ -21,15 +21,14 @@ ion-button {
     margin-top: 20px;
 }
 
-ion-card.translucent-card {
-    --background: rgba(2, 48, 71, 0.8);
-    --color: white;
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(2, 48, 71, 0.8);
-    margin: 0;
+ion-item {
+    --background: #023047;
 }
 
-ion-card.translucent-card ion-item {
-    --background: transparent;
+ion-card {
+    --background: #f4f5f8;
+}
+
+ion-card-content {
+    color: #023047;
 }

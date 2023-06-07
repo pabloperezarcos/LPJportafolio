@@ -6,7 +6,6 @@ import { AlertController } from '@ionic/angular';
 import { PdfService } from 'src/app/services/pdf.service';
 import { XlsxService } from 'src/app/services/xlsx.service';
 
-
 @Component({
   selector: 'app-r-mensual',
   templateUrl: './r-mensual.page.html',
@@ -15,7 +14,15 @@ import { XlsxService } from 'src/app/services/xlsx.service';
 export class RMensualPage implements OnInit {
 
   report: any;
-  employees: any[] = [];
+  empleados: any[] = [];
+
+  myDate: string;
+
+  empleadoSeleccionado: number;
+  fechaSeleccionada: string;
+
+  showCalendarInicio: boolean = false;
+  showCalendarFin: boolean = false;
 
   constructor(
     private reportesService: ReportesService,
@@ -30,11 +37,29 @@ export class RMensualPage implements OnInit {
     this.obtenerEmpleados();
   }
 
+
+
+  showCalendar(field: string) {
+    if (field === 'inicio') {
+      this.showCalendarInicio = true;
+    } else if (field === 'fin') {
+      this.showCalendarFin = true;
+    }
+  }
+
+  hideCalendar(field: string) {
+    if (field === 'inicio') {
+      this.showCalendarInicio = false;
+    } else if (field === 'fin') {
+      this.showCalendarFin = false;
+    }
+  }
+
   // Obtiene la lista de empleados desde el servicio de empleados
   obtenerEmpleados() {
     this.empleadosService.getEmpleados().subscribe(
       (empleados: object) => {
-        this.employees = empleados as any[];
+        this.empleados = empleados as any[];
       },
       (error) => {
         console.error(error);
@@ -43,9 +68,17 @@ export class RMensualPage implements OnInit {
   }
 
   // Obtiene las asistencias para un empleado y un rango de fechas desde el servicio de reportes
-  obtenerAsistencias(empleadoId: number, fechaInicio: string, fechaFin: string) {
-    this.reportesService.getAsistenciasPorEmpleadoYFechas(empleadoId, fechaInicio, fechaFin).subscribe(
-      (asistencias: object) => {
+  obtenerAsistencias() {
+    if (!this.empleadoSeleccionado) {
+      this.mostrarAlerta('Error', 'No se ha seleccionado ningún empleado.');
+      return; // No se ha seleccionado ningún empleado, salir del método
+    }
+
+    const empleadoId = this.empleadoSeleccionado.toString(); // Convertir a cadena de texto
+    console.log('Empleado ID:', empleadoId);
+
+    this.reportesService.getAsistenciasPorEmpleado(empleadoId).subscribe(
+      (asistencias: any) => {
         this.report = asistencias;
       },
       (error) => {
@@ -53,6 +86,7 @@ export class RMensualPage implements OnInit {
       }
     );
   }
+
 
   // Muestra una alerta con un título y un mensaje
   async mostrarAlerta(titulo: string, mensaje: string) {
@@ -64,6 +98,13 @@ export class RMensualPage implements OnInit {
 
     await alert.present();
   }
+
+  isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+    return utcDay !== 0;
+  };
+
 
   exportarPDF() {
     if (!this.report || this.report.length === 0) {
@@ -98,7 +139,7 @@ export class RMensualPage implements OnInit {
 
 
 
-  
+
   // Esta función cierra el modal actual y lo descarta
   cerrar() {
     this.modalCtrl.dismiss();

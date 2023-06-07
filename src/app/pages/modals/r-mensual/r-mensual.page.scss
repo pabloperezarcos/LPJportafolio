@@ -34,8 +34,37 @@ ion-card.translucent-card ion-item {
     --background: transparent;
 }
 
+ion-label {
+    color: #023047;
+}
+
 ion-footer {
     background-color: #023047;
     font-size: 11px;
     color: white;
-  }
+}
+
+.tabla-centrada {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tabla-centrada {
+    border-collapse: collapse;
+    background-color: #023047;
+}
+
+.tabla-centrada th,
+.tabla-centrada td {
+    border: 2px solid white;
+    padding: 8px;
+    text-align: center;
+}
+
+.tabla-centrada th {
+    width: 150px;
+}
+
+.tabla-centrada td {
+    width: 150px;
+}

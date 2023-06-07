@@ -7,6 +7,24 @@
 
 <ion-content>
 
+
+
+  <div class="ion-text-center">
+    <br>
+    <ion-label>Descargar   
+      <ion-icon name="cloud-download-outline" style="font-size: 18px;" slot="end"></ion-icon>
+    </ion-label>
+
+  </div>
+  <div class="ion-text-center">
+    <ion-button fill="none" size="large" (click)="exportarPDF()">
+      <ion-icon src="../../../../assets/icon/pdf.svg" style="font-size: 50px;"></ion-icon>
+    </ion-button>
+    <ion-button fill="none" size="large" (click)="exportarXLSX()">
+      <ion-icon src="../../../../assets/icon/xlsx.svg" style="font-size: 50px;"></ion-icon>
+    </ion-button>
+  </div>
+
 </ion-content>
 
 <ion-footer class="ion-text-center">
