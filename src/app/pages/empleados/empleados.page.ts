@@ -11,8 +11,8 @@ import { DetallesEmpleadosPage } from '../modals/detalles-empleados/detalles-emp
   styleUrls: ['./empleados.page.scss'],
 })
 export class EmpleadosPage implements OnInit {
-  empleados: any[];
-  empleadosFiltrados: any[];
+  empleados: any[] = [];
+  empleadosFiltrados: any[] = [];
   textoBuscar: string = '';
   tipoUsuarioFiltrado: string = 'todos';
   estadoFiltrado: string = 'todos';

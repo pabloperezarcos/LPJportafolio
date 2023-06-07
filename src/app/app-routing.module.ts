@@ -55,7 +55,23 @@ const routes: Routes = [
   {
     path: 'detalles-empleados',
     loadChildren: () => import('./pages/modals/detalles-empleados/detalles-empleados.module').then(m => m.DetallesEmpleadosPageModule)
+  },  {
+    path: 'r-ausencias',
+    loadChildren: () => import('./pages/modals/r-ausencias/r-ausencias.module').then( m => m.RAusenciasPageModule)
+  },
+  {
+    path: 'r-atrasos',
+    loadChildren: () => import('./pages/modals/r-atrasos/r-atrasos.module').then( m => m.RAtrasosPageModule)
+  },
+  {
+    path: 'r-individual',
+    loadChildren: () => import('./pages/modals/r-individual/r-individual.module').then( m => m.RIndividualPageModule)
+  },
+  {
+    path: 'r-mensual',
+    loadChildren: () => import('./pages/modals/r-mensual/r-mensual.module').then( m => m.RMensualPageModule)
   }
+
 
 
 ];

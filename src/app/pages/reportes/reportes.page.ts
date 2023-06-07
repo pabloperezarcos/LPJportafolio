@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportesService } from 'src/app/services/reportes.service';
-import { EmpleadosService } from 'src/app/services/empleados.service';
-import { AlertController } from '@ionic/angular';
-import { PdfService } from 'src/app/services/pdf.service';
-import { XlsxService } from 'src/app/services/xlsx.service';
+import { ActionSheetController, AnimationController, ModalController } from '@ionic/angular';
+import { RMensualPage } from '../modals/r-mensual/r-mensual.page';
+import { RIndividualPage } from '../modals/r-individual/r-individual.page';
+import { RAtrasosPage } from '../modals/r-atrasos/r-atrasos.page';
+import { RAusenciasPage } from '../modals/r-ausencias/r-ausencias.page';
 
 @Component({
   selector: 'app-reportes',
@@ -15,86 +15,213 @@ export class ReportesPage implements OnInit {
   report: any;
   employees: any[] = [];
 
-  //empleadoSeleccionado: number;
-  //fechaSeleccionada: string;
-  //rutaArchivoXLSX: string;
-
   constructor(
-    private reportesService: ReportesService,
-    private empleadosService: EmpleadosService,
-    private alertCtrl: AlertController,
-    private pdfService: PdfService,
-    private xlsxService: XlsxService
+    private actionSheetCtrl: ActionSheetController,
+    private animationCtrl: AnimationController,
+    private modalCtrl: ModalController
   ) {
   }
 
   ngOnInit() {
-    this.obtenerEmpleados();
+
   }
 
-  // Obtiene la lista de empleados desde el servicio de empleados
-  obtenerEmpleados() {
-    this.empleadosService.getEmpleados().subscribe(
-      (empleados: object) => {
-        this.employees = empleados as any[];
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  // Obtiene las asistencias para un empleado y un rango de fechas desde el servicio de reportes
-  obtenerAsistencias(empleadoId: number, fechaInicio: string, fechaFin: string) {
-    this.reportesService.getAsistenciasPorEmpleadoYFechas(empleadoId, fechaInicio, fechaFin).subscribe(
-      (asistencias: object) => {
-        this.report = asistencias;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  // Muestra una alerta con un título y un mensaje
-  async mostrarAlerta(titulo: string, mensaje: string) {
-    const alert = await this.alertCtrl.create({
-      header: titulo,
-      message: mensaje,
-      buttons: ['Aceptar']
+  async seleccionarReporte() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Opciones',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Mensual',
+          icon: 'document-text-outline',
+          handler: () => {
+            this.mostrarRmensual();
+          }
+        },
+        {
+          text: 'Individual',
+          icon: 'document-text-outline',
+          handler: () => {
+            this.mostrarRindividual();
+          }
+        },
+        {
+          text: 'Atrasos',
+          icon: 'document-text-outline',
+          handler: () => {
+            this.mostrarRatrasos();
+          }
+        },
+        {
+          text: 'Ausencias',
+          icon: 'document-text-outline',
+          handler: () => {
+            this.mostrarRausencias();
+          }
+        },
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancelar Action Sheet');
+          }
+        },
+      ],
     });
 
-    await alert.present();
+    await actionSheet.present();
   }
 
-  exportarPDF() {
-    if (!this.report || this.report.length === 0) {
-      // Mostrar alerta si no hay reporte generado
-      this.mostrarAlerta('Error', 'No se ha generado ningún reporte');
-      return;
+
+  async mostrarRmensual() {
+    const enterAnimation = (baseEl: any) => {
+      const root = baseEl.shadowRoot;
+
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
     }
 
-    // Llamar al método exportarPDF() del PdfService
-    this.pdfService.exportarPDF(this.report);
-  }
-
-  exportarXLSX() {
-    if (!this.report || this.report.length === 0) {
-      // Mostrar alerta si no hay reporte generado
-      this.mostrarAlerta('Error', 'No se ha generado ningún reporte');
-      return;
+    const leaveAnimation = (baseEl: any) => {
+      return enterAnimation(baseEl).direction('reverse');
     }
 
-    // Llamar al método exportarXLSX() del XlsxService
-    this.xlsxService.exportarXLSX(this.report, 'reporte.xlsx');
+    const modal = await this.modalCtrl.create({
+      component: RMensualPage,
+      componentProps: {
+      },
+      enterAnimation,
+      leaveAnimation
+    });
+
+    await modal.present();
   }
 
-  compartirWhatsApp() {
+  async mostrarRindividual() {
+    const enterAnimation = (baseEl: any) => {
+      const root = baseEl.shadowRoot;
 
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const leaveAnimation = (baseEl: any) => {
+      return enterAnimation(baseEl).direction('reverse');
+    }
+
+    const modal = await this.modalCtrl.create({
+      component: RIndividualPage,
+      componentProps: {
+      },
+      enterAnimation,
+      leaveAnimation
+    });
+
+    await modal.present();
   }
 
-  compartirGmail() {
 
+  async mostrarRausencias() {
+    const enterAnimation = (baseEl: any) => {
+      const root = baseEl.shadowRoot;
+
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const leaveAnimation = (baseEl: any) => {
+      return enterAnimation(baseEl).direction('reverse');
+    }
+
+    const modal = await this.modalCtrl.create({
+      component: RAusenciasPage,
+      componentProps: {
+      },
+      enterAnimation,
+      leaveAnimation
+    });
+
+    await modal.present();
+  }
+
+
+  async mostrarRatrasos() {
+    const enterAnimation = (baseEl: any) => {
+      const root = baseEl.shadowRoot;
+
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(root.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const leaveAnimation = (baseEl: any) => {
+      return enterAnimation(baseEl).direction('reverse');
+    }
+
+    const modal = await this.modalCtrl.create({
+      component: RAtrasosPage,
+      componentProps: {
+      },
+      enterAnimation,
+      leaveAnimation
+    });
+
+    await modal.present();
   }
 
 

@@ -12,7 +12,7 @@ export class CrearNotaPage implements OnInit {
 
   titulo: string = '';
   contenido: string = '';
-  empleadoId: string;
+  empleadoId: string = '';
 
   constructor(
     private alertCtrl: AlertController,
