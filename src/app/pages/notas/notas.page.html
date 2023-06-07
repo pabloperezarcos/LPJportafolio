@@ -21,12 +21,8 @@
     <br>
     <br>
 
-    <!--   <ion-searchbar placeholder="Buscar nota por nombre" (ionChange)="busquedaChange( $event )" animated>
-      
-  </ion-searchbar> -->
-
     <ion-list>
-      <ion-item-sliding *ngFor="let nota of notas | filtro:textoBuscar">
+      <ion-item-sliding *ngFor="let nota of notas">
         <ion-item-options side="start">
           <ion-item-option (click)="mostrarAlertaEditar(nota)">
             Editar

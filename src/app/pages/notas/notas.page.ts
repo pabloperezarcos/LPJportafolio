@@ -36,9 +36,9 @@ export class NotasPage implements OnInit {
   }
 
   // Actualiza el valor de la variable 'textoBuscar' al cambiar el contenido del campo de búsqueda
-  busquedaChange(event) {
+/*   busquedaChange(event) {
     this.textoBuscar = event.detail.value;
-  }
+  } */
 
   // Navega hacia la página de crear una nueva nota
   crearNota() {

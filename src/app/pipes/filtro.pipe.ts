@@ -23,8 +23,8 @@ export class FiltroPipe implements PipeTransform {
     console.log(texto);
 
     return arreglo.filter(item => {
-      if (item.nombreempleado && typeof item.nombreempleado === 'string') {
-        return item.nombreempleado.toLocaleLowerCase().includes(texto);
+      if (item.nombre && typeof item.nombre === 'string') {
+        return item.nombre.toLocaleLowerCase().includes(texto);
       }
       return false;
     });
