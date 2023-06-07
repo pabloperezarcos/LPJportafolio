@@ -15,13 +15,16 @@ export class DetallesEmpleadosPage implements OnInit {
   ngOnInit() {
   }
 
+  // Esta función capitaliza la primera letra de un valor de tipo string
   capitalizeFirstLetter(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
-  }  
+  }
 
+  // Esta función cierra el modal actual y lo descarta
   cerrar() {
     this.modalCtrl.dismiss();
   }
+  
 
   //----------------------------------------------------------------
   // FIN DETALLES-EMPEADOS-PAGE.TS

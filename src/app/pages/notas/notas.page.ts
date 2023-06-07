@@ -11,7 +11,9 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class NotasPage implements OnInit {
 
-  notas: any[];
+  notas: any[] = [];
+  titulo: string = '';
+  contenido: string = '';
   textoBuscar: string = '';
 
   constructor(
@@ -33,10 +35,12 @@ export class NotasPage implements OnInit {
     this.getNotas();
   }
 
+  // Actualiza el valor de la variable 'textoBuscar' al cambiar el contenido del campo de búsqueda
   busquedaChange(event) {
     this.textoBuscar = event.detail.value;
   }
 
+  // Navega hacia la página de crear una nueva nota
   crearNota() {
     this.navCtrl.navigateForward(['/crear-nota']);
   }
@@ -59,19 +63,15 @@ export class NotasPage implements OnInit {
   //----------------------------------------------------------------
   // PUT: Actualizar nota de la base de datos
   //----------------------------------------------------------------
-
-  async putEmpleados(id: number) {
+  putEmpleados(id: number) {
     let notaActualizada: any = {};
 
-    // Obtener la nota existente
     this.notasService.getNotas().subscribe(
       (data: any) => {
         notaActualizada = data.find((nota: any) => nota.id === id);
 
-        // Obtener el rut del storage
-        this.storage.get('rut').then((rut) => {
-          // Mostrar el AlertController con los campos de entrada
-          this.mostrarAlertaEditar(notaActualizada, rut);
+        this.storage.get('id').then((empleadoId) => {
+          this.mostrarAlertaEditar(notaActualizada, empleadoId);
         });
       },
       (error) => {
@@ -79,6 +79,7 @@ export class NotasPage implements OnInit {
       }
     );
   }
+
 
   //----------------------------------------------------------------
   // DEL: Borrar nota de la base de datos
@@ -99,8 +100,8 @@ export class NotasPage implements OnInit {
   //----------------------------------------------------------------
   // SE CONFIGURAN LOS ALERT CONTROLLER PARA ACTUALIZAR 
   //----------------------------------------------------------------
+  async mostrarAlertaEditar(nota: any, empleadoIdParam: any) {
 
-  async mostrarAlertaEditar(nota: any, rut: string) {
     const alert = await this.alertController.create({
       header: 'Editar nota',
       inputs: [
@@ -108,51 +109,56 @@ export class NotasPage implements OnInit {
           name: 'titulo',
           type: 'text',
           value: nota.titulo,
-          placeholder: 'Título de la nota'
+          placeholder: 'Título de la nota',
         },
         {
           name: 'contenido',
           type: 'textarea',
           value: nota.contenido,
-          placeholder: 'Contenido de la nota'
+          placeholder: 'Contenido de la nota',
         },
-        {
-          name: 'rut',
-          type: 'text',
-          value: rut
-        }
       ],
       buttons: [
         {
           text: 'Cancelar',
-          role: 'cancel'
+          role: 'cancel',
         },
         {
           text: 'Guardar',
-          handler: (data) => {
-            const notaActualizada = {
-              id: nota.id,
-              titulo: data.titulo,
-              contenido: data.contenido,
-              empleados_rut: rut
-            };
-            this.notasService.putNotas(notaActualizada.id, notaActualizada).subscribe(
-              () => {
-                console.log('Nota actualizada con éxito');
-                this.getNotas();
-              },
-              (error) => {
-                console.error('Error al actualizar la nota', error);
-              }
-            );
-          }
-        }
-      ]
+          handler: async (data) => {
+            this.storage.get('id').then((empleadoId) => {
+              console.log('Valor del empleado almacenado:', empleadoId);
+
+              const notaActualizada = {
+                id: nota.id,
+                titulo: data.titulo,
+                contenido: data.contenido,
+                empleado: empleadoId,
+              };
+              console.log('Nota actualizada:', notaActualizada);
+
+              this.notasService.putNotas(notaActualizada.id, notaActualizada).subscribe(
+                () => {
+                  console.log('Nota actualizada con éxito');
+                  this.getNotas();
+                },
+                (error) => {
+                  console.error('Error al actualizar la nota', error);
+                }
+              );
+            });
+          },
+        },
+      ],
     });
 
     await alert.present();
   }
 
+
+  //----------------------------------------------------------------
+  // SE CONFIGURAN LOS ALERT CONTROLLER PARA ELIMINAR
+  //----------------------------------------------------------------
   async mostrarAlertaEliminar(idNota: number) {
     const alert = await this.alertController.create({
       header: 'Eliminar nota',

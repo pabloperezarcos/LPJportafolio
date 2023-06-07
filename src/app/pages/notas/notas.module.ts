@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { NotasPageRoutingModule } from './notas-routing.module';
 
 import { NotasPage } from './notas.page';
-import { PipesModule } from 'src/app/pipes/pipes.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    PipesModule,
     HttpClientModule,
     NotasPageRoutingModule
   ],

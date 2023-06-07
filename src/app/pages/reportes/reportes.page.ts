@@ -32,30 +32,31 @@ export class ReportesPage implements OnInit {
     this.obtenerEmpleados();
   }
 
+  // Obtiene la lista de empleados desde el servicio de empleados
   obtenerEmpleados() {
-    this.empleadosService.getEmpleados()
-      .subscribe(
-        (empleados: object) => {
-          this.employees = empleados as any[];
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    this.empleadosService.getEmpleados().subscribe(
+      (empleados: object) => {
+        this.employees = empleados as any[];
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
+  // Obtiene las asistencias para un empleado y un rango de fechas desde el servicio de reportes
   obtenerAsistencias(empleadoId: number, fechaInicio: string, fechaFin: string) {
-    this.reportesService.getAsistenciasPorEmpleadoYFechas(empleadoId, fechaInicio, fechaFin)
-      .subscribe(
-        (asistencias: object) => {
-          this.report = asistencias;
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    this.reportesService.getAsistenciasPorEmpleadoYFechas(empleadoId, fechaInicio, fechaFin).subscribe(
+      (asistencias: object) => {
+        this.report = asistencias;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
+  // Muestra una alerta con un título y un mensaje
   async mostrarAlerta(titulo: string, mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: titulo,

@@ -12,6 +12,7 @@ export class CrearNotaPage implements OnInit {
 
   titulo: string = '';
   contenido: string = '';
+  empleadoId: string;
 
   constructor(
     private alertCtrl: AlertController,
@@ -25,6 +26,7 @@ export class CrearNotaPage implements OnInit {
   ngOnInit() {
   }
 
+  // Muestra una alerta de error genérica
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
@@ -37,6 +39,7 @@ export class CrearNotaPage implements OnInit {
     await alert.present();
   }
 
+  // Muestra una alerta de éxito al crear la nota
   async successAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
@@ -49,11 +52,13 @@ export class CrearNotaPage implements OnInit {
     await alert.present();
   }
 
+  // Resetea el formulario
   resetForm() {
     this.titulo = '';
     this.contenido = '';
   }
 
+  // Cierra la ventana actual y regresa a la página de notas
   cerrar() {
     this.navCtrl.navigateBack(['../notas']);
   }
@@ -63,27 +68,31 @@ export class CrearNotaPage implements OnInit {
   //----------------------------------------------------------------
 
   crearNota() {
-    this.storage.get('rut').then((rut) => {
-      const nota = {
-        titulo: this.titulo,
-        contenido: this.contenido,
-        empleados_rut: rut
-      };
-  
-      this.notasService.posNotas(nota)
-        .subscribe(
+    if (this.titulo && this.contenido) {
+      // Obtener el ID del empleado del localStorage
+      this.storage.get('id').then((empleadoId) => {
+        const nota = {
+          titulo: this.titulo,
+          contenido: this.contenido,
+          empleado: empleadoId
+        };
+
+        this.notasService.posNotas(nota).subscribe(
           () => {
-            console.log('Nota creada exitosamente');
-            this.successAlert();
             this.resetForm();
+            this.successAlert();
+            this.navCtrl.navigateBack(['../notas']);
           },
           error => {
-            console.error('Error al crear la nota', error);
+            console.error(error);
+            this.presentAlert();
           }
         );
-    });
+      });
+    } else {
+      this.presentAlert();
+    }
   }
-  
 
 
 

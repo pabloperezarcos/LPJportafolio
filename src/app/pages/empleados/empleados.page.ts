@@ -37,6 +37,7 @@ export class EmpleadosPage implements OnInit {
     this.getEmpleados();
   }
 
+  // Navegar a la página de creación de empleado
   crearEmpleado() {
     this.navCtrl.navigateForward(['/crear-empleado']);
   }
@@ -94,7 +95,6 @@ export class EmpleadosPage implements OnInit {
   //----------------------------------------------------------------
   // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
-
   async putEmpleados(rut: string) {
     let empleadoActualizado: any = {};
 
@@ -115,12 +115,16 @@ export class EmpleadosPage implements OnInit {
   //----------------------------------------------------------------
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
-  delEmpleados(rut: string) {
-    console.log(rut);
-    this.empleadosService.delEmpleados(rut).subscribe(
-      () => {
-        console.log('Empleado eliminado');
-        // Realiza cualquier acción adicional después de eliminar el empleado
+  async delEmpleados(rut: string) {
+    let empleadoEliminar: any = {};
+
+    // Obtener el empleado existente
+    this.empleadosService.getEmpleados().subscribe(
+      (data: any) => {
+        empleadoEliminar = data.find((empleado: any) => empleado.rut === rut);
+
+        // Mostrar el AlertController para confirmar la eliminación
+        this.mostrarAlertaEliminar(empleadoEliminar);
       },
       (error) => {
         console.error(error);
@@ -132,7 +136,7 @@ export class EmpleadosPage implements OnInit {
   // ALERT CONTROLLER PARA EDITAR
   //----------------------------------------------------------------
   async mostrarAlertaEditar(emp: any) {
-     const alert = await this.alertController.create({
+    const alert = await this.alertController.create({
       header: 'Editar empleado',
       inputs: [
         {
@@ -214,17 +218,20 @@ export class EmpleadosPage implements OnInit {
             const nuevaDireccion = data.direccion;
             const nuevoTipoUsuario = data.tipoUsuario;
             const nuevoEstado = data.estado;
-  
-            // Consultar la base de datos para obtener el ID del empleado por su RUT
-            this.httpClient.get(`http://144.22.40.186:8000/api/empleados?rut=${nuevoRut}`).subscribe(
-              (response: any) => {
-                if (response.length > 0) {
-                  const empleado = response[0];
+
+            this.httpClient.get(`http://144.22.40.186:8000/api/empleados?rut=${emp.rut}`).subscribe(
+              (response: any[]) => {
+                console.log('RUT A BUSCAR EL ID: ' + emp.rut);
+                console.log('Respuesta de la consulta GET: ', response);
+                const empleado = response.find((empleado: any) => empleado.rut === emp.rut);
+                if (empleado) {
                   const empleadoId = empleado.id;
-  
-                  // Construir la URL de actualización con el ID del empleado
+                  console.log('ID ENCONTRADO SEGÚN RUT: ' + empleadoId);
+
+                  // Construir la URL de actualizacion con el ID del empleado
                   const url = `http://144.22.40.186:8000/api/empleados/${empleadoId}/`;
-  
+
+
                   // Realizar la solicitud PUT con los nuevos datos
                   this.httpClient.put(url, {
                     nombre: nuevoNombre,
@@ -250,7 +257,7 @@ export class EmpleadosPage implements OnInit {
               error => {
                 console.error('Error al consultar la base de datos', error);
               }
-            );
+            ); //aqui
           }
         }
       ]
@@ -261,11 +268,10 @@ export class EmpleadosPage implements OnInit {
   //----------------------------------------------------------------
   // ALERT CONTROLLER PARA ELIMINAR
   //----------------------------------------------------------------
-  async mostrarAlertaEliminar(rut: string) {
-    console.log(rut);
+  async mostrarAlertaEliminar(emp: any) {
     const alert = await this.alertController.create({
       header: 'Eliminar empleado',
-      message: '¿Estás seguro de que quieres eliminar a este empleado?',
+      message: `¿Estás seguro de que deseas eliminar al empleado ${emp.nombre}?`,
       buttons: [
         {
           text: 'Cancelar',
@@ -274,18 +280,37 @@ export class EmpleadosPage implements OnInit {
         {
           text: 'Eliminar',
           handler: () => {
-            const url = `http://144.22.40.186:8000/api/empleados/${rut}/`;
+            // Consultar la base de datos para obtener el ID del empleado por su RUT
+            this.httpClient.get(`http://144.22.40.186:8000/api/empleados?rut=${emp.rut}`).subscribe(
+              (response: any[]) => {
+                console.log('RUT A BUSCAR EL ID: ' + emp.rut);
+                console.log('Respuesta de la consulta GET: ', response);
+                const empleado = response.find((empleado: any) => empleado.rut === emp.rut);
+                if (empleado) {
+                  const empleadoId = empleado.id;
+                  console.log('ID ENCONTRADO SEGÚN RUT: ' + empleadoId);
 
-            this.httpClient.delete(url)
-              .subscribe(
-                () => {
-                  this.getEmpleados();
-                  console.log('Empleado eliminado con éxito');
-                },
-                error => {
-                  console.error('Error al eliminar el empleado', error);
+                  // Construir la URL de eliminación con el ID del empleado
+                  const url = `http://144.22.40.186:8000/api/empleados/${empleadoId}/`;
+
+                  // Realizar la solicitud DELETE para eliminar al empleado
+                  this.httpClient.delete(url).subscribe(
+                    () => {
+                      this.getEmpleados();
+                      console.log('Empleado eliminado con éxito');
+                    },
+                    error => {
+                      console.error('Error al eliminar el empleado', error);
+                    }
+                  );
+                } else {
+                  console.error('No se encontró ningún empleado con el RUT proporcionado');
                 }
-              );
+              },
+              error => {
+                console.error('Error al consultar la base de datos', error);
+              }
+            );
           }
         }
       ]
@@ -334,9 +359,6 @@ export class EmpleadosPage implements OnInit {
 
     await modal.present();
   }
-
-
-
 
   /* FIN EMPLEADOS.PAGE.TS */
 }

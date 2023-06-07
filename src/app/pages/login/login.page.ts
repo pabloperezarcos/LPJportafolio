@@ -33,6 +33,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  // Esta función muestra una alerta de error al iniciar sesión
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
@@ -48,7 +49,6 @@ export class LoginPage implements OnInit {
   //----------------------------------------------------------------
   // lógica para iniciar sesión.
   //----------------------------------------------------------------
-
   async iniciarSesion() {
     const credentials = {
       rut: this.run,
@@ -106,9 +106,10 @@ export class LoginPage implements OnInit {
   //----------------------------------------------------------------
 
   async recuperarPass() {
+
+    // Animaciones para mostrar el modal
     const enterAnimation = (baseEl: any) => {
       const root = baseEl.shadowRoot;
-
       const backdropAnimation = this.animationCtrl.create()
         .addElement(root.querySelector('ion-backdrop')!)
         .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
@@ -131,6 +132,7 @@ export class LoginPage implements OnInit {
       return enterAnimation(baseEl).direction('reverse');
     }
 
+    // Crear y mostrar el modal
     const modal = await this.modalCtrl.create({
       component: RecuperarPassModalPage,
       enterAnimation,

@@ -30,6 +30,7 @@ export class CrearEmpleadoPage implements OnInit {
   ngOnInit() {
   }
 
+  // Muestra una alerta de error genérica
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
@@ -42,6 +43,7 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
+  // Muestra una alerta de éxito al guardar el empleado
   async successAlert() {
     const alert = await this.alertCtrl.create({
       backdropDismiss: false,
@@ -54,6 +56,7 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
+  // Muestra una alerta de error específica para el campo RUN
   async mostrarAlertaRun() {
     const alert = await this.alertCtrl.create({
       header: 'Error de RUN',
@@ -64,6 +67,7 @@ export class CrearEmpleadoPage implements OnInit {
     await alert.present();
   }
 
+  // Resetea el formulario
   resetForm() {
     this.nombre = '';
     this.ap_paterno = '';
@@ -76,6 +80,7 @@ export class CrearEmpleadoPage implements OnInit {
     this.tipo_usuario = 'activo';
   }
 
+  // Cierra la ventana actual y regresa a la página de empleados
   async cerrar() {
     const alert = await this.alertCtrl.create({
       header: 'Confirmar cierre',
@@ -104,11 +109,13 @@ export class CrearEmpleadoPage implements OnInit {
   //----------------------------------------------------------------
 
   crearEmpleado() {
+    // Verifica si las contraseñas coinciden
     if (this.password !== this.pass2) {
       this.presentAlert();
       return;
     }
 
+    // Valida el campo RUN
     if (this.validarRut(this.rut)) {
       const empleado = {
         nombre: this.nombre,
