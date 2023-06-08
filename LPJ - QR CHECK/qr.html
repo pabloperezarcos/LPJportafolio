@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        function mostrarConfirmacion() {
+            document.getElementById("mensajeConfirmacion").style.display = "block";
+        }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="estilos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+
+    <link rel="icon" href="icono e imagenes/logos-01-01.png">
+    <title>LPJ</title>
+</head>
+
+<body>
+    <!--Inicio de barra de navegacion-->
+    <nav class="navbar navbar-expand-lg position-absolute w-100">
+        <div class="container">
+            <a href="http://lpj.carnesag.cl"><img src="icono e imagenes/logos-01-01.png" alt="" width="40"> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars lead text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <div class=".nav-container ">
+                        <li class="nav-item d-flex">
+                            <a class="nav-link align-self-center fw-bold" aria-current="page" href="http://lpj.carnesag.cl">La empresa</a>
+          </li>
+        </div>
+          
+                        <li class="nav-item">
+                            <a class="btn btn-secundary text-light fw-bold"
+                                href="https://drive.google.com/file/d/19Aogw-Cropiysx2w3s2Hjj6cMevZFYK3/view?usp=share_link">Descarga
+                                la App</a>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Termino de barra de navegacion-->
+
+    <!--Inicio de imagen de fondo-->
+    <div class="wrap">
+        <div class="wrap-texto">
+        
+            <div id="qr-container" style="margin-right: 30px;"></div>
+
+
+            <label class="label" id="server-time-label"></label>
+            <label class="label" id="fecha-label"></label>
+            <label class="label" id="hora-label"></label>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="qrcodejs-master/qrcode.min.js"></script>
+
+            <script>
+                function obtenerFechaHoraServidor() {
+                    $.ajax({
+                        url: 'obtener_fecha_hora_servidor.php',
+                        type: 'GET',
+                        success: function (response) {
+                            mostrarCodigoQR(response);
+                            mostrarHoraServidor(response);
+                        }
+                    });
+                }
+
+                function mostrarCodigoQR(texto) {
+                    var qrContainer = document.getElementById('qr-container');
+                    qrContainer.innerHTML = ''; // Eliminar el contenido anterior
+                    var qrcode = new QRCode(qrContainer, {
+                        text: texto,
+                        width: 405,
+                        height: 405
+                    });
+                }
+
+
+                setInterval(obtenerFechaHoraServidor, 15000);
+                obtenerFechaHoraServidor();
+            </script>
+            
+        </div>
+    </div>
+
+    <!--Inicio imagen y texto 2 columnas-->
+    <div class="columnas">
+        <div class="textos mb-5 my-5">
+            <img src="icono e imagenes/celulares.png" alt="celular" width="80%">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1>Los principales objetivos</h1>
+            <p>
+                • Reducir los tiempos destinados para registrar la asistencia
+                • Minimizar errores de registros por motivos ya mencionados
+                • Instar a los alumnos a asistir presencialmente a clases
+                • Mejorar el proceso de reportes de asistencias</p>
+
+            <img src="icono e imagenes/raya_Mesa de trabajo 1.png" alt="raya" width="60%">
+
+            <h1>Pasos para el uso de la App</h1>
+
+            <p>1. Docente ingresa a sistema web con sus credenciales de acceso.</p>
+            <p>2. Docente comienza proceso de Asistencia en Línea, haciendo clic en un botón que genere un código QR.
+            </p>
+            <p>3. Este código QR se despliega en el proyector de cada aula.</p>
+            <p>4. Los alumnos ingresan a la App ingresando sus credenciales de acceso.</p>
+            <p>5. Se despliega la cámara del dispositivo móvil.</p>
+            <p>6. El código es leído y a su vez, registrado.</p>
+            <p>7. La asistencia queda registrada con su día y hora correctamente.</p>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row text-center text-xs-center text-sm-left text-md-left">
+                <div class="col-xs-12  col-md-4">
+                    <div class="my-2">
+                        <img src="icono e imagenes/logos-02.svg" alt="" width="45px">
+                    </div>
+                    <ul class="list-unstyled quick-links">
+                        <li>
+                            <h4 class="texto-justificado">Nuestra experiencia TI nos permite ser el
+                                aliado
+                                tecnológico que necesitas en tus desafíos digitales.
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>SERVICIO TI</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li>
+                            <h4>Arquitectura
+                                <br>
+                                Desarrollo
+                                <br>
+                                Servicio QA
+                            </h4>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <h5>NOSOTROS</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li>
+                            <h4>contacto@lpj.cl
+                                <br>
+                                + 56 9 3362 5611
+                            </h4>
+                            <div class="my-4 mb-4">
+                                <div class="icono-container">
+                                    <a href="https://es-la.facebook.com/" class="href">
+                                        <img src="icono e imagenes/facebook.svg" alt="" width="40px">
+                                    </a>
+                                </div>
+                                <div class="icono-container">
+                                    <a href="https://web.whatsapp.com/" class="href">
+                                        <img src="icono e imagenes/whatsapp.svg" alt="" width="40px">
+                                    </a>
+                                </div>
+                                <div class="icono-container">
+                                    <a href="https://www.instagram.com/" class="href">
+                                        <img src="icono e imagenes/instagram.svg" alt="" width="40px">
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <!-- ./Footer -->
+
+</body>
+
+</html>

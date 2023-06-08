@@ -1,0 +1,59 @@
+[30-May-2023 23:02:17 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:11:55 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:12:40 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:34:30 America/Santiago] PHP Notice:  Undefined index: full_name in /home/carnesag/public_html/lpj/procesar_formulario.php on line 6
+[30-May-2023 23:34:30 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:34:30 America/Santiago] PHP Notice:  Undefined index: message in /home/carnesag/public_html/lpj/procesar_formulario.php on line 8
+[30-May-2023 23:34:50 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:37:41 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:38:44 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:44:05 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:51:40 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:55:12 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:56:12 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:56:16 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[30-May-2023 23:58:48 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[31-May-2023 00:03:46 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[31-May-2023 00:06:56 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[31-May-2023 00:07:14 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[31-May-2023 00:07:15 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[31-May-2023 00:07:25 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[01-Jun-2023 08:01:38 America/Santiago] PHP Notice:  Undefined index: full_name in /home/carnesag/public_html/lpj/procesar_formulario.php on line 6
+[01-Jun-2023 08:01:38 America/Santiago] PHP Notice:  Undefined index: exampleInputEmail1 in /home/carnesag/public_html/lpj/procesar_formulario.php on line 7
+[01-Jun-2023 08:01:38 America/Santiago] PHP Notice:  Undefined index: message in /home/carnesag/public_html/lpj/procesar_formulario.php on line 8
+[01-Jun-2023 17:05:27 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:05:27 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:05:47 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:05:47 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:06:07 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:06:07 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:06:27 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:06:27 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:06:47 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:06:47 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:07:07 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:07:07 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:07:27 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:07:27 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:07:47 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:07:47 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:08:07 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:08:07 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:08:27 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:08:27 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:08:47 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:08:47 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:09:07 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:09:07 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:09:27 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:09:27 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:09:47 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:09:47 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:10:07 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:10:07 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:10:27 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:10:27 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:10:47 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:10:47 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:11:07 America/Santiago] PHP Warning:  require(phpqrcode/qrlib.php): failed to open stream: No such file or directory in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
+[01-Jun-2023 17:11:07 America/Santiago] PHP Fatal error:  require(): Failed opening required 'phpqrcode/qrlib.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/carnesag/public_html/lpj/obtener_fecha_hora_servidor.php on line 20
