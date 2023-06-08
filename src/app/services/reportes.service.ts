@@ -14,8 +14,5 @@ export class ReportesService {
     console.log('URL:', url);
     return this.httpClient.get(url);
   }
-  
-  
-
 
 }
