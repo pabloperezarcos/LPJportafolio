@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { EmpleadosService } from 'src/app/services/empleados.service';
-import { AlertController } from '@ionic/angular';
 import { PdfService } from 'src/app/services/pdf.service';
 import { XlsxService } from 'src/app/services/xlsx.service';
 
@@ -16,10 +15,10 @@ export class RIndividualPage implements OnInit {
   report: any;
   empleados: any[] = [];
 
-  myDate: string;
-
   empleadoSeleccionado: number;
-  fechaSeleccionada: string;
+  fechaInicio: string = null;
+  fechaFin: string = null;
+  asistenciasFiltradas: any[] = [];
 
   showCalendarInicio: boolean = false;
   showCalendarFin: boolean = false;
@@ -69,22 +68,31 @@ export class RIndividualPage implements OnInit {
   obtenerAsistencias() {
     if (!this.empleadoSeleccionado) {
       this.mostrarAlerta('Error', 'No se ha seleccionado ningún empleado.');
-      return; // No se ha seleccionado ningún empleado, salir del método
+      return;
     }
 
-    const empleadoId = this.empleadoSeleccionado.toString(); // Convertir a cadena de texto
-    console.log('Empleado ID:', empleadoId);
+    if (!this.fechaInicio || !this.fechaFin) {
+      this.mostrarAlerta('Error', 'No se han seleccionado las fechas.');
+      return;
+    }
+
+    const empleadoId = this.empleadoSeleccionado.toString();
+    const fechaInicioTimestamp = new Date(this.fechaInicio).getTime();
+    const fechaFinTimestamp = new Date(this.fechaFin).getTime();
 
     this.reportesService.getAsistenciasPorEmpleado(empleadoId).subscribe(
       (asistencias: any) => {
         this.report = asistencias;
+        this.asistenciasFiltradas = this.report.filter((asistencia) => {
+          const fechaRegistroTimestamp = new Date(asistencia.fecha_registro).getTime();
+          return fechaRegistroTimestamp >= fechaInicioTimestamp && fechaRegistroTimestamp <= fechaFinTimestamp;
+        });
       },
       (error) => {
         console.error(error);
       }
     );
   }
-
 
   // Muestra una alerta con un título y un mensaje
   async mostrarAlerta(titulo: string, mensaje: string) {
@@ -101,7 +109,6 @@ export class RIndividualPage implements OnInit {
     const utcDay = date.getUTCDay();
     return utcDay !== 0;
   };
-
 
   exportarPDF() {
     if (!this.report || this.report.length === 0) {

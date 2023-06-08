@@ -47,7 +47,11 @@
     <br>
   </ion-card>
 
-  <div *ngIf="report">
+  <div *ngIf="asistenciasFiltradas && asistenciasFiltradas.length === 0">
+    <p class="ion-text-center">No existen registros.</p>
+  </div>
+
+  <div *ngIf="asistenciasFiltradas && asistenciasFiltradas.length > 0">
     <table class="tabla-centrada">
       <thead>
         <tr>
@@ -57,7 +61,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let entry of report" [hidden]="entry.empleado !== empleadoSeleccionado">
+        <tr *ngFor="let entry of asistenciasFiltradas" [hidden]="entry.empleado !== empleadoSeleccionado">
           <td>{{ entry.fecha_registro | date: 'dd-MM-yyyy' }}</td>
           <td>{{ entry.hora_entrada | date: 'HH:mm' }}</td>
           <td>{{ entry.hora_salida | date: 'HH:mm' }}</td>
