@@ -14,12 +14,10 @@ export class RIndividualPage implements OnInit {
 
   report: any;
   empleados: any[] = [];
-
   empleadoSeleccionado: number;
   fechaInicio: string = null;
   fechaFin: string = null;
   asistenciasFiltradas: any[] = [];
-
   showCalendarInicio: boolean = false;
   showCalendarFin: boolean = false;
 
@@ -52,7 +50,9 @@ export class RIndividualPage implements OnInit {
     }
   }
 
+  //----------------------------------------------------------------
   // Obtiene la lista de empleados desde el servicio de empleados
+  //----------------------------------------------------------------
   obtenerEmpleados() {
     this.empleadosService.getEmpleados().subscribe(
       (empleados: object) => {
@@ -64,7 +64,9 @@ export class RIndividualPage implements OnInit {
     );
   }
 
+  //----------------------------------------------------------------
   // Obtiene las asistencias para un empleado y un rango de fechas desde el servicio de reportes
+  //----------------------------------------------------------------
   obtenerAsistencias() {
     if (!this.empleadoSeleccionado) {
       this.mostrarAlerta('Error', 'No se ha seleccionado ningún empleado.');
@@ -94,7 +96,9 @@ export class RIndividualPage implements OnInit {
     );
   }
 
+  //----------------------------------------------------------------
   // Muestra una alerta con un título y un mensaje
+  //----------------------------------------------------------------
   async mostrarAlerta(titulo: string, mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: titulo,
@@ -111,23 +115,9 @@ export class RIndividualPage implements OnInit {
   };
 
   exportarPDF() {
-    if (!this.report || this.report.length === 0) {
-      // Mostrar alerta si no hay reporte generado
-      this.mostrarAlerta('Error', 'No se ha generado ningún reporte');
-      return;
-    }
-    // Llamar al método exportarPDF() del PdfService
-    this.pdfService.exportarPDF(this.report);
   }
 
   exportarXLSX() {
-    if (!this.report || this.report.length === 0) {
-      // Mostrar alerta si no hay reporte generado
-      this.mostrarAlerta('Error', 'No se ha generado ningún reporte');
-      return;
-    }
-    // Llamar al método exportarXLSX() del XlsxService
-    this.xlsxService.exportarXLSX(this.report, 'reporte.xlsx');
   }
 
   compartirWhatsApp() {
@@ -136,7 +126,9 @@ export class RIndividualPage implements OnInit {
   compartirGmail() {
   }
 
+  //----------------------------------------------------------------
   // Esta función cierra el modal actual y lo descarta
+  //----------------------------------------------------------------
   cerrar() {
     this.modalCtrl.dismiss();
   }

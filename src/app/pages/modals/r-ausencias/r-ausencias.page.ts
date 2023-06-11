@@ -34,6 +34,9 @@ export class RAusenciasPage implements OnInit {
     this.obtenerEmpleados();
   }
 
+  //----------------------------------------------------------------
+  // Obtiene la lista de empleados desde el servicio
+  //----------------------------------------------------------------
   obtenerEmpleados() {
     this.empleadosService.getEmpleados().subscribe(
       (empleados: any[]) => {
@@ -45,6 +48,9 @@ export class RAusenciasPage implements OnInit {
     );
   }
 
+  //----------------------------------------------------------------
+  // Obtiene los nombres de los empleados para el reporte actual
+  //----------------------------------------------------------------
   obtenerNombresEmpleados() {
     this.empleadosService.getEmpleados().subscribe(
       (data: any[]) => {
@@ -62,6 +68,9 @@ export class RAusenciasPage implements OnInit {
     );
   }
 
+  //----------------------------------------------------------------
+  // Obtiene las asistencias para el empleado y mes seleccionados
+  //----------------------------------------------------------------
   obtenerAsistencias() {
     if (!this.empleadoSeleccionado || !this.seleccionarMes) {
       this.mostrarAlerta('Error', 'Debes seleccionar un empleado y un mes');
@@ -89,8 +98,6 @@ export class RAusenciasPage implements OnInit {
           estado: this.getEstadoAsistencia(dia)
         }));
 
-
-
         this.obtenerNombresEmpleados();
       },
       (error) => {
@@ -100,6 +107,9 @@ export class RAusenciasPage implements OnInit {
     );
   }
 
+  //----------------------------------------------------------------
+  // Genera las inasistencias para los días del mes seleccionado
+  //----------------------------------------------------------------
   generarInasistencias(asistenciasFiltradas: any[]) {
     const inasistencias = [];
 
@@ -114,6 +124,9 @@ export class RAusenciasPage implements OnInit {
     return inasistencias;
   }
 
+  //----------------------------------------------------------------
+  // Verifica si existe una asistencia para la fecha especificada
+  //----------------------------------------------------------------
   existeAsistencia(fecha: string, asistenciasFiltradas: any[]): boolean {
     if (!asistenciasFiltradas || asistenciasFiltradas.length === 0) {
       return false;
@@ -121,13 +134,15 @@ export class RAusenciasPage implements OnInit {
 
     const fechaBuscar = format(parseISO(fecha), 'yyyy-MM-dd');
 
-
     return asistenciasFiltradas.some(asistencia => {
       const fechaAsistencia = new Date(asistencia.fecha_registro.split('T')[0]);
       return format(fechaAsistencia, 'yyyy-MM-dd') === format(parseISO(fechaBuscar), 'yyyy-MM-dd');
     });
   }
 
+  //----------------------------------------------------------------
+  // Obtiene el estado de la asistencia para el día especificado
+  //----------------------------------------------------------------
   getEstadoAsistencia(dia: Date): string {
     const fechaActual = new Date();
     const fechaRegistro = format(dia, 'yyyy-MM-dd');
@@ -145,21 +160,33 @@ export class RAusenciasPage implements OnInit {
     }
   }
 
+  //----------------------------------------------------------------
+  // Obtiene el número de días en el mes seleccionado
+  //----------------------------------------------------------------
   getDiasEnMes() {
     const fecha = new Date(this.obtenerAnio(), this.getMonthIndex(this.seleccionarMes), 1);
     return new Date(fecha.getFullYear(), fecha.getMonth() + 1, 0).getDate();
   }
 
+  //----------------------------------------------------------------
+  // Obtiene el año actual
+  //----------------------------------------------------------------
   obtenerAnio() {
     return new Date().getFullYear();
   }
 
+  //----------------------------------------------------------------
+  // Obtiene el nombre del día de la semana para el día especificado
+  //----------------------------------------------------------------
   obtenerDiaSemana(dia: Date): string {
     const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     const indiceDia = dia.getDay();
     return diasSemana[indiceDia];
   }
 
+  //----------------------------------------------------------------
+  // Obtiene el total de días ausentes en el mes seleccionado
+  //----------------------------------------------------------------
   getTotalDiasAusentes(): number {
     let count = 0;
     for (const dia of this.diasEnMes) {
@@ -170,6 +197,9 @@ export class RAusenciasPage implements OnInit {
     return count;
   }
 
+  //----------------------------------------------------------------
+  // Obtiene el índice del mes a partir del nombre del mes
+  //----------------------------------------------------------------
   getMonthIndex(monthName: string) {
     const monthNames = [
       'enero',
@@ -188,7 +218,9 @@ export class RAusenciasPage implements OnInit {
     return monthNames.indexOf(monthName.toLowerCase());
   }
 
+  //----------------------------------------------------------------
   // Muestra una alerta con un título y un mensaje
+  //----------------------------------------------------------------
   async mostrarAlerta(titulo: string, mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: titulo,
@@ -199,36 +231,33 @@ export class RAusenciasPage implements OnInit {
     await alert.present();
   }
 
+  //----------------------------------------------------------------
+  // Exporta el reporte como PDF
+  //----------------------------------------------------------------
   exportarPDF() {
-    if (!this.report || this.report.length === 0) {
-      // Mostrar alerta si no hay reporte generado
-      this.mostrarAlerta('Error', 'No se ha generado ningún reporte');
-      return;
-    }
-
-    // Llamar al método exportarPDF() del PdfService
-    this.pdfService.exportarPDF(this.report);
   }
 
+  //----------------------------------------------------------------
+  // Exporta el reporte como archivo XLSX
+  //----------------------------------------------------------------
   exportarXLSX() {
-    if (!this.report || this.report.length === 0) {
-      // Mostrar alerta si no hay reporte generado
-      this.mostrarAlerta('Error', 'No se ha generado ningún reporte');
-      return;
-    }
-
-    // Llamar al método exportarXLSX() del XlsxService
-    this.xlsxService.exportarXLSX(this.report, 'reporte.xlsx');
   }
 
+  //----------------------------------------------------------------
+  // Comparte el reporte a través de WhatsApp
+  //----------------------------------------------------------------
   compartirWhatsApp() {
   }
 
+  //----------------------------------------------------------------
+  // Comparte el reporte a través de Gmail
+  //----------------------------------------------------------------
   compartirGmail() {
   }
 
-
+  //----------------------------------------------------------------
   // Esta función cierra el modal actual y lo descarta
+  //----------------------------------------------------------------
   cerrar() {
     this.modalCtrl.dismiss();
   }

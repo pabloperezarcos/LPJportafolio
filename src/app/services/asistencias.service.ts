@@ -15,7 +15,6 @@ export class AsistenciaService {
   //----------------------------------------------------------------
   // GET: Obtener usuario de la base de datos
   //----------------------------------------------------------------
-  
   getAsistencias() {
     return this.httpClient.get(this.urlBase);
   }
@@ -23,7 +22,6 @@ export class AsistenciaService {
   //----------------------------------------------------------------
   // DEL: Borrar usuario de la base de datos
   //----------------------------------------------------------------
-
   deleteAsistencia(id: number) {
     const url = `${this.urlBase}${id}/`;
     return this.httpClient.delete(url);
@@ -32,7 +30,6 @@ export class AsistenciaService {
   //----------------------------------------------------------------
   // PUT: Actualizar usuario de la base de datos
   //----------------------------------------------------------------
-
   updateAsistencia(id: number, asistencia: any) {
     const url = `${this.urlBase}${id}/`;
     return this.httpClient.put(url, asistencia);
@@ -41,11 +38,9 @@ export class AsistenciaService {
   //----------------------------------------------------------------
   // POS: Crear usuario de la base de datos
   //----------------------------------------------------------------
-
   createAsistencia(asistencia: any) {
     return this.httpClient.post(this.urlBase, asistencia);
   }
-
 
   //----------------------------------------------------------------
   // FIN SERVICE

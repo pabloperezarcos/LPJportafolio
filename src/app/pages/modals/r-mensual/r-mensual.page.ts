@@ -28,7 +28,9 @@ export class RMensualPage implements OnInit {
   ngOnInit() {
   }
 
+  //----------------------------------------------------------------
   // Obtiene las asistencias para un empleado y un rango de fechas desde el servicio de reportes
+  //----------------------------------------------------------------
   obtenerAsistencias() {
     this.asistenciaService.getAsistencias().subscribe(
       (asistencias: any[]) => {
@@ -101,7 +103,9 @@ export class RMensualPage implements OnInit {
     );
   }
 
+  //----------------------------------------------------------------
   // Muestra una alerta con un título y un mensaje
+  //----------------------------------------------------------------
   async mostrarAlerta(titulo: string, mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: titulo,
@@ -146,7 +150,9 @@ export class RMensualPage implements OnInit {
   compartirGmail() {
   }
 
+  //----------------------------------------------------------------
   // Esta función cierra el modal actual y lo descarta
+  //----------------------------------------------------------------
   cerrar() {
     this.modalCtrl.dismiss();
   }
