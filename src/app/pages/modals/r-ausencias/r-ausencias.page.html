@@ -46,13 +46,16 @@
   </ion-card>
 
   <div>
-    <p class="ion-text-center">Reporte de Ausencias:</p>
-    <p>OK: Días con registros de entrada.</p>
-    <p>Ausente: Días sin registros de entrada.</p>
-    <p>N/A: No aplica. Días que aún no ocurren.</p>
-    <p class="ion-text-center">-------------------</p>
-    <p class="ion-text-center">Resumen:</p>
-    <p>Días ausente: {{ getTotalDiasAusentes() }}</p>
+    <div class="ion-text-center">
+
+      <p>Reporte de Ausencias:</p>
+      <p>OK: Días con registros de entrada.</p>
+      <p>Ausente: Días sin registros de entrada.</p>
+      <p>N/A: No aplica. Días que aún no ocurren.</p>
+      <p>-------------------</p>
+      <p>Resumen:</p>
+      <p>Días ausente: {{ getTotalDiasAusentes() }}</p>
+    </div>
 
     <table class="tabla-centrada">
       <thead>
