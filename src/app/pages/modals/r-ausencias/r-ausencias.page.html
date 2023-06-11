@@ -45,14 +45,19 @@
     <br>
   </ion-card>
 
-  <!-- --------------------------- -->
-
-
-
   <div>
+    <p class="ion-text-center">Reporte de Ausencias:</p>
+    <p>OK: Días con registros de entrada.</p>
+    <p>Ausente: Días sin registros de entrada.</p>
+    <p>N/A: No aplica. Días que aún no ocurren.</p>
+    <p class="ion-text-center">-------------------</p>
+    <p class="ion-text-center">Resumen:</p>
+    <p>Días ausente: {{ getTotalDiasAusentes() }}</p>
+
     <table class="tabla-centrada">
       <thead>
         <tr>
+          <th>Día</th>
           <th>Fecha</th>
           <th>Asistencia</th>
         </tr>
@@ -60,19 +65,14 @@
       <tbody>
         <ng-container *ngFor="let dia of diasEnMes">
           <tr>
+            <td>{{ obtenerDiaSemana(dia) }}</td>
             <td>{{ dia | date: 'dd-MM-yyyy' }}</td>
             <td>{{ getEstadoAsistencia(dia) }}</td>
           </tr>
         </ng-container>
       </tbody>
     </table>
-
   </div>
-
-
-
-
-  <!-- --------------------------- -->
 
   <div *ngIf="report" class="ion-text-center">
     <br>

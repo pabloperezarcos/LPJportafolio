@@ -18,7 +18,8 @@ export class RAusenciasPage implements OnInit {
   empleados: any[] = [];
   empleadoSeleccionado: number;
   seleccionarMes: string;
-  diasEnMes: Date[];
+//  diasEnMes: Date[];
+  diasEnMes: Date[] = [];
 
   asistenciasFiltradas: any[] = [];
 
@@ -133,11 +134,14 @@ export class RAusenciasPage implements OnInit {
   }
 
   getEstadoAsistencia(dia: Date): string {
+    const fechaActual = new Date();
     const fechaRegistro = format(dia, 'yyyy-MM-dd');
-    const asistenciaExistente = this.asistenciasFiltradas.some(asistencia => format(parseISO(asistencia.fecha_registro), 'yyyy-MM-dd') === format(dia, 'yyyy-MM-dd'));
+    const asistenciaExistente = this.existeAsistencia(fechaRegistro, this.asistenciasFiltradas);
     const esFinDeSemana = dia.getDay() === 0 || dia.getDay() === 6;
 
-    if (esFinDeSemana && !asistenciaExistente) {
+    if (dia > fechaActual) {
+      return 'N/A';
+    } else if (esFinDeSemana && !asistenciaExistente) {
       return 'Fin de semana';
     } else if (asistenciaExistente) {
       return 'OK';
@@ -154,6 +158,25 @@ export class RAusenciasPage implements OnInit {
   obtenerAnio() {
     return new Date().getFullYear();
   }
+
+  obtenerDiaSemana(dia: Date): string {
+    const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const indiceDia = dia.getDay();
+    return diasSemana[indiceDia];
+  }
+
+
+  getTotalDiasAusentes(): number {
+    let count = 0;
+    for (const dia of this.diasEnMes) {
+      if (this.getEstadoAsistencia(dia) === 'Ausente') {
+        count++;
+      }
+    }
+    return count;
+  }
+
+
 
   getMonthIndex(monthName: string) {
     const monthNames = [
