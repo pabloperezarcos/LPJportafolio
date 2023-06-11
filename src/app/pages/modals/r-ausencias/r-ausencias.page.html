@@ -7,16 +7,98 @@
 
 <ion-content>
 
+  <ion-card class="translucent-card">
+    <ion-list>
+      <ion-item>
+        <ion-label>Empleado:</ion-label>
+        <ion-select placeholder="Seleccionar empleado" [(ngModel)]="empleadoSeleccionado">
+          <ion-select-option *ngFor="let empleado of empleados" [value]="empleado.id">
+            {{ empleado.nombre}} {{empleado.ap_paterno}} {{empleado.ap_materno}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
 
-
-  <div class="ion-text-center">
+      <ion-item>
+        <ion-label>Mes:</ion-label>
+        <ion-select [(ngModel)]="seleccionarMes">
+          <ion-select-option value="enero">Enero</ion-select-option>
+          <ion-select-option value="febrero">Febrero</ion-select-option>
+          <ion-select-option value="marzo">Marzo</ion-select-option>
+          <ion-select-option value="abril">Abril</ion-select-option>
+          <ion-select-option value="mayo">Mayo</ion-select-option>
+          <ion-select-option value="junio">Junio</ion-select-option>
+          <ion-select-option value="julio">Julio</ion-select-option>
+          <ion-select-option value="agosto">Agosto</ion-select-option>
+          <ion-select-option value="septiembre">Septiembre</ion-select-option>
+          <ion-select-option value="octubre">Octubre</ion-select-option>
+          <ion-select-option value="noviembre">Noviembre</ion-select-option>
+          <ion-select-option value="diciembre">Diciembre</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
     <br>
-    <ion-label>Descargar   
+    <div class="ion-text-center">
+      <ion-button expand="none" shape="round" color="primary" (click)="obtenerAsistencias()">
+        Obtener Reporte
+      </ion-button>
+    </div>
+    <br>
+  </ion-card>
+
+  <!-- --------------------------- -->
+
+<!--   <div *ngIf="report && inasistencias">
+    <table class="tabla-centrada">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Asistencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asistencia of inasistencias">
+          <td>{{ asistencia.fecha | date: 'dd-MM-yyyy' }}</td>
+          <td>
+            {{ asistencia.inasistencia ? (asistencia.fecha.getDay() === 6 ? 'Sábado' : 'Domingo') :
+            (existeAsistencia(asistencia.fecha | date: 'yyyy-MM-dd')) ? 'OK' : 'Ausente' }}
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+  <div *ngIf="report && asistenciasFiltradas">
+    <table class="tabla-centrada">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Asistencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asistencia of report">
+          <td>{{ asistencia.fecha | date: 'dd-MM-yyyy' }}</td>
+          <td>
+            {{ asistencia.estado }}
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
+
+
+  <!-- --------------------------- -->
+
+  <div *ngIf="report" class="ion-text-center">
+    <br>
+    <ion-label>Descargar
       <ion-icon name="cloud-download-outline" style="font-size: 18px;" slot="end"></ion-icon>
     </ion-label>
 
   </div>
-  <div class="ion-text-center">
+  <div *ngIf="report" class="ion-text-center">
     <ion-button fill="none" size="large" (click)="exportarPDF()">
       <ion-icon src="../../../../assets/icon/pdf.svg" style="font-size: 50px;"></ion-icon>
     </ion-button>
