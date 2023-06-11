@@ -6,7 +6,6 @@ import { PdfService } from 'src/app/services/pdf.service';
 import { XlsxService } from 'src/app/services/xlsx.service';
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, parseISO, getMonth } from 'date-fns';
 
-
 @Component({
   selector: 'app-r-ausencias',
   templateUrl: './r-ausencias.page.html',
@@ -18,7 +17,6 @@ export class RAusenciasPage implements OnInit {
   empleados: any[] = [];
   empleadoSeleccionado: number;
   seleccionarMes: string;
-//  diasEnMes: Date[];
   diasEnMes: Date[] = [];
 
   asistenciasFiltradas: any[] = [];
@@ -102,7 +100,6 @@ export class RAusenciasPage implements OnInit {
     );
   }
 
-
   generarInasistencias(asistenciasFiltradas: any[]) {
     const inasistencias = [];
 
@@ -116,8 +113,6 @@ export class RAusenciasPage implements OnInit {
 
     return inasistencias;
   }
-
-
 
   existeAsistencia(fecha: string, asistenciasFiltradas: any[]): boolean {
     if (!asistenciasFiltradas || asistenciasFiltradas.length === 0) {
@@ -165,7 +160,6 @@ export class RAusenciasPage implements OnInit {
     return diasSemana[indiceDia];
   }
 
-
   getTotalDiasAusentes(): number {
     let count = 0;
     for (const dia of this.diasEnMes) {
@@ -175,8 +169,6 @@ export class RAusenciasPage implements OnInit {
     }
     return count;
   }
-
-
 
   getMonthIndex(monthName: string) {
     const monthNames = [
@@ -195,8 +187,6 @@ export class RAusenciasPage implements OnInit {
     ];
     return monthNames.indexOf(monthName.toLowerCase());
   }
-
-
 
   // Muestra una alerta con un título y un mensaje
   async mostrarAlerta(titulo: string, mensaje: string) {
