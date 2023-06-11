@@ -18,8 +18,27 @@ export class RAusenciasPage implements OnInit {
   empleadoSeleccionado: number;
   seleccionarMes: string;
   diasEnMes: Date[] = [];
-
   asistenciasFiltradas: any[] = [];
+
+  feriadosChile: { fecha: string, nombre: string }[] = [
+    { fecha: '2023-01-01', nombre: 'Año Nuevo' },
+    { fecha: '2023-01-02', nombre: 'Feriado Adicional' },
+    { fecha: '2023-04-07', nombre: 'Viernes Santo' },
+    { fecha: '2023-04-08', nombre: 'Sábado Santo' },
+    { fecha: '2023-05-01', nombre: 'Día Nacional del Trabajo' },
+    { fecha: '2023-05-21', nombre: 'Día de las Glorias Navales' },
+    { fecha: '2023-06-21', nombre: 'Día Nacional de los Pueblos Indígenas' },
+    { fecha: '2023-06-26', nombre: 'San Pedro y San Pablo' },
+    { fecha: '2023-07-16', nombre: 'Día de la Virgen del Carmen' },
+    { fecha: '2023-08-15', nombre: 'Asunción de la Virgen' },
+    { fecha: '2023-09-18', nombre: 'Independencia Nacional' },
+    { fecha: '2023-09-19', nombre: 'Día de las Glorias del Ejército' },
+    { fecha: '2023-10-09', nombre: 'Encuentro de Dos Mundos' },
+    { fecha: '2023-10-27', nombre: 'Día de las Iglesias Evangélicas y Protestantes' },
+    { fecha: '2023-11-01', nombre: 'Día de Todos los Santos' },
+    { fecha: '2023-12-08', nombre: 'Inmaculada Concepción' },
+    { fecha: '2023-12-25', nombre: 'Navidad' },
+  ];
 
   constructor(
     private modalCtrl: ModalController,
@@ -116,13 +135,14 @@ export class RAusenciasPage implements OnInit {
     for (const dia of this.diasEnMes) {
       const fechaRegistro = format(dia, 'yyyy-MM-dd');
       const asistenciaExistente = this.existeAsistencia(fechaRegistro, asistenciasFiltradas);
-      const inasistencia = !asistenciaExistente && (dia.getDay() === 0 || dia.getDay() === 6);
+      const inasistencia = !asistenciaExistente && (dia.getDay() === 0 || dia.getDay() === 6 || this.esFeriadoEnChile(fechaRegistro));
 
       inasistencias.push({ fecha: format(dia, 'yyyy-MM-dd'), inasistencia });
     }
 
     return inasistencias;
   }
+
 
   //----------------------------------------------------------------
   // Verifica si existe una asistencia para la fecha especificada
@@ -148,9 +168,12 @@ export class RAusenciasPage implements OnInit {
     const fechaRegistro = format(dia, 'yyyy-MM-dd');
     const asistenciaExistente = this.existeAsistencia(fechaRegistro, this.asistenciasFiltradas);
     const esFinDeSemana = dia.getDay() === 0 || dia.getDay() === 6;
+    const esFeriado = this.esFeriadoEnChile(fechaRegistro);
 
     if (dia > fechaActual) {
       return 'N/A';
+    } else if (esFeriado) {
+      return 'Feriado';
     } else if (esFinDeSemana && !asistenciaExistente) {
       return 'Fin de semana';
     } else if (asistenciaExistente) {
@@ -158,6 +181,13 @@ export class RAusenciasPage implements OnInit {
     } else {
       return 'Ausente';
     }
+  }
+
+  //----------------------------------------------------------------
+  //Verifica si una fecha específica es un día feriado en Chile.
+  //----------------------------------------------------------------
+  esFeriadoEnChile(fecha: string): boolean {
+    return this.feriadosChile.some(feriado => feriado.fecha === fecha);
   }
 
   //----------------------------------------------------------------
