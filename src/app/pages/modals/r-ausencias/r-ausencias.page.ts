@@ -91,32 +91,41 @@ export class RAusenciasPage implements OnInit {
   // Obtiene las asistencias para el empleado y mes seleccionados
   //----------------------------------------------------------------
   obtenerAsistencias() {
+    // Verificar si no se ha seleccionado un empleado o un mes
     if (!this.empleadoSeleccionado || !this.seleccionarMes) {
       this.mostrarAlerta('Error', 'Debes seleccionar un empleado y un mes');
       return;
     }
 
+    // Obtener las asistencias del servicio
     this.asistenciasService.getAsistencias().subscribe(
       (asistencias: any[]) => {
+
+        // Filtrar las asistencias por empleado y mes seleccionado
         this.asistenciasFiltradas = asistencias.filter(asistencia => {
           const fecha = parseISO(asistencia.fecha_registro);
           const mes = getMonth(fecha);
           return asistencia.empleado === this.empleadoSeleccionado && mes === this.getMonthIndex(this.seleccionarMes);
         });
 
+        // Calcular el primer y último día del mes seleccionado
         const primerDiaMes = startOfMonth(new Date(this.obtenerAnio(), this.getMonthIndex(this.seleccionarMes), 1));
-
         const ultimoDiaMes = endOfMonth(new Date(this.obtenerAnio(), this.getMonthIndex(this.seleccionarMes), 1));
 
-        this.diasEnMes = eachDayOfInterval({ start: primerDiaMes, end: ultimoDiaMes });
+        // Obtener todos los días del mes, excluyendo los fines de semana
+        const diasEnMes = eachDayOfInterval({ start: primerDiaMes, end: ultimoDiaMes });
+        this.diasEnMes = diasEnMes.filter(dia => !this.esFinDeSemana(dia));
 
+        // Generar las inasistencias basadas en las asistencias filtradas
         const inasistencias = this.generarInasistencias(this.asistenciasFiltradas);
 
+        // Generar el reporte con las fechas y el estado de las asistencias para cada día del mes
         this.report = this.diasEnMes.map(dia => ({
           fecha: format(dia, 'dd-MM-yyyy'),
           estado: this.getEstadoAsistencia(dia)
         }));
 
+        // Obtener los nombres de los empleados
         this.obtenerNombresEmpleados();
       },
       (error) => {
@@ -126,36 +135,54 @@ export class RAusenciasPage implements OnInit {
     );
   }
 
+  // Verificar si un día es fin de semana (sábado o domingo)
+  esFinDeSemana(dia: Date): boolean {
+    return dia.getDay() === 0 || dia.getDay() === 6;
+  }
+
   //----------------------------------------------------------------
   // Genera las inasistencias para los días del mes seleccionado
   //----------------------------------------------------------------
   generarInasistencias(asistenciasFiltradas: any[]) {
     const inasistencias = [];
 
+    // Recorrer cada día del mes
     for (const dia of this.diasEnMes) {
       const fechaRegistro = format(dia, 'yyyy-MM-dd');
+
+      // Verificar si ya existe una asistencia para el día actual
       const asistenciaExistente = this.existeAsistencia(fechaRegistro, asistenciasFiltradas);
+
+      // Determinar si es una inasistencia basada en la falta de asistencia registrada y si el día es fin de semana o feriado en Chile
       const inasistencia = !asistenciaExistente && (dia.getDay() === 0 || dia.getDay() === 6 || this.esFeriadoEnChile(fechaRegistro));
 
+      // Agregar la fecha y el estado de inasistencia al arreglo de inasistencias
       inasistencias.push({ fecha: format(dia, 'yyyy-MM-dd'), inasistencia });
     }
 
     return inasistencias;
   }
 
-
   //----------------------------------------------------------------
   // Verifica si existe una asistencia para la fecha especificada
   //----------------------------------------------------------------
   existeAsistencia(fecha: string, asistenciasFiltradas: any[]): boolean {
+
+    // Verificar si no hay asistencias filtradas o si está vacío
     if (!asistenciasFiltradas || asistenciasFiltradas.length === 0) {
       return false;
     }
 
+    // Convertir la fecha a buscar al formato 'yyyy-MM-dd'
     const fechaBuscar = format(parseISO(fecha), 'yyyy-MM-dd');
 
+    // Verificar si alguna de las asistencias filtradas coincide con la fecha buscada
     return asistenciasFiltradas.some(asistencia => {
+
+      // Obtener la fecha de la asistencia y convertirla a objeto Date
       const fechaAsistencia = new Date(asistencia.fecha_registro.split('T')[0]);
+
+      // Comparar la fecha de la asistencia con la fecha buscada, en el formato 'yyyy-MM-dd'
       return format(fechaAsistencia, 'yyyy-MM-dd') === format(parseISO(fechaBuscar), 'yyyy-MM-dd');
     });
   }
@@ -164,20 +191,31 @@ export class RAusenciasPage implements OnInit {
   // Obtiene el estado de la asistencia para el día especificado
   //----------------------------------------------------------------
   getEstadoAsistencia(dia: Date): string {
+
+    // Obtener la fecha actual
     const fechaActual = new Date();
+
+    // Convertir la fecha del día al formato 'yyyy-MM-dd'
     const fechaRegistro = format(dia, 'yyyy-MM-dd');
+
+    // Verificar si existe una asistencia para la fecha actual en las asistencias filtradas
     const asistenciaExistente = this.existeAsistencia(fechaRegistro, this.asistenciasFiltradas);
+
+    // Verificar si el día es fin de semana (sábado o domingo)
     const esFinDeSemana = dia.getDay() === 0 || dia.getDay() === 6;
+
+    // Verificar si el día es feriado en Chile
     const esFeriado = this.esFeriadoEnChile(fechaRegistro);
 
+    // Determinar el estado de la asistencia en función de las condiciones
     if (dia > fechaActual) {
-      return 'N/A';
+      return 'N/A'; // Día en el futuro
     } else if (esFeriado) {
       return 'Feriado';
     } else if (esFinDeSemana && !asistenciaExistente) {
       return 'Fin de semana';
     } else if (asistenciaExistente) {
-      return 'OK';
+      return 'Presente';
     } else {
       return 'Ausente';
     }
@@ -219,12 +257,18 @@ export class RAusenciasPage implements OnInit {
   //----------------------------------------------------------------
   getTotalDiasAusentes(): number {
     let count = 0;
+
+    // Recorrer cada día del mes
     for (const dia of this.diasEnMes) {
+
+      // Verificar si el estado de la asistencia para el día es 'Ausente'
       if (this.getEstadoAsistencia(dia) === 'Ausente') {
-        count++;
+
+        count++; // Incrementar el contador de días ausentes
       }
     }
-    return count;
+
+    return count; // Devolver el total de días ausentes
   }
 
   //----------------------------------------------------------------

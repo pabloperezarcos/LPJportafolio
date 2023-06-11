@@ -45,11 +45,11 @@
     <br>
   </ion-card>
 
-  <div>
+  <div *ngIf="report">
     <div class="ion-text-center">
 
       <p>Reporte de Ausencias:</p>
-      <p>OK: Días con registros de entrada.</p>
+      <p>Presente: Días con registros de entrada.</p>
       <p>Ausente: Días sin registros de entrada.</p>
       <p>N/A: No aplica. Días que aún no ocurren.</p>
       <p>-------------------</p>
