@@ -77,8 +77,10 @@ export class RAusenciasPage implements OnInit {
           return asistencia.empleado === this.empleadoSeleccionado && mes === this.getMonthIndex(this.seleccionarMes);
         });
 
-        const primerDiaMes = startOfMonth(new Date());
-        const ultimoDiaMes = endOfMonth(new Date());
+        const primerDiaMes = startOfMonth(new Date(this.obtenerAnio(), this.getMonthIndex(this.seleccionarMes), 1));
+
+        const ultimoDiaMes = endOfMonth(new Date(this.obtenerAnio(), this.getMonthIndex(this.seleccionarMes), 1));
+
         this.diasEnMes = eachDayOfInterval({ start: primerDiaMes, end: ultimoDiaMes });
 
         const inasistencias = this.generarInasistencias(this.asistenciasFiltradas);
@@ -108,7 +110,7 @@ export class RAusenciasPage implements OnInit {
       const asistenciaExistente = this.existeAsistencia(fechaRegistro, asistenciasFiltradas);
       const inasistencia = !asistenciaExistente && (dia.getDay() === 0 || dia.getDay() === 6);
 
-      inasistencias.push({ fecha: dia, inasistencia });
+      inasistencias.push({ fecha: format(dia, 'yyyy-MM-dd'), inasistencia });
     }
 
     return inasistencias;
@@ -121,17 +123,18 @@ export class RAusenciasPage implements OnInit {
       return false;
     }
 
-    const fechaBuscar = new Date(fecha);
+    const fechaBuscar = format(parseISO(fecha), 'yyyy-MM-dd');
+
 
     return asistenciasFiltradas.some(asistencia => {
       const fechaAsistencia = new Date(asistencia.fecha_registro.split('T')[0]);
-      return fechaAsistencia.toISOString().split('T')[0] === fechaBuscar.toISOString().split('T')[0];
+      return format(fechaAsistencia, 'yyyy-MM-dd') === format(parseISO(fechaBuscar), 'yyyy-MM-dd');
     });
   }
 
   getEstadoAsistencia(dia: Date): string {
     const fechaRegistro = format(dia, 'yyyy-MM-dd');
-    const asistenciaExistente = this.existeAsistencia(fechaRegistro, this.asistenciasFiltradas);
+    const asistenciaExistente = this.asistenciasFiltradas.some(asistencia => format(parseISO(asistencia.fecha_registro), 'yyyy-MM-dd') === format(dia, 'yyyy-MM-dd'));
     const esFinDeSemana = dia.getDay() === 0 || dia.getDay() === 6;
 
     if (esFinDeSemana && !asistenciaExistente) {
