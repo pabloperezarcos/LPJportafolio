@@ -20,6 +20,7 @@ export class RIndividualPage implements OnInit {
   asistenciasFiltradas: any[] = [];
   showCalendarInicio: boolean = false;
   showCalendarFin: boolean = false;
+  reportObtenido: boolean = false;
 
   constructor(
     private reportesService: ReportesService,
@@ -89,6 +90,12 @@ export class RIndividualPage implements OnInit {
           const fechaRegistroTimestamp = new Date(asistencia.fecha_registro).getTime();
           return fechaRegistroTimestamp >= fechaInicioTimestamp && fechaRegistroTimestamp <= fechaFinTimestamp;
         });
+
+        if (this.asistenciasFiltradas && this.asistenciasFiltradas.length === 0) {
+          this.mostrarAlerta('Información', 'No existen registros.');
+        }
+
+        this.reportObtenido = true; // Establecer reportObtenido como true
       },
       (error) => {
         console.error(error);

@@ -15,6 +15,11 @@ import { RAtrasosPage } from './r-atrasos.page';
     IonicModule,
     RAtrasosPageRoutingModule
   ],
-  declarations: [RAtrasosPage]
+  declarations: [
+    RAtrasosPage
+  ],
+  providers: [
+
+  ],
 })
-export class RAtrasosPageModule {}
+export class RAtrasosPageModule { }

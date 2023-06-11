@@ -36,7 +36,15 @@
     <br>
   </ion-card>
 
-  <div *ngIf="report">
+  <div *ngIf="!report">
+    <p class="ion-text-center">No has cargado un reporte.</p>
+  </div>
+
+  <div *ngIf="report && report.length === 0">
+    <p class="ion-text-center">No existen registros.</p>
+  </div>
+
+  <div *ngIf="report && report.length > 0">
     <table class="tabla-centrada">
       <thead>
         <tr>

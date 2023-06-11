@@ -45,6 +45,10 @@
     <br>
   </ion-card>
 
+  <div *ngIf="!report">
+    <p class="ion-text-center">No has cargado un reporte.</p>
+  </div>
+
   <div *ngIf="report">
     <div class="ion-text-center">
 
