@@ -47,27 +47,9 @@
 
   <!-- --------------------------- -->
 
-<!--   <div *ngIf="report && inasistencias">
-    <table class="tabla-centrada">
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Asistencia</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let asistencia of inasistencias">
-          <td>{{ asistencia.fecha | date: 'dd-MM-yyyy' }}</td>
-          <td>
-            {{ asistencia.inasistencia ? (asistencia.fecha.getDay() === 6 ? 'Sábado' : 'Domingo') :
-            (existeAsistencia(asistencia.fecha | date: 'yyyy-MM-dd')) ? 'OK' : 'Ausente' }}
-          </td>          
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
 
-  <div *ngIf="report && asistenciasFiltradas">
+
+  <div>
     <table class="tabla-centrada">
       <thead>
         <tr>
@@ -76,16 +58,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let asistencia of report">
-          <td>{{ asistencia.fecha | date: 'dd-MM-yyyy' }}</td>
-          <td>
-            {{ asistencia.estado }}
-          </td>          
-        </tr>
+        <ng-container *ngFor="let dia of diasEnMes">
+          <tr>
+            <td>{{ dia | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ getEstadoAsistencia(dia) }}</td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
+
   </div>
-  
+
 
 
 

@@ -18,9 +18,9 @@ export class RAusenciasPage implements OnInit {
   empleados: any[] = [];
   empleadoSeleccionado: number;
   seleccionarMes: string;
-  inasistencias: { fecha: Date, inasistencia: boolean }[] = [];
-  asistenciasFiltradas: any[];
+  diasEnMes: Date[];
 
+  asistenciasFiltradas: any[] = [];
 
   constructor(
     private modalCtrl: ModalController,
@@ -71,35 +71,26 @@ export class RAusenciasPage implements OnInit {
 
     this.asistenciasService.getAsistencias().subscribe(
       (asistencias: any[]) => {
-        console.log('Asistencias:', asistencias);
-
-        const asistenciasFiltradas = asistencias.filter(asistencia => {
+        this.asistenciasFiltradas = asistencias.filter(asistencia => {
           const fecha = parseISO(asistencia.fecha_registro);
           const mes = getMonth(fecha);
           return asistencia.empleado === this.empleadoSeleccionado && mes === this.getMonthIndex(this.seleccionarMes);
         });
 
-        console.log('Asistencias filtradas:', asistenciasFiltradas);
+        const primerDiaMes = startOfMonth(new Date());
+        const ultimoDiaMes = endOfMonth(new Date());
+        this.diasEnMes = eachDayOfInterval({ start: primerDiaMes, end: ultimoDiaMes });
 
-        const inasistencias = asistenciasFiltradas.reduce((acc, curr) => {
-          const fecha = parseISO(curr.fecha_registro);
-          const fechaRegistro = format(fecha, 'yyyy-MM-dd');
+        const inasistencias = this.generarInasistencias(this.asistenciasFiltradas);
 
-          if (!acc.some(item => item.fecha === fechaRegistro)) {
-            acc.push({ fecha: fechaRegistro, inasistencia: false });
-          }
-
-          return acc;
-        }, []);
-
-        console.log('Inasistencias:', inasistencias);
-
-        this.report = inasistencias.map(item => ({
-          fecha: item.fecha,
-          estado: item.inasistencia ? 'Ausente' : 'OK'
+        this.report = this.diasEnMes.map(dia => ({
+          fecha: format(dia, 'dd-MM-yyyy'),
+          estado: this.getEstadoAsistencia(dia)
         }));
 
-        this.asistenciasFiltradas = asistenciasFiltradas; // Agregar esta línea después de generar las inasistencias
+
+
+        this.obtenerNombresEmpleados();
       },
       (error) => {
         console.error(error);
@@ -109,35 +100,47 @@ export class RAusenciasPage implements OnInit {
   }
 
 
-
   generarInasistencias(asistenciasFiltradas: any[]) {
-    const diasEnMes = this.getDiasEnMes();
     const inasistencias = [];
 
-    for (let i = 1; i <= diasEnMes; i++) {
-      const fecha = new Date(this.obtenerAnio(), this.getMonthIndex(this.seleccionarMes), i);
-      const esFinDeSemana = fecha.getDay() === 0 || fecha.getDay() === 6;
-      const fechaBuscar = format(fecha, 'yyyy-MM-dd'); // Convertir la fecha al formato "yyyy-MM-dd"
-      const asistenciaExistente = this.existeAsistencia(fechaBuscar, asistenciasFiltradas); // Pasar la fecha convertida como argumento
-      const inasistencia = esFinDeSemana && !asistenciaExistente;
+    for (const dia of this.diasEnMes) {
+      const fechaRegistro = format(dia, 'yyyy-MM-dd');
+      const asistenciaExistente = this.existeAsistencia(fechaRegistro, asistenciasFiltradas);
+      const inasistencia = !asistenciaExistente && (dia.getDay() === 0 || dia.getDay() === 6);
 
-      inasistencias.push({ fecha, inasistencia });
+      inasistencias.push({ fecha: dia, inasistencia });
     }
 
     return inasistencias;
   }
+
+
 
   existeAsistencia(fecha: string, asistenciasFiltradas: any[]): boolean {
     if (!asistenciasFiltradas || asistenciasFiltradas.length === 0) {
       return false;
     }
 
-    const fechaBuscar = new Date(fecha); // Convertir la cadena de texto a objeto Date
+    const fechaBuscar = new Date(fecha);
 
     return asistenciasFiltradas.some(asistencia => {
-      const fechaAsistencia = new Date(asistencia.fecha_registro.split('T')[0]); // Convertir la cadena de texto a objeto Date
-      return fechaAsistencia.toISOString().split('T')[0] === fechaBuscar.toISOString().split('T')[0]; // Comparar las fechas
+      const fechaAsistencia = new Date(asistencia.fecha_registro.split('T')[0]);
+      return fechaAsistencia.toISOString().split('T')[0] === fechaBuscar.toISOString().split('T')[0];
     });
+  }
+
+  getEstadoAsistencia(dia: Date): string {
+    const fechaRegistro = format(dia, 'yyyy-MM-dd');
+    const asistenciaExistente = this.existeAsistencia(fechaRegistro, this.asistenciasFiltradas);
+    const esFinDeSemana = dia.getDay() === 0 || dia.getDay() === 6;
+
+    if (esFinDeSemana && !asistenciaExistente) {
+      return 'Fin de semana';
+    } else if (asistenciaExistente) {
+      return 'OK';
+    } else {
+      return 'Ausente';
+    }
   }
 
   getDiasEnMes() {
