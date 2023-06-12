@@ -8,6 +8,8 @@ import { NotasPageRoutingModule } from './notas-routing.module';
 
 import { NotasPage } from './notas.page';
 import { HttpClientModule } from '@angular/common/http';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+import { FiltroNotasPipe } from 'src/app/pipes/filtro-notas.pipe';
 
 @NgModule({
   imports: [
@@ -15,9 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    PipesModule,
     HttpClientModule,
     NotasPageRoutingModule
   ],
-  declarations: [NotasPage]
+  declarations: [
+    NotasPage,
+    FiltroNotasPipe
+  ]
 })
-export class NotasPageModule {}
+export class NotasPageModule { }

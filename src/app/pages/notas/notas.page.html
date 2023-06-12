@@ -12,6 +12,11 @@
 
   <ion-card class="translucent-card">
 
+    <ion-searchbar placeholder="Buscar por titulo de nota" (ionChange)="busquedaChange( $event )" animated>
+    </ion-searchbar>
+
+    <br>
+
     <div class="ion-text-center">
       <ion-button (click)="crearNota()" color="success" shape="round">
         <ion-icon slot="end" name="create-outline"></ion-icon>
@@ -22,7 +27,7 @@
     <br>
 
     <ion-list>
-      <ion-item-sliding *ngFor="let nota of notas">
+      <ion-item-sliding *ngFor="let nota of notas | filtroNotas: terminoBusqueda">
         <ion-item-options side="start">
           <ion-item-option (click)="mostrarAlertaEditar(nota)">
             Editar

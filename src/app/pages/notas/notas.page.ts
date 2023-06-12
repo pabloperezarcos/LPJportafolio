@@ -14,7 +14,7 @@ export class NotasPage implements OnInit {
   notas: any[] = [];
   titulo: string = '';
   contenido: string = '';
-  textoBuscar: string = '';
+  terminoBusqueda: string = '';
 
   constructor(
     public navCtrl: NavController,
@@ -35,10 +35,10 @@ export class NotasPage implements OnInit {
     this.getNotas();
   }
 
-  // Actualiza el valor de la variable 'textoBuscar' al cambiar el contenido del campo de búsqueda
-/*   busquedaChange(event) {
-    this.textoBuscar = event.detail.value;
-  } */
+  // Actualiza el valor de la variable 'terminoBusqueda' al cambiar el contenido del campo de búsqueda
+  busquedaChange(event) {
+    this.terminoBusqueda = event.detail.value;
+  }
 
   // Navega hacia la página de crear una nueva nota
   crearNota() {

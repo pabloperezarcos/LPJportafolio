@@ -25,10 +25,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'recuperar-pass-modal',
-    loadChildren: () => import('./pages/modals/recuperar-pass-modal/recuperar-pass-modal.module').then(m => m.RecuperarPassModalPageModule)
-  },
-  {
     path: 'index',
     loadChildren: () => import('./pages/index/index.module').then(m => m.IndexPageModule)
   },
@@ -55,7 +51,8 @@ const routes: Routes = [
   {
     path: 'detalles-empleados',
     loadChildren: () => import('./pages/modals/detalles-empleados/detalles-empleados.module').then(m => m.DetallesEmpleadosPageModule)
-  },  {
+  },
+  {
     path: 'r-ausencias',
     loadChildren: () => import('./pages/modals/r-ausencias/r-ausencias.module').then( m => m.RAusenciasPageModule)
   },
