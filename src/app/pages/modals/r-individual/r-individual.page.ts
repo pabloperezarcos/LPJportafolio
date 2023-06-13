@@ -22,6 +22,7 @@ export class RIndividualPage implements OnInit {
   showCalendarInicio: boolean = false;
   showCalendarFin: boolean = false;
   reportObtenido: boolean = false;
+  registroEditado: any = {};
 
   constructor(
     private reportesService: ReportesService,
@@ -124,21 +125,106 @@ export class RIndividualPage implements OnInit {
   };
 
   //----------------------------------------------------------------
-  // Muestra una alerta con un título y un mensaje
+  // Muestra una alerta antes de eliminar un registro.
   //----------------------------------------------------------------
-  eliminarRegistro(asistenciaId: number) {
-    this.asistenciaService.deleteAsistencia(asistenciaId).subscribe(
+  async eliminarRegistro(asistenciaId: number) {
+    const alert = await this.alertCtrl.create({
+      header: 'Eliminar registro',
+      message: '¿Estás seguro de que deseas eliminar este registro de asistencia?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Eliminación cancelada');
+          }
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.asistenciaService.deleteAsistencia(asistenciaId).subscribe(
+              () => {
+                // Eliminación exitosa, puedes realizar cualquier acción adicional necesaria
+                console.log('Registro de asistencia eliminado correctamente');
+                this.obtenerAsistencias();
+              },
+              (error) => {
+                console.error('Error al eliminar el registro de asistencia:', error);
+              }
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  //----------------------------------------------------------------
+  // Muestra una alerta para editar un registro.
+  //----------------------------------------------------------------
+  async editarRegistro(registro: any) {
+    const alert = await this.alertCtrl.create({
+      header: 'Editar registro',
+      inputs: [
+        {
+          name: 'fecha_registro',
+          type: 'date',
+          value: registro.fecha_registro
+        },
+        {
+          name: 'hora_entrada',
+          type: 'time',
+          value: registro.hora_entrada.substring(11, 16)
+        },
+        {
+          name: 'hora_salida',
+          type: 'time',
+          value: registro.hora_salida ? registro.hora_salida.substring(11, 16) : null
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Edición cancelada');
+          }
+        },
+        {
+          text: 'Guardar',
+          handler: (data) => {
+            this.guardarEdicion(registro.id, data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  guardarEdicion(registroId: number, data: any) {
+    this.registroEditado.fecha_registro = data.fecha_registro;
+    this.registroEditado.hora_entrada = new Date(data.fecha_registro + ' ' + data.hora_entrada);
+    this.registroEditado.hora_salida = data.hora_salida ? new Date(data.fecha_registro + ' ' + data.hora_salida) : null;
+    this.registroEditado.empleado = this.empleadoSeleccionado;
+
+    this.asistenciaService.updateAsistencia(registroId, this.registroEditado).subscribe(
       () => {
-        // Eliminación exitosa, puedes realizar cualquier acción adicional necesaria
-        console.log('Registro de asistencia eliminado correctamente');
+        console.log('Registro de asistencia actualizado correctamente');
         this.obtenerAsistencias();
       },
       (error) => {
-        // Manejo del error en caso de que ocurra un problema durante la eliminación
-        console.error('Error al eliminar el registro de asistencia:', error);
+        console.error('Error al actualizar el registro de asistencia:', error);
       }
     );
   }
+
+
+
+
 
   exportarPDF() {
   }
