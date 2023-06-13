@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
 import { ReportesService } from 'src/app/services/reportes.service';
 import { EmpleadosService } from 'src/app/services/empleados.service';
+import { AsistenciaService } from 'src/app/services/asistencias.service';
 import { PdfService } from 'src/app/services/pdf.service';
 import { XlsxService } from 'src/app/services/xlsx.service';
 
@@ -27,6 +28,7 @@ export class RIndividualPage implements OnInit {
     private modalCtrl: ModalController,
     private empleadosService: EmpleadosService,
     private alertCtrl: AlertController,
+    private asistenciaService: AsistenciaService,
     private pdfService: PdfService,
     private xlsxService: XlsxService
   ) { }
@@ -120,6 +122,23 @@ export class RIndividualPage implements OnInit {
     const utcDay = date.getUTCDay();
     return utcDay !== 0;
   };
+
+  //----------------------------------------------------------------
+  // Muestra una alerta con un título y un mensaje
+  //----------------------------------------------------------------
+  eliminarRegistro(asistenciaId: number) {
+    this.asistenciaService.deleteAsistencia(asistenciaId).subscribe(
+      () => {
+        // Eliminación exitosa, puedes realizar cualquier acción adicional necesaria
+        console.log('Registro de asistencia eliminado correctamente');
+        this.obtenerAsistencias();
+      },
+      (error) => {
+        // Manejo del error en caso de que ocurra un problema durante la eliminación
+        console.error('Error al eliminar el registro de asistencia:', error);
+      }
+    );
+  }
 
   exportarPDF() {
   }
